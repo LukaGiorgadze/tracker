@@ -8,7 +8,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig		from '../webpack.config.production.js';
 // Global Config
-import config 				from './config.jsx'
+import config from './config.jsx'
 // Module declarations
 const app = Express();
 

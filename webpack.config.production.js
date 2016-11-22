@@ -40,7 +40,7 @@ module.exports = {
 		new Webpack.HotModuleReplacementPlugin(),
 		new Webpack.DefinePlugin({
 			'process.env': {
-				'NODE_ENV': JSON.stringify('production')
+				'NODE_ENV': JSON.stringify('development')
 			}
 		}),
 		new Webpack.NoErrorsPlugin(),

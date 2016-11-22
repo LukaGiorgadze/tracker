@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-require('./css/normalize.css');
 require('./css/main.css');
 
 // Needed for onTouchTap
@@ -29,6 +29,8 @@ const Logged = (props) => (
 		<MenuItem primaryText="Sign out" />
 	</IconMenu>
 );
+
+Logged.muiName = 'IconMenu';
 
 class RealTimeClock extends React.Component {
 	constructor(props) {
@@ -51,6 +53,10 @@ class RealTimeClock extends React.Component {
 		this.setState({
 			time: new Date().toLocaleTimeString()
 		});
+
+		this.setState({
+			time: new Date().toLocaleTimeString()
+		});
 	}
 
 
@@ -58,11 +64,13 @@ class RealTimeClock extends React.Component {
 	{
 		return(
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
-				<AppBar
-					title={'დრო ' + this.state.time}
-					iconClassNameRight="muidocs-icon-navigation-expand-more"
-					iconElementLeft = {<Logged />}
-				/>
+				<div>
+					<AppBar
+						title="Title"
+						iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+						iconElementRight={<Logged />}
+					/>
+				</div>
 			</MuiThemeProvider>
 		);
 	}
