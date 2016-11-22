@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -57,7 +59,7 @@ class RealTimeClock extends React.Component {
 		return(
 			<MuiThemeProvider muiTheme={getMuiTheme()}>
 				<AppBar
-					title={"The time is " + this.state.time}
+					title={'დრო ' + this.state.time}
 					iconClassNameRight="muidocs-icon-navigation-expand-more"
 					iconElementLeft = {<Logged />}
 				/>
@@ -70,3 +72,7 @@ ReactDOM.render(
 	<RealTimeClock />,
 	document.querySelector('#app')
 );
+
+if(module.hot) {
+	module.hot.accept();
+}
