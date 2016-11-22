@@ -30,7 +30,12 @@ app.use(Express.static(__dirname + '../' + config.publicHtml));
 // All Get request goes here
 app.get('/*', (req, res) => {
 	res.sendFile(Path.join(__dirname, '../' + config.publicHtml + '/index.html'));
+	console.log(module);
 });
+
+if (module.hot) {
+	module.hot.accept();
+}
 
 // Listen Port 3000
 app.listen(3000);
