@@ -1,14 +1,11 @@
-'use strict';
-
 // Application Initialization and Module Dependencies
 import Express 				from 'express';
 import Path 				from 'path';
 import webpack 				from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig		from '../webpack.config.production.js';
-// Global Config
-import config from './config.jsx'
+import webpackConfig		from '../webpack.config.js';
+import config 				from './config.jsx'
 // Module declarations
 const app = Express();
 
@@ -24,13 +21,17 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
+
 // Set default public html directory
-app.use(Express.static(Path.resolve(__dirname + '../' + config.publicHtml)));
+app.use(Express.static(Path.join(__dirname, '../', config.publicHtml)));
 
 // All Get request goes here
 app.get('/*', (req, res) => {
-	res.sendFile(Path.join(__dirname, '../' + config.publicHtml + '/index.html'));
+	res.sendFile(Path.join(__dirname, '../', config.publicHtml, 'index.html'));
 });
 
-// Listen Port 3000
-app.listen(3000);
+
+
+
+// App listening
+app.listen(config.port);
