@@ -19,10 +19,10 @@ loaders.push({
 
 // Export Webpack Config
 module.exports = {
-	devtool: 'cheap-module-eval-source-map',
+	devtool: config.environment === 'development' ? 'eval' : 'hidden-source-map',
 	entry: [
 		'webpack-hot-middleware/client',
-		'./client/' + config.clientMain
+		Path.join(__dirname, 'client', config.clientMain)
 	],
 	output: {
 		path: Path.join(__dirname, config.publicHtml),
@@ -40,7 +40,7 @@ module.exports = {
 		new Webpack.HotModuleReplacementPlugin(),
 		new Webpack.DefinePlugin({
 			'process.env': {
-				'NODE_ENV': JSON.stringify('development')
+				'NODE_ENV': JSON.stringify(config.environment)
 			}
 		}),
 		new Webpack.NoErrorsPlugin(),
@@ -51,8 +51,8 @@ module.exports = {
 			compress: {
 				warnings: false,
 				screw_ie8: true,
-				drop_console: true,
-				drop_debugger: true
+				drop_console: config.environment === 'development' ? false : true,
+				drop_debugger: config.environment === 'development' ? false : true,
 			}
 		}),
 		// Minimize CSS
@@ -61,13 +61,13 @@ module.exports = {
 		}),
 		// Create Main Template
 		new HtmlWebpackPlugin({
-			template: __dirname + '/client/template.html',
-			filename: __dirname + '/' + config.publicHtml + '/index.html',
+			template: Path.join(__dirname, 'client', 'Template.html'),
+			filename: Path.join(__dirname, config.publicHtml, 'index.html'),
 			inject: 'body',
 			hash: false,
 			minify: false,
 			//favicon: 'favicon.ico'
 		}),
-		//new Webpack.optimize.DedupePlugin()
+		new Webpack.optimize.DedupePlugin()
 	]
 };
