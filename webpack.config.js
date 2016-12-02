@@ -37,7 +37,7 @@ module.exports = {
 	},
 	plugins: [
 		new Webpack.optimize.OccurenceOrderPlugin(),
-		config.environment === 'development' && new Webpack.HotModuleReplacementPlugin(),
+		new Webpack.HotModuleReplacementPlugin(),
 		new Webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify(config.environment)

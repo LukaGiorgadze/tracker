@@ -1,3 +1,15 @@
-html, body {
-	font-family:'Roboto', sans-serif;
+#nav {
+	width:500px;
+	height:50px;
+}
+#nav li, #nav li a {
+	display:block;
+	float:left;
+}
+#nav li a {
+	margin:0 15px 0 0;
+}
+.clearfix {
+	clear:both;
+	float:none;
 }

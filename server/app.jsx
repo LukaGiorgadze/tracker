@@ -30,11 +30,8 @@ app.use(Express.static(Path.join(__dirname, '../', config.publicHtml)));
 
 // All Get request goes here
 app.get('/*', (req, res) => {
-	console.log( config.environment );
 	res.sendFile(Path.join(__dirname, '../', config.publicHtml, 'index.html'));
 });
-
-
 
 
 // App listening
