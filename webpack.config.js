@@ -21,7 +21,7 @@ loaders.push({
 module.exports = {
 	devtool: config.environment === 'development' ? 'eval' : 'hidden-source-map',
 	entry: [
-		'webpack-hot-middleware/client',
+		config.environment === 'development' && 'webpack-hot-middleware/client',
 		Path.join(__dirname, 'client', config.clientMain)
 	],
 	output: {
@@ -37,7 +37,7 @@ module.exports = {
 	},
 	plugins: [
 		new Webpack.optimize.OccurenceOrderPlugin(),
-		new Webpack.HotModuleReplacementPlugin(),
+		config.environment === 'development' && new Webpack.HotModuleReplacementPlugin(),
 		new Webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify(config.environment)
@@ -51,8 +51,8 @@ module.exports = {
 			compress: {
 				warnings: false,
 				screw_ie8: true,
-				drop_console: config.environment === 'development' ? false : true,
-				drop_debugger: config.environment === 'development' ? false : true,
+				drop_console: config.environment === 'production',
+				drop_debugger: config.environment === 'production',
 			}
 		}),
 		// Minimize CSS

@@ -4,5 +4,6 @@ module.exports = {
 	publicHtml: 'www',	// Public path of stored files
 	serverMain: 'app.jsx',	// Main file of client side
 	clientMain: 'App.jsx',	// Main file of server side
-	environment: 'development'	// development or production 
+	//environment: process.env.NODE_ENV
+	environment: 'development'	// development or production
 };

@@ -9,17 +9,20 @@ import config 				from './config.jsx'
 // Module declarations
 const app = Express();
 
-// Setup middleware and Hot
-const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {
-	hot: true,
-	publicPath: webpackConfig.output.publicPath,
-	noInfo: true,
-	stats: {
-		chunks: false
-	}
-}));
-app.use(webpackHotMiddleware(compiler));
+// Setup middleware and Hot in Development Environment
+if(config.environment === 'development')
+{
+	const compiler = webpack(webpackConfig);
+	app.use(webpackDevMiddleware(compiler, {
+		hot: true,
+		publicPath: webpackConfig.output.publicPath,
+		noInfo: true,
+		stats: {
+			chunks: false
+		}
+	}));
+	app.use(webpackHotMiddleware(compiler));
+}
 
 
 // Set default public html directory
@@ -27,6 +30,7 @@ app.use(Express.static(Path.join(__dirname, '../', config.publicHtml)));
 
 // All Get request goes here
 app.get('/*', (req, res) => {
+	console.log( config.environment );
 	res.sendFile(Path.join(__dirname, '../', config.publicHtml, 'index.html'));
 });
 
