@@ -1,13 +1,13 @@
 import React from 'react';
+import { Image } from 'semantic-ui-react'
+
+const error404 = require('../img/404.png');
 
 export class NotFound extends React.Component {
-
 	render() {
 		return (
 			<div>
-				<h1>
-					Error 404 Not Found!
-				</h1>
+				<Image src={error404} alt="Page not found." fluid />
 			</div>
 	    );
 	}

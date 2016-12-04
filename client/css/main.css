@@ -1,15 +1,113 @@
-#nav {
-	width:500px;
-	height:50px;
+@font-face {
+	font-family: 'BPGSquare';
+	src: url('./bpgsquare/bpg_square_2009.eot');
+	src: local('BPG Square'),
+	url('./bpgsquare/bpg_square_2009.eot?#iefix') format('embedded-opentype'),
+	url('./bpgsquare/bpg_square_2009.ttf') format('truetype'),
+	url('./bpgsquare/bpg_square_2009.woff') format("woff"),
+	url('./bpgsquare/bpg_square_2009.svg#font') format('svg');
 }
-#nav li, #nav li a {
+@font-face {
+	font-family: 'BPGSquareMtavruli';
+	src: url('./bpgsquare/bpg_square_mtavruli_2009.eot');
+	src: local('BPG Square Mtavruli'),
+	url('./bpgsquare/bpg_square_mtavruli_2009.eot?#iefix') format('embedded-opentype'),
+	url('./bpgsquare/bpg_square_mtavruli_2009.ttf') format('truetype'),
+	url('./bpgsquare/bpg_square_mtavruli_2009.woff') format("woff"),
+	url('./bpgsquare/bpg_square_mtavruli_2009.svg#font') format('svg');
+}
+@font-face {
+	font-family: 'BPGExtraSquareMtavruli';
+	src: url('./bpgsquare/bpg_extrasquare_mtavruli_2009.eot');
+	src: local('BPG ExtraSquare Mtavruli'),
+	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.eot?#iefix') format('embedded-opentype'),
+	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.ttf') format('truetype'),
+	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.woff') format("woff"),
+	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.svg#font') format('svg');
+}
+@font-face {
+	font-family: 'Lari';
+	src: url('./lari/lari.eot');
+	src: local('Lari'),
+	url('./lari/lari.eot?#iefix') format('embedded-opentype'),
+	url('./lari/lari.ttf') format('truetype'),
+	url('./lari/lari.woff') format("woff"),
+	url('./lari/lari.svg#font') format('svg');
+}
+.clear:after {
+	content:".";
 	display:block;
-	float:left;
+	clear:both;
+	visibility:hidden;
+	line-height:0;
+	height:0;
 }
-#nav li a {
-	margin:0 15px 0 0;
-}
-.clearfix {
+.clear {
+	display:block;
+	margin:0;
+	padding:0;
+	line-height:normal;
 	clear:both;
 	float:none;
+}
+html[xmlns] .clear {
+	display:block;
+}
+* html .clear {
+	height:1%;
+	overflow:visible;
+}
+
+/*******************************************/
+/*	LAYOUT
+/*******************************************/
+body {
+	font-family:"BPGSquare", sans-serif;
+	background:#FAFAFA;
+	zoom:1;
+}
+.BPGSquare {
+	font-family:"BPGSquare", sans-serif !important;
+}
+.BPGSquareMtavruli {
+	font-family:"BPGSquareMtavruli", sans-serif !important;
+}
+.BPGExtraSquareMtavruli {
+	font-family:"BPGExtraSquareMtavruli", sans-serif !important;
+}
+.navIcon {
+	margin-right:5px;
+}
+.userProfile .menu a {
+	color:rgba(0,0,0,.87);
+}
+.userProfile .menu a.active {
+	font-weight:700;
+}
+.userHeader {
+	display:block;
+	float:right;
+}
+
+.userHeader .userMessages,
+.userHeader .userNotifications {
+	display:block;
+	float:right;
+	margin:4px 0 0 10px;
+}
+.userHeader .userProfile {
+	margin-top:1px;
+}
+.noMargin {
+	margin:0 !important;
+}
+.newsAddButtons {
+	display:block;
+	float:right;
+	width:auto;
+	margin-top:15px;
+}
+.newsAddButtons div {
+	float:left;
+	margin-left:5px;
 }

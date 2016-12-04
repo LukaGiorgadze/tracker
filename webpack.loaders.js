@@ -1,42 +1,26 @@
 module.exports = [
 	{
 		test: /\.jsx?$/,
-		exclude: /(node_modules|bower_components|public)/,
+		exclude: /(node_modules|bower_components)/,
 		loader: "babel"
 	},
 	{
-		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-		exclude: /(node_modules|bower_components)/,
-		loader: "file"
-	},
-	{
-		test: /\.(woff|woff2)$/,
-		exclude: /(node_modules|bower_components)/,
-		loader: "url?prefix=font/&limit=5000"
-	},
-	{
-		test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-		exclude: /(node_modules|bower_components)/,
-		loader: "url?limit=10000&mimetype=application/octet-stream"
-	},
-	{
-		test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-		exclude: /(node_modules|bower_components)/,
-		loader: "url?limit=10000&mimetype=image/svg+xml"
-	},
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=fonts/[name].[ext]'
+    },
 	{
 		test: /\.gif/,
 		exclude: /(node_modules|bower_components)/,
-		loader: "url-loader?limit=10000&mimetype=image/gif"
+		loader: "url-loader?limit=5000&mimetype=image/gif&name=img/[sha512:hash:base64:10].[ext]"
 	},
 	{
 		test: /\.jpg/,
 		exclude: /(node_modules|bower_components)/,
-		loader: "url-loader?limit=10000&mimetype=image/jpg"
+		loader: "url-loader?limit=5000&mimetype=image/jpg&name=img/[sha512:hash:base64:10].[ext]"
 	},
 	{
 		test: /\.png/,
 		exclude: /(node_modules|bower_components)/,
-		loader: "url-loader?limit=10000&mimetype=image/png"
+		loader: "url-loader?limit=5000&mimetype=image/png&name=img/[sha512:hash:base64:10].[ext]"
 	}
 ];

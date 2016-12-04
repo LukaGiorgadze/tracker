@@ -1,14 +1,14 @@
 import React from 'react';
 
-export class About extends React.Component {
+export class Payments extends React.Component {
 
 	render() {
 		return (
 			<div>
-				About
+				Payments
 			</div>
 	    );
 	}
 }
 
-export default About;
+export default Payments;
