@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Grid, Image, Dropdown, Icon, Label, Feed } from 'semantic-ui-react'
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 let UserProfileDropdownTrigger = (
 	<span>
@@ -159,8 +159,15 @@ export class Header extends React.Component {
 					<Container>
 						<Grid>
 							<Grid.Row>
-								<Grid.Column width={8} floated="left">
-									<h1 className="BPGExtraSquareMtavruli">ლოგო</h1>
+								<Grid.Column width={8} floated="left" className="showOnMobileAndDown">
+									<h1 className="BPGExtraSquareMtavruli">
+										<IndexLink to="/" style={{color:'#fff'}}>ახალი ლოგო</IndexLink>
+									</h1>
+								</Grid.Column>
+								<Grid.Column width={8} floated="left" className="hideOnMobileAndDown">
+									<h1 className="BPGExtraSquareMtavruli">
+										<IndexLink to="/" style={{color:'#fff'}}>ლოგო</IndexLink>
+									</h1>
 								</Grid.Column>
 								<Grid.Column width={8} floated="right" textAlign="right" className="userHeader">
 									<div className="userNotifications">

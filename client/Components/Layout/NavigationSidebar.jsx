@@ -28,13 +28,13 @@ export class NavigationSidebar extends React.Component {
 	render() {
 		return (
 			<Menu fluid pointing secondary vertical>
-				<IndexLink className="BPGSquare item" to="/" activeClassName="active">
+				<Link className="BPGSquare item" to="/news" activeClassName="active">
 					<Icon.Group className="navIcon">
 						<Icon name="feed" />
 					</Icon.Group>
 					სიახლეები
 					<Label color="grey" size="tiny">1</Label>
-				</IndexLink>
+				</Link>
 				<Link className="BPGSquare item" to="/payments" activeClassName="active">
 					<Icon.Group className="navIcon">
 						<Icon name="payment" />

@@ -59,6 +59,40 @@ html[xmlns] .clear {
 }
 
 /*******************************************/
+/*	HELPERS
+/*******************************************/
+.showOnSmallAndDown,
+.showOnTabletAndDown,
+.showOnMobileAndDown {
+	display: none !important;
+}
+@media only screen and (max-width: 1200px) {
+  .hideOnSmallAndDown {
+    display: none !important;
+  }
+  .showOnSmallAndDown {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .hideOnTabletAndDown {
+    display: none !important;
+  }
+  .showOnTabletAndDown {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .hideOnMobileAndDown {
+    display: none !important;
+  }
+  .showOnMobileAndDown {
+    display: block !important;
+  }
+}
+.opacity09 {opacity:0.9;}
+.noBold {font-weight:normal !important;}
+/*******************************************/
 /*	LAYOUT
 /*******************************************/
 body {
@@ -78,9 +112,18 @@ body {
 .navIcon {
 	margin-right:5px;
 }
-.userProfile .menu a {
+.navIcon i {
+	width:18px !important;
+	display:inline-block;
+}
+.ui.dropdown .menu>.item a, 
+.ui.items>.item>.content>.header a {
 	color:rgba(0,0,0,.87);
 }
+.ui.items>.item>.content>.header:hover>a {
+	 color: #1e70bf;
+}
+
 .userProfile .menu a.active {
 	font-weight:700;
 }
@@ -88,7 +131,6 @@ body {
 	display:block;
 	float:right;
 }
-
 .userHeader .userMessages,
 .userHeader .userNotifications {
 	display:block;
@@ -110,4 +152,16 @@ body {
 .newsAddButtons div {
 	float:left;
 	margin-left:5px;
+}
+.itemIcons {
+
+}
+.itemIcons i {
+	display:inline-block;
+	margin-left:10px !important;
+}
+.itemIcons i:first-child{margin-left:0 !important;}
+.commentFullWidth {
+	width:auto !important;
+	max-width:none !important;
 }
