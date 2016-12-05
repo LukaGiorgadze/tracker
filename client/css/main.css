@@ -25,15 +25,6 @@
 	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.woff') format("woff"),
 	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.svg#font') format('svg');
 }
-@font-face {
-	font-family: 'Lari';
-	src: url('./lari/lari.eot');
-	src: local('Lari'),
-	url('./lari/lari.eot?#iefix') format('embedded-opentype'),
-	url('./lari/lari.ttf') format('truetype'),
-	url('./lari/lari.woff') format("woff"),
-	url('./lari/lari.svg#font') format('svg');
-}
 .clear:after {
 	content:".";
 	display:block;
@@ -92,6 +83,7 @@ html[xmlns] .clear {
 }
 .opacity09 {opacity:0.9;}
 .noBold {font-weight:normal !important;}
+.lari {font-family:"Lari", sans-serif;}
 /*******************************************/
 /*	LAYOUT
 /*******************************************/

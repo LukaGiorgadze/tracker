@@ -58,7 +58,7 @@ export class News extends React.Component {
 									<Button basic icon="upload" floated="left" />
 								</div>
 								<div>
-									<Button content="დამატება" labelPosition="left" icon="edit" className="noBold BPGSquare" floated="left" color="green" onClick={this.handleOpenModal} />
+									<Button content="დამატება" labelPosition="left" icon="announcement" className="noBold BPGSquare" floated="left" color="green" onClick={this.handleOpenModal} />
 								</div>
 							</div>
 						</Segment>
