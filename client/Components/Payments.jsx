@@ -57,52 +57,52 @@ const Payments = () => {
 	        <Table.Row positive>
          	  <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
          	  <Table.Cell>მეიშვილი</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	          <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>გიორგაძე</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row warning>
 	          <Table.Cell textAlign="center"><Statuses color="yellow" icon="exclamation" /></Table.Cell>
 	          <Table.Cell>მინდიაშვილი</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	       	  <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>აბაშიძე</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row warning>
 	          <Table.Cell textAlign="center"><Statuses color="yellow" icon="exclamation" /></Table.Cell>
 	          <Table.Cell>წიკლაური</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	          <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>ბარბარიძე</Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	        <Table.Row negative>
 	       	  <Table.Cell textAlign="center"><Statuses color="red" icon="close" /></Table.Cell>
 	          <Table.Cell>ბესალომაშვილი
 	          </Table.Cell>
-	          <Table.Cell>10 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>50 <span className="lari">₾</span></Table.Cell>
-	          <Table.Cell>15 <span className="lari">₾</span></Table.Cell>
+	          <Table.Cell>10 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>50 <span className="lari-normal">L</span></Table.Cell>
+	          <Table.Cell>15 <span className="lari-normal">L</span></Table.Cell>
 	        </Table.Row>
 	      </Table.Body>
 

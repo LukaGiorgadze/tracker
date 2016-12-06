@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import routes from './Routes'
 
+require('./css/larisome.css');
 require('./css/main.css');
 // http://stackoverflow.com/questions/31079081/programmatically-navigate-using-react-router?rq=1
 render(

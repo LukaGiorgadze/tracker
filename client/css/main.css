@@ -25,6 +25,10 @@
 	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.woff') format("woff"),
 	url('./bpgsquare/bpg_extrasquare_mtavruli_2009.svg#font') format('svg');
 }
+@font-face {
+	font-family: 'Lari';
+	
+}
 .clear:after {
 	content:".";
 	display:block;
@@ -83,7 +87,6 @@ html[xmlns] .clear {
 }
 .opacity09 {opacity:0.9;}
 .noBold {font-weight:normal !important;}
-.lari {font-family:"Lari", sans-serif;}
 /*******************************************/
 /*	LAYOUT
 /*******************************************/
