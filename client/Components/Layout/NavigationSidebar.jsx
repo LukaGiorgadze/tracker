@@ -39,13 +39,13 @@ export class NavigationSidebar extends React.Component {
 					<Icon.Group className="navIcon">
 						<Icon name="payment" />
 					</Icon.Group>
-					გადახდები
+					გადასახადები
 				</Link>
 				<Link className="BPGSquare item" to="/budget" activeClassName="active">
 					<Icon.Group className="navIcon">
-						<Icon name="money" />
+						<Icon name="usd" />
 					</Icon.Group>
-					ბიუჯეტის დაგეგმვა
+					ბიუჯეტი
 				</Link>
 				<Link className="BPGSquare item" to="/settings" activeClassName="active">
 					<Icon.Group className="navIcon">

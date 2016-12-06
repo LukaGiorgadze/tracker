@@ -6,8 +6,10 @@ import NavigationSidebar from './NavigationSidebar';
 export class Main extends React.Component {
 	render() {
 		return (
-		<Container fluid>
-			<Header />
+		<div>
+			<Container fluid>
+				<Header />
+			</Container>
 			<Divider horizontal hidden></Divider>
 			<Container>
 				<Grid doubling columns={2} padded="vertically">
@@ -21,7 +23,7 @@ export class Main extends React.Component {
 					</Grid.Row>
 				</Grid>
 			</Container>
-		</Container>
+		</div>
 	    );
 	}
 }
