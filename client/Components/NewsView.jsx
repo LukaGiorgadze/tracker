@@ -46,7 +46,7 @@ const NewsComments = () => (
   </Comment.Group>
 )
 
-export class NewsID extends React.Component {
+export class NewsView extends React.Component {
 	render() {
 		return (
 		<div>
@@ -81,4 +81,4 @@ export class NewsID extends React.Component {
 	}
 }
 
-export default NewsID;
+export default NewsView;

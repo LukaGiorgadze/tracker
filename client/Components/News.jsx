@@ -70,7 +70,7 @@ export class News extends React.Component {
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/stevie.jpg" size="tiny" />
 				<Item.Content>
 					<Item.Header className="BPGSquare">
-						<Link to="news/5">დაიწყო კორპუსის ეზოს კეთილმოწყობა</Link>
+						<Link to="news/view/5">დაიწყო კორპუსის ეზოს კეთილმოწყობა</Link>
 					</Item.Header>
 					<Item.Meta>ნატალი გიორგაძე, 05 დეკემბერი, 2016</Item.Meta>
 					<Item.Description>

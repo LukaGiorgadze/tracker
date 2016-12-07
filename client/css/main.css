@@ -160,3 +160,18 @@ body {
 	width:auto !important;
 	max-width:none !important;
 }
+.tableSqolios {
+
+}
+.tableSqolios .item {
+	display:block;
+	float:left;
+}
+.tableSqolios .item:before {
+	display:block;
+	content:'-';
+	float:left;
+	margin:0 8px 0 10px;
+	color:#ccc;
+}
+.tableSqolios .item:first-child:before{display:none;}

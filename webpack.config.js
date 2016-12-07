@@ -21,7 +21,7 @@ loaders.push({
 module.exports = {
 	devtool: config.environment === 'development' ? 'eval' : 'hidden-source-map',
 	entry: [
-		config.environment === 'development' && 'webpack-hot-middleware/client',
+		'webpack-hot-middleware/client',
 		Path.join(__dirname, 'client', config.clientMain)
 	],
 	output: {

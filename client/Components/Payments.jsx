@@ -1,6 +1,17 @@
 import React from 'react';
 import { Header, Icon, Button, Dropdown, Table, Label } from 'semantic-ui-react'
 
+const Options = () => (
+  <Button.Group color="teal" size="mini">
+    <Dropdown floating button className='icon' icon="filter">
+      <Dropdown.Menu>
+        <Dropdown.Item icon='edit' text='Edit Post' />
+        <Dropdown.Item icon='delete' text='Remove Post' />
+        <Dropdown.Item icon='hide' text='Hide Post' />
+      </Dropdown.Menu>
+    </Dropdown>
+  </Button.Group>
+)
 
 
 const Statuses = (props) => (
@@ -15,21 +26,12 @@ const Statuses = (props) => (
   </Button.Group>
 )
 
-const Options = () => (
-  <Button.Group color="teal" size="mini">
-    <Dropdown floating button className='icon' icon="filter">
-      <Dropdown.Menu>
-        <Dropdown.Item icon='edit' text='Edit Post' />
-        <Dropdown.Item icon='delete' text='Remove Post' />
-        <Dropdown.Item icon='hide' text='Hide Post' />
-      </Dropdown.Menu>
-    </Dropdown>
-  </Button.Group>
-)
+export class Payments extends React.Component {
 
-const Payments = () => {
-  return (
+  render() {
+  	return (
   	<div>
+  		<Button content="თანხის გადარიცხვა" icon="usd" labelPosition="left" color="teal" className="noBold BPGSquareMtavruli" />
   		<Table celled compact>
 	      <Table.Header>
 	        <Table.Row>
@@ -118,11 +120,14 @@ const Payments = () => {
 	        </Table.Row>
 	      </Table.Footer>
 	    </Table>
-		<div><Icon name="checkmark" size="small" color="green" /> გადახდილი</div>
-		<div><Icon name="exclamation" size="small" color="yellow" /> ნაწილობრივ გადახდილი</div>
-		<div><Icon name="close" size="small" color="red" /> გადასახდელი</div>
+		<div className="tableSqolios clearafter">
+			<div className="item"><Icon name="checkmark" size="small" color="green" /> გადახდილი</div>
+			<div className="item"><Icon name="exclamation" size="small" color="yellow" /> ნაწილობრივ გადახდილი</div>
+			<div className="item"><Icon name="close" size="small" color="red" /> გადასახდელი</div>
+		</div>
   	</div>
   )
+  }
 }
 
 

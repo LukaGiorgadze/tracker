@@ -32,6 +32,12 @@ class UserProfileDropdown extends React.Component {
 							გადახდები
 						</Link>
 					</Dropdown.Item>
+					<Dropdown.Item>
+						<Link to="/settings" activeClassName="active">
+							<Icon name="settings" size="small" />
+							პარამეტრები
+						</Link>
+					</Dropdown.Item>
 					<Dropdown.Divider className="noMargin" />
 					<Dropdown.Item>
 						<Link to="/logout" activeClassName="active">

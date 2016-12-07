@@ -33,19 +33,19 @@ export class NavigationSidebar extends React.Component {
 						<Icon name="feed" />
 					</Icon.Group>
 					სიახლეები
-					<Label color="grey" size="tiny">1</Label>
 				</Link>
 				<Link className="BPGSquare item" to="/payments" activeClassName="active">
 					<Icon.Group className="navIcon">
 						<Icon name="payment" />
 					</Icon.Group>
 					გადასახადები
+					<Label color="red" size="tiny">1</Label>
 				</Link>
-				<Link className="BPGSquare item" to="/budget" activeClassName="active">
+				<Link className="BPGSquare item" to="/reports" activeClassName="active">
 					<Icon.Group className="navIcon">
-						<Icon name="usd" />
+						<Icon name="calendar" />
 					</Icon.Group>
-					ბიუჯეტი
+					რეპორტი
 				</Link>
 				<Link className="BPGSquare item" to="/settings" activeClassName="active">
 					<Icon.Group className="navIcon">
