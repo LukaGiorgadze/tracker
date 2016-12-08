@@ -175,3 +175,8 @@ body {
 	color:#ccc;
 }
 .tableSqolios .item:first-child:before{display:none;}
+.expandingTextarea {
+	resize: initial !important;
+	overflow: hidden !important;
+    box-sizing: border-box !important;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import { Dropdown, Icon, Card, Divider }  from 'semantic-ui-react'
+import { link } from '../Functions'
 
 const years = [
 	{text: '2016', 'value': '2016'},
@@ -19,10 +19,10 @@ const Cards1 = (prop) => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	10 <span className="lari lari-b"></span>
+	     	10<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
-  	<Card color="green" as="a" onClick={() => browserHistory.push('reports/view/1')}>
+  	<Card color="green" as="a" onClick={() => link('reports/view/1')}>
 	    <Card.Content>
 	    	<Card.Header className="noBold BPGSquareMtavruli" >
 	    		საახალწლო გარემო
@@ -32,7 +32,7 @@ const Cards1 = (prop) => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	50 <span className="lari lari-b"></span> / 500 <span className="lari lari-b"></span>
+	     	50<span className="lari lari-b"></span> / 500<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
 	  <Card color="yellow" as="a">
@@ -45,7 +45,7 @@ const Cards1 = (prop) => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	50 <span className="lari lari-b"></span> / 500 <span className="lari lari-b"></span>
+	     	50<span className="lari lari-b"></span> / 500<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
  </Card.Group>
@@ -62,7 +62,7 @@ const Cards2 = () => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	10 <span className="lari lari-b"></span>
+	     	10<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
  </Card.Group>
@@ -79,7 +79,7 @@ const Cards3 = () => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	10 <span className="lari lari-b"></span>
+	     	10<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
   	<Card color="green" as="a">
@@ -92,7 +92,7 @@ const Cards3 = () => (
 	    	</Card.Description>
 	    </Card.Content>
 	    <Card.Content extra>
-	     	50 <span className="lari lari-b"></span> / 500 <span className="lari lari-b"></span>
+	     	50<span className="lari lari-b"></span> / 500<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
  </Card.Group>

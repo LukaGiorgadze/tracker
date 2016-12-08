@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Icon, Button, Dropdown, Table, Label } from 'semantic-ui-react'
+import { link } from '../Functions'
 
 const Options = () => (
   <Button.Group color="teal" size="mini">
@@ -31,7 +32,7 @@ export class Payments extends React.Component {
   render() {
   	return (
   	<div>
-  		<Button content="თანხის გადარიცხვა" icon="usd" labelPosition="left" color="teal" className="noBold BPGSquareMtavruli" />
+  		<Button content="თანხის გადარიცხვა" icon="usd" labelPosition="left" color="teal" className="noBold BPGSquareMtavruli" onClick={() => link('payments/pay')} />
   		<Table celled compact>
 	      <Table.Header>
 	        <Table.Row>

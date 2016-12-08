@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Form, Segment, TextArea, Button, Item, Image, Icon, Popup, Embed, Divider, Header, Modal } from 'semantic-ui-react'
 
-
 const ShowHideModal = (props) => (
 	<Modal open={props.opener} basic size="small">
         <Header icon="browser" className="noBold BPGExtraSquareMtavruli" content="სიახლის დამატება" />
@@ -40,8 +39,10 @@ export class News extends React.Component {
 
 	autoResize(e) {
 		let o = e.target;
-		o.style.height = "auto";
-		o.style.height = (3 + o.scrollHeight)+"px";
+		setTimeout(function(){
+			o.style.height = "auto";
+			o.style.height = (o.scrollHeight)+"px";
+		},0);
 	}
 
 	render() {
@@ -50,9 +51,9 @@ export class News extends React.Component {
 			<ShowHideModal opener={this.state.modalOpen} closer={this.handleCloseModal} />
 			<Item>
 				<Item.Content>
-					<Form>
+					<Form >
 						<Segment clearing>
-							<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={this.autoResize} />
+							<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={this.autoResize} className="expandingTextarea" />
 							<div className="newsAddButtons">
 								<div>
 									<Button basic icon="upload" floated="left" />
@@ -65,7 +66,7 @@ export class News extends React.Component {
 					</Form>
 				</Item.Content>
 			</Item>
-			<Divider hidden></Divider>
+			<Divider horizontal hidden></Divider>
 			<Item>
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/stevie.jpg" size="tiny" />
 				<Item.Content>
@@ -89,6 +90,7 @@ export class News extends React.Component {
 				</Item.Content>
 			</Item>
 			<Divider></Divider>
+			<Divider hidden></Divider>
 			<Item>
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/veronika.jpg" size="tiny" />
 				<Item.Content>
@@ -109,6 +111,7 @@ export class News extends React.Component {
 				</Item.Content>
 			</Item>
 			<Divider></Divider>
+			<Divider hidden></Divider>
 			<Item>
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/jenny.jpg" size="tiny" />
 				<Item.Content>
@@ -133,6 +136,7 @@ export class News extends React.Component {
 				</Item.Content>
 			</Item>
 			<Divider></Divider>
+			<Divider hidden></Divider>
 			<Item>
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/stevie.jpg" size="tiny" />
 				<Item.Content>

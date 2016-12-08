@@ -5,5 +5,5 @@ module.exports = {
 	serverMain: 'app.jsx',	// Main file of client side
 	clientMain: 'App.jsx',	// Main file of server side
 	//environment: process.env.NODE_ENV
-	environment: 'production'	// development or production
+	environment: 'development'	// development or production
 };
