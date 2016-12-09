@@ -53,7 +53,7 @@ export class NavigationSidebar extends React.Component {
 					</Icon.Group>
 					პარამეტრები
 				</Link>
-				<Link className="BPGSquare item" to="/logout" activeClassName="active">
+				<Link className="BPGSquare item" to="/signout" activeClassName="active">
 					<Icon.Group className="navIcon">
 						<Icon name="sign out" />
 					</Icon.Group>

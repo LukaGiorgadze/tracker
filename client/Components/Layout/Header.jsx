@@ -4,7 +4,7 @@ import { Link, IndexLink } from 'react-router';
 
 let UserProfileDropdownTrigger = (
 	<span>
-		<Image avatar src="http://semantic-ui.com/images/avatar/small/elliot.jpg" />
+		<Image avatar src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
 		ლუკა გიორგაძე
 	</span>
 )
@@ -40,7 +40,7 @@ class UserProfileDropdown extends React.Component {
 					</Dropdown.Item>
 					<Dropdown.Divider className="noMargin" />
 					<Dropdown.Item>
-						<Link to="/logout" activeClassName="active">
+						<Link to="/signout" activeClassName="active">
 							<Icon name="sign out" size="small" />
 							გასვლა
 						</Link>
@@ -60,7 +60,7 @@ class UserNotifications extends React.Component {
 						<Feed>
 							<Feed.Event>
 								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar/small/elliot.jpg" />
+									<Image avatar src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
 								</Feed.Label>
 								<Feed.Content>
 									<Feed.Date>18 წუთის წინ</Feed.Date>

@@ -3,7 +3,7 @@ import { Header, Icon, Button, Dropdown, Table, Label } from 'semantic-ui-react'
 import { link } from '../Functions'
 
 const Options = () => (
-  <Button.Group color="teal" size="mini">
+  <Button.Group color="grey" size="mini">
     <Dropdown floating button className='icon' icon="filter">
       <Dropdown.Menu>
         <Dropdown.Item icon='edit' text='Edit Post' />
@@ -32,7 +32,7 @@ export class Payments extends React.Component {
   render() {
   	return (
   	<div>
-  		<Button content="თანხის გადარიცხვა" icon="usd" labelPosition="left" color="teal" className="noBold BPGSquareMtavruli" onClick={() => link('payments/pay')} />
+  		<Button content="თანხის გადარიცხვა" icon="payment" labelPosition="left" color="green" className="noBold BPGSquare" onClick={() => link('payments/pay')} />
   		<Table celled compact>
 	      <Table.Header>
 	        <Table.Row>
@@ -48,10 +48,10 @@ export class Payments extends React.Component {
 	         	 ყოველთვიური
 	          </Table.HeaderCell>
 	          <Table.HeaderCell className="noBold BPGSquareMtavruli">
-	          	<Label ribbon color="green" className="noBold">ეზოს<br />მოპირკეთება</Label>
+	          	<Label ribbon color="teal" className="noBold">ეზოს<br />მოპირკეთება</Label>
 	          </Table.HeaderCell>
 	          <Table.HeaderCell className="noBold BPGSquareMtavruli">
-	          	<Label ribbon color="green" className="noBold">საახალწლო<br />ნაძვის ხე</Label>
+	          	<Label ribbon color="teal" className="noBold">საახალწლო<br />ნაძვის ხე</Label>
 	          </Table.HeaderCell>
 	        </Table.Row>
 	      </Table.Header>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Icon, Card, Divider }  from 'semantic-ui-react'
+import { Select, Icon, Card, Divider }  from 'semantic-ui-react'
 import { link } from '../Functions'
 
 const years = [
@@ -9,7 +9,7 @@ const years = [
 ]
 const Cards1 = (prop) => (
   <Card.Group itemsPerRow={3} stackable>
-  	<Card color="red" as="a">
+  	<Card color="red" as="a" onClick={() => link('reports/view/1')}>
 	    <Card.Content>
 	    	<Card.Header className="noBold BPGSquareMtavruli" >
 	    		ყოველთვიური
@@ -35,7 +35,7 @@ const Cards1 = (prop) => (
 	     	50<span className="lari lari-b"></span> / 500<span className="lari lari-b"></span>
 	    </Card.Content>
 	  </Card>
-	  <Card color="yellow" as="a">
+	  <Card color="yellow" as="a" onClick={() => link('reports/view/1')}>
 	    <Card.Content>
 	    	<Card.Header className="noBold BPGSquareMtavruli" >
 	    		თოვლის პაპა
@@ -52,7 +52,7 @@ const Cards1 = (prop) => (
 )
 const Cards2 = () => (
   <Card.Group itemsPerRow={3} stackable>
-  	<Card color="green" as="a">
+  	<Card color="green" as="a" onClick={() => link('reports/view/1')}>
 	    <Card.Content>
 	    	<Card.Header className="noBold BPGSquareMtavruli" >
 	    		ყოველთვიური
@@ -102,7 +102,7 @@ export class Reports extends React.Component {
 	render() {
 		return (
 			<div>
-				<Icon name="calendar" /> <Dropdown placeholder="ამოირჩიეთ წელი" selection options={years} />
+				<Icon name="calendar" /> <Select options={years} defaultValue="2016" />
 				<Divider horizontal className="BPGSquareMtavruli">დეკემბერი 2016</Divider>
 				<Divider horizontal hidden />
 				<Cards1 />
