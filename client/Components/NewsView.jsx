@@ -10,7 +10,7 @@ const NewsComments = () => (
       <Comment.Content>
         <Comment.Author as='a'>Matt</Comment.Author>
         <Comment.Metadata>
-          <span>Today at 5:42PM</span>
+          <span>დღეს 5:42PM</span>
         </Comment.Metadata>
         <Comment.Text>How artistic!</Comment.Text>
         <Comment.Actions>
@@ -26,7 +26,7 @@ const NewsComments = () => (
       <Comment.Content>
         <Comment.Author as='a'>Joe Henderson</Comment.Author>
         <Comment.Metadata>
-          <span>5 days ago</span>
+          <span>5 დღის წინ</span>
         </Comment.Metadata>
         <Comment.Text>მიკრო მოღალულნი შეეჭიდება ცალად შენებური ვროვდებოდა სამყაროც მოჰკურცხლა. წამოასხეს რეალითი გულზე, ასეთ გამოიდარა დამიღრღნა ირონიული ბაბუებმა დათვები მდიდართათვის ორგიებისათვის.
 						გავხსნა ფურად ალერსობენ ამოსული მხეცების ლევანმა. სამყაროც ბაბუებმა პარტნიორებს ახალგაზრდაა, პორტ გელოდებით შეძლებს მიკრო გაჩენაში ამოსული ლევანმა ნახავს.</Comment.Text>

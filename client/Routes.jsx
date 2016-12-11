@@ -4,6 +4,7 @@ import Main from './Components/Layout/Main';
 import News from './Components/News';
 import NewsView from './Components/NewsView';
 import Payments from './Components/Payments';
+import PaymentsPay from './Components/PaymentsPay';
 import Reports from './Components/Reports';
 import ReportsView from './Components/ReportsView';
 import Settings from './Components/Settings';
@@ -18,7 +19,10 @@ export default (
 			<IndexRoute component={News} />
 			<Route path="view/:newsId" component={NewsView} />
 		</Route>
-		<Route path="payments" component={Payments} />
+		<Route path="payments">
+			<IndexRoute component={Payments} />
+			<Route path="pay" component={PaymentsPay} />
+		</Route>
 		<Route path="reports">
 			<IndexRoute component={Reports} />
 			<Route path="view/:reportId" component={ReportsView} />

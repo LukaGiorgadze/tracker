@@ -1,7 +1,5 @@
 import React from 'react';
-import { Item, Progress, Divider, List, Label, Table }  from 'semantic-ui-react'
-
-
+import { Item, Progress, Divider, Popup, Label, Table }  from 'semantic-ui-react'
 
 export class ReportsView extends React.Component {
 	render() {
@@ -15,8 +13,12 @@ export class ReportsView extends React.Component {
 				          <span>12 დეკემბერი, 2016</span>
 				        </Item.Meta>
 				        <Divider horizontal hidden></Divider>
-				        <Progress percent={65} warning progress>
-				        	355<span className="lari lari-b"></span> / 500<span className="lari lari-b"></span>
+				        <Progress value="350" total="500" warning progress autoSuccess>
+				        	<div style={{'margin':'5px 0'}}>
+				        		<Popup trigger={<Label size="medium" color="yellow">350<span className="lari lari-b"></span></Label>} content="შეგროვებული თანხა" inverted className="opacity09" />
+				        		{' / '}
+				        		<Popup trigger={<Label size="medium" color="green">500<span className="lari lari-b"></span></Label>} content="საჭირო თანხა" inverted className="opacity09" />
+				        	</div>
 				        </Progress>
 				        <Divider horizontal hidden />
 				        <Divider horizontal className="BPGSquareMtavruli">აღწერა</Divider>
@@ -44,25 +46,25 @@ export class ReportsView extends React.Component {
 						      <Table.Body>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon color="grey">100<span className="lari lari-b"></span></Label>
+						            <Label ribbon>100<span className="lari lari-b"></span></Label>
 						            საახალწლო განათება
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon color="grey">250<span className="lari lari-b"></span></Label>
+						            <Label ribbon>250<span className="lari lari-b"></span></Label>
 						            ნაძვის ხე
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon color="grey">120<span className="lari lari-b"></span></Label>
+						            <Label ribbon>120<span className="lari lari-b"></span></Label>
 						            თოვლის ბაბუა
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon color="grey">30<span className="lari lari-b"></span></Label>
+						            <Label ribbon>30<span className="lari lari-b"></span></Label>
 						            სხვადასხვა
 						          </Table.Cell>
 						        </Table.Row>
@@ -71,8 +73,10 @@ export class ReportsView extends React.Component {
 						      <Table.Footer>
 						      <Table.Row>
 						        <Table.HeaderCell>
-						        <Label color="grey" size="large">
-									ჯამური ხარჯი: 500<span className="lari lari-b"></span>
+						        <strong>ჯამური ხარჯი:</strong>
+						        {' '}
+						        <Label color="red" size="large">
+									500<span className="lari lari-b"></span>
 								</Label>
 						        </Table.HeaderCell>
 						      </Table.Row>

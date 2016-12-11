@@ -7,17 +7,15 @@ export class Main extends React.Component {
 	render() {
 		return (
 		<div>
-			<Container fluid>
-				<Header />
-			</Container>
+			<Header />
 			<Divider horizontal hidden></Divider>
 			<Container>
 				<Grid doubling columns={2} padded="vertically">
 					<Grid.Row>
-						<Grid.Column mobile={16} tablet={16} computer={4}>
+						<Grid.Column computer={4} only="computer">
 							<NavigationSidebar />
 						</Grid.Column>
-						<Grid.Column mobile={16} tablet={16} computer={12}>
+						<Grid.Column computer={12}>
 							{this.props.children}
 						</Grid.Column>
 					</Grid.Row>

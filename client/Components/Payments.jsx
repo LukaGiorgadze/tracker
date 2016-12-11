@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Icon, Button, Dropdown, Table, Label } from 'semantic-ui-react'
+import { Header, Icon, Button, Dropdown, Table, Label, Message } from 'semantic-ui-react'
 import { link } from '../Functions'
 
 const Options = () => (
@@ -32,6 +32,13 @@ export class Payments extends React.Component {
   render() {
   	return (
   	<div>
+  		<Message icon negative>
+			<Icon name='attention' />
+			<Message.Content>
+				<Message.Header className="BPGSquare">თქვენ გაქვთ 2 თვის დავალიანება, გთხოვთ დაფაროთ თანხა დროულად.</Message.Header>
+				დავალიანება შეადგენს <strong>30</strong> ლარს.
+			</Message.Content>
+		</Message>
   		<Button content="თანხის გადარიცხვა" icon="payment" labelPosition="left" color="green" className="noBold BPGSquare" onClick={() => link('payments/pay')} />
   		<Table celled compact>
 	      <Table.Header>
@@ -60,52 +67,52 @@ export class Payments extends React.Component {
 	        <Table.Row positive>
          	  <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
          	  <Table.Cell>მეიშვილი</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	          <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>გიორგაძე</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row warning>
 	          <Table.Cell textAlign="center"><Statuses color="yellow" icon="exclamation" /></Table.Cell>
 	          <Table.Cell>მინდიაშვილი</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	       	  <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>აბაშიძე</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row warning>
 	          <Table.Cell textAlign="center"><Statuses color="yellow" icon="exclamation" /></Table.Cell>
 	          <Table.Cell>წიკლაური</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row positive>
 	          <Table.Cell textAlign="center"><Statuses color="green" icon="checkmark" /></Table.Cell>
 	          <Table.Cell>ბარბარიძე</Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	        <Table.Row negative>
 	       	  <Table.Cell textAlign="center"><Statuses color="red" icon="close" /></Table.Cell>
 	          <Table.Cell>ბესალომაშვილი
 	          </Table.Cell>
-	          <Table.Cell>10 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>50 <i className="lari lari-a"></i></Table.Cell>
-	          <Table.Cell>15 <i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>10<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>50<i className="lari lari-a"></i></Table.Cell>
+	          <Table.Cell>15<i className="lari lari-a"></i></Table.Cell>
 	        </Table.Row>
 	      </Table.Body>
 
