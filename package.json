@@ -6,7 +6,7 @@
   "author": "Luka Giorgadze",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
-    "start": "nodemon --watch server --exec babel-node -- server/app.jsx"
+    "start": "nodemon --watch server --exec babel-node -- server/index.jsx"
   },
   "private": true,
   "dependencies": {

@@ -84,12 +84,16 @@ input[type=number] {
     display: block !important;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .hideOnMobileAndDown {
     display: none !important;
   }
   .showOnMobileAndDown {
     display: block !important;
+  }
+  .ui.items>.item>.image, 
+  .ui.items>.item>.image>img {
+    max-height:200px !important;
   }
 }
 .opacity09 {opacity:0.9;}

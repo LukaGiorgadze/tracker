@@ -6,24 +6,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig		from '../webpack.config.js';
 import config 				from './config.jsx'
+
 // Module declarations
 const app = Express();
-
-// Setup middleware and Hot in Development Environment
-if(config.environment === 'development')
-{
-	const compiler = webpack(webpackConfig);
-	app.use(webpackDevMiddleware(compiler, {
-		hot: true,
-		publicPath: webpackConfig.output.publicPath,
-		noInfo: true,
-		stats: {
-			chunks: false
-		}
-	}));
-	app.use(webpackHotMiddleware(compiler));
-}
-
 
 // Set default public html directory
 app.use(Express.static(Path.join(__dirname, '../', config.publicHtml)));
@@ -34,5 +19,4 @@ app.get('/*', (req, res) => {
 });
 
 
-// App listening
-app.listen(config.port);
+exports.app = app;
