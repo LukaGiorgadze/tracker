@@ -1,30 +1,8 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
 import { Menu, Icon, Label } from 'semantic-ui-react'
 
 export class NavigationSidebar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			location: this.props
-		}
-	}
-
-	handleItemClick(e) {
-		let obj = e.target;
-		let nodes = obj.parentElement.childNodes;
-		for(let i=0; i<nodes.length; i++) {
-			nodes[i].classList.remove('active');
-		}
-		obj.classList.add('active');
-	}
-
-	activeCurrent(defaultRoute) {
-		let location = this.state.location.location.pathname;
-		let route = location.length ? location.split('/')[1] : '';
-		return route === defaultRoute ? ' active' : '';
-	}
-
 	render() {
 		return (
 			<Menu fluid pointing secondary vertical>

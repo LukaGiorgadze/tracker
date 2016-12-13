@@ -142,11 +142,13 @@ body {
 	color:#fff;
 }
 .mainHeader .userHeader {
+	position:relative;
 	display:block;
 	float:right;
 	margin:20px 0 0 0;
 	text-align:right;
 	color:#fff;
+	z-index:1000 !important;
 }
 .mainHeader .userHeader .userProfile {
 	margin-top:-2px;
@@ -164,6 +166,16 @@ body {
 }
 .mainHeader .userHeader .userProfile .menu a.active {
 	font-weight:700;
+}
+.mainHeader .mobileNav {
+	display:block;
+	position:absolute;
+	top:60px;
+	left:0;
+	width:100%;
+	height:150px;
+	background:grey;
+	z-index:100 !important;
 }
 
 .ui.form .field .ui.input input,

@@ -196,6 +196,9 @@ export class Header extends React.Component {
 							<UserProfileDropdown />
 						</div>
 					</div>
+					<div className="mobileNav">
+						This is it
+					</div>
 				</Container>
 			</div>
 		)
