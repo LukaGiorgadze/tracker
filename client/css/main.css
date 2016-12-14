@@ -162,7 +162,7 @@ body {
 .mainHeader .userHeader .userNotifications {
 	display:block;
 	float:left;
-	margin:0px 0 0 10px;
+	margin:0 0 0 10px;
 }
 .mainHeader .userHeader .userProfile .menu a.active {
 	font-weight:700;
@@ -173,9 +173,50 @@ body {
 	top:60px;
 	left:0;
 	width:100%;
-	height:150px;
-	background:grey;
+	height:100%;
+	min-height:100%;
+	text-align:center;
+	background:rgba(45,48,50,.85);
 	z-index:100 !important;
+}
+.mainHeader .mobileNav .bg {
+	height:auto;
+	margin:0 auto;
+	padding:30px 0 15px 0;
+	text-align:center;
+	background:#f1f1f1;
+	border-bottom:3px solid rgba(0,0,0,0.3);
+}
+.mainHeader .mobileNav .bg img {
+	margin:0 auto 10px auto;
+}
+.mainHeader .mobileNav ul {
+	height:auto;
+	margin:0 auto !important;
+	text-align:center;
+	-webkit-margin-before:0 !important;
+    -webkit-margin-after:0 !important;
+    -webkit-margin-start:0 !important;
+    -webkit-margin-end:0 !important;
+    -webkit-padding-start:0 !important;
+}
+.mainHeader .mobileNav ul li {
+	display:block;
+	margin:0 auto;
+	padding:0  0;
+	text-align:center;
+}
+.mainHeader .mobileNav ul li a {
+	display:inline-block;
+	padding:15px 0 15px 0;
+	width:auto;
+	text-align:center;
+	font-size:18px;
+	color:#49565E;
+	font-family:"BPGSquareMtavruli";
+}
+.mainHeader .mobileNav ul li a.active {
+	font-weight:700;
 }
 
 .ui.form .field .ui.input input,

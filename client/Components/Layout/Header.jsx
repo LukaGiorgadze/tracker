@@ -171,6 +171,40 @@ class UserMessages extends React.Component {
 	}
 }
 
+class MobileNav extends React.Component {
+	render() {
+		return (
+			<div className="mobileNav">
+				<div className="bg">
+					<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
+					<ul>
+						<li>
+							<Link to="/news" activeClassName="active">
+								სიახლეები
+							</Link>
+						</li>
+						<li>
+							<Link to="/payments" activeClassName="active">
+								გადასახადები
+							</Link>
+						</li>
+						<li>
+							<Link to="/reports" activeClassName="active">
+								რეპორტი
+							</Link>
+						</li>
+						<li>
+							<Link to="/settings" activeClassName="active">
+								პარამეტრები
+							</Link>
+						</li>
+					</ul>
+				</div>
+			</div>
+		)
+	}
+}
+
 
 export class Header extends React.Component {
 	render() {
@@ -196,9 +230,7 @@ export class Header extends React.Component {
 							<UserProfileDropdown />
 						</div>
 					</div>
-					<div className="mobileNav">
-						This is it
-					</div>
+					<MobileNav />
 				</Container>
 			</div>
 		)
