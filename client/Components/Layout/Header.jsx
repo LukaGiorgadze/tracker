@@ -172,11 +172,24 @@ class UserMessages extends React.Component {
 }
 
 class MobileNav extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: ''
+		};
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			open: this.props.open ? 'active' : ''
+		});
+	}
 	render() {
 		return (
-			<div className="mobileNav">
+			<div className={"mobileNav showOnTabletAndDown " + this.state.open}>
 				<div className="bg">
-					<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
+					<div className="navAvatar">
+						<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
+					</div>
 					<ul>
 						<li>
 							<Link to="/news" activeClassName="active">
@@ -198,6 +211,11 @@ class MobileNav extends React.Component {
 								პარამეტრები
 							</Link>
 						</li>
+						<li>
+							<Link to="/logout" activeClassName="active">
+								გასვლა
+							</Link>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -207,6 +225,18 @@ class MobileNav extends React.Component {
 
 
 export class Header extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			mobileNavOpen: false
+		}
+	}
+
+	toggleMobileNav = (e) => {
+		this.setState({
+			mobileNavOpen: this.state.mobileNavOpen ? false : true
+		});
+	}
 	render() {
 		return (
 			<div className="mainHeader">
@@ -214,8 +244,8 @@ export class Header extends React.Component {
 					<div className="logo hideOnTabletAndDown">
 						<h1 className="BPGSquareMtavruli"><a href="/" style={{color:'white'}}>ლოგო</a></h1>
 					</div>
-					<div className="sidebarIcon showOnTabletAndDown">
-						<Icon name="sidebar" size="large" />
+					<div className={"sidebarIcon showOnTabletAndDown " + (this.state.mobileNavOpen ? "active" : "")}>
+						<Icon name="sidebar" size="large" onClick={this.toggleMobileNav} />
 					</div>
 					<div className="userHeader">
 						<div className="userNotificationsContainer">
@@ -230,7 +260,7 @@ export class Header extends React.Component {
 							<UserProfileDropdown />
 						</div>
 					</div>
-					<MobileNav />
+					<MobileNav open={!this.state.mobileNavOpen} />
 				</Container>
 			</div>
 		)

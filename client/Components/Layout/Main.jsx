@@ -8,6 +8,7 @@ export class Main extends React.Component {
 		return (
 		<div>
 			<Header />
+			<div className="headerDivider" />
 			<Divider horizontal hidden></Divider>
 			<Container>
 				<Grid doubling columns={2} padded="vertically">
