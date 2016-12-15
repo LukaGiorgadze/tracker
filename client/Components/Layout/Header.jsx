@@ -185,7 +185,7 @@ class MobileNav extends React.Component {
 	}
 	render() {
 		return (
-			<div className={"mobileNav showOnTabletAndDown " + this.state.open}>
+			<div className={"mobileNav showOnTabletAndDown " + this.state.open} onClick={this.props.toggleMobileNav}>
 				<div className="bg">
 					<div className="navAvatar">
 						<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
@@ -233,10 +233,19 @@ export class Header extends React.Component {
 	}
 
 	toggleMobileNav = (e) => {
-		this.setState({
-			mobileNavOpen: this.state.mobileNavOpen ? false : true
-		});
+		if(!this.state.mobileNavOpen) {
+			this.setState({
+				mobileNavOpen: true
+			});
+		}
+		else if(e.target.className == 'mobileNav showOnTabletAndDown active' || e.target.tagName.toLowerCase() === 'a')
+		{
+			this.setState({
+				mobileNavOpen: !this.state.mobileNavOpen
+			});
+		}
 	}
+
 	render() {
 		return (
 			<div className="mainHeader">
@@ -260,7 +269,7 @@ export class Header extends React.Component {
 							<UserProfileDropdown />
 						</div>
 					</div>
-					<MobileNav open={!this.state.mobileNavOpen} />
+					<MobileNav open={!this.state.mobileNavOpen} toggleMobileNav={this.toggleMobileNav} />
 				</Container>
 			</div>
 		)
