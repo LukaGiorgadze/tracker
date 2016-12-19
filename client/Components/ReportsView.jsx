@@ -46,25 +46,25 @@ export class ReportsView extends React.Component {
 						      <Table.Body>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon>100<span className="lari lari-b"></span></Label>
+						            <Label ribbon><span className="red">100<span className="lari lari-b"></span></span></Label>
 						            საახალწლო განათება
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon>250<span className="lari lari-b"></span></Label>
+						            <Label ribbon><span className="red">250<span className="lari lari-b"></span></span></Label>
 						            ნაძვის ხე
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon>120<span className="lari lari-b"></span></Label>
+						            <Label ribbon><span className="red">120<span className="lari lari-b"></span></span></Label>
 						            თოვლის ბაბუა
 						          </Table.Cell>
 						        </Table.Row>
 						        <Table.Row>
 						          <Table.Cell>
-						            <Label ribbon>30<span className="lari lari-b"></span></Label>
+						            <Label ribbon><span className="red">30<span className="lari lari-b"></span></span></Label>
 						            სხვადასხვა
 						          </Table.Cell>
 						        </Table.Row>
