@@ -52,11 +52,19 @@ class UserProfileDropdown extends React.Component {
 }
 
 class UserNotifications extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	clickHandler = () => {
+		this.props.closeMobileNav();
+	}
+
 	render() {
 		return (
 			<Dropdown trigger={UserNotificationsTrigger} pointing="top right" icon={null}>
 				<Dropdown.Menu>
-					<Dropdown.Item>
+					<Dropdown.Item onClick={this.clickHandler}>
 						<Feed size="small">
 							<Feed.Event>
 								<Feed.Label>
@@ -175,44 +183,44 @@ class MobileNav extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: ''
+			status: ''
 		};
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			open: this.props.open ? 'active' : ''
+			status: this.props.status ? 'active' : ''
 		});
 	}
 	render() {
 		return (
-			<div className={"mobileNav showOnTabletAndDown " + this.state.open} onClick={this.props.toggleMobileNav}>
+			<div className={"mobileNav mobileNavCloser showOnTabletAndDown " + this.state.status} onClick={this.props.closeMobileNavWithClass}>
 				<div className="bg">
 					<div className="navAvatar">
 						<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
 					</div>
 					<ul>
 						<li>
-							<Link to="/news" activeClassName="active">
+							<Link to="/news" activeClassName="active" className="mobileNavCloser">
 								სიახლეები
 							</Link>
 						</li>
 						<li>
-							<Link to="/payments" activeClassName="active">
+							<Link to="/payments" activeClassName="active" className="mobileNavCloser">
 								გადასახადები
 							</Link>
 						</li>
 						<li>
-							<Link to="/reports" activeClassName="active">
+							<Link to="/reports" activeClassName="active" className="mobileNavCloser">
 								რეპორტი
 							</Link>
 						</li>
 						<li>
-							<Link to="/settings" activeClassName="active">
+							<Link to="/settings" activeClassName="active" className="mobileNavCloser">
 								პარამეტრები
 							</Link>
 						</li>
 						<li>
-							<Link to="/logout" activeClassName="active">
+							<Link to="/logout" activeClassName="active" className="mobileNavCloser">
 								გასვლა
 							</Link>
 						</li>
@@ -228,20 +236,26 @@ export class Header extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			mobileNavOpen: false
+			mobileNavStatus: false
 		}
 	}
 
-	toggleMobileNav = (e) => {
-		if(!this.state.mobileNavOpen) {
+	toggleMobileNav = () => {
+		this.setState({
+			mobileNavStatus: !this.state.mobileNavStatus
+		});
+	}
+
+	closeMobileNav = () => {
+		this.setState({
+			mobileNavStatus: false
+		});
+	}
+
+	closeMobileNavWithClass = (e) => {
+		if(e.target.classList.contains('mobileNavCloser')) {
 			this.setState({
-				mobileNavOpen: true
-			});
-		}
-		else if(e.target.className == 'mobileNav showOnTabletAndDown active' || e.target.tagName.toLowerCase() === 'a')
-		{
-			this.setState({
-				mobileNavOpen: !this.state.mobileNavOpen
+				mobileNavStatus: false
 			});
 		}
 	}
@@ -253,8 +267,8 @@ export class Header extends React.Component {
 					<div className="logo hideOnTabletAndDown">
 						<h1 className="BPGSquareMtavruli"><a href="/" style={{color:'white'}}>ლოგო</a></h1>
 					</div>
-					<div className={"sidebarIcon showOnTabletAndDown " + (this.state.mobileNavOpen ? "active" : "")}>
-						<Icon name="sidebar" size="large" onClick={this.toggleMobileNav} />
+					<div className={"sidebarIcon showOnTabletAndDown " + (this.state.mobileNavStatus ? "active" : "")} onClick={this.toggleMobileNav}>
+						<Icon name="sidebar" size="large" />
 					</div>
 					<div className="userHeader">
 						<div className="userNotificationsContainer">
@@ -262,14 +276,14 @@ export class Header extends React.Component {
 								<UserMessages />
 							</div>
 							<div className="userNotifications">
-								<UserNotifications />
+								<UserNotifications closeMobileNav={this.closeMobileNav} />
 							</div>
 						</div>
 						<div className="userProfile hideOnTabletAndDown">
 							<UserProfileDropdown />
 						</div>
 					</div>
-					<MobileNav open={!this.state.mobileNavOpen} toggleMobileNav={this.toggleMobileNav} />
+					<MobileNav status={!this.state.mobileNavStatus} closeMobileNavWithClass={this.closeMobileNavWithClass} />
 				</Container>
 			</div>
 		)
