@@ -1,6 +1,6 @@
 // Application Initialization and Module Dependencies
 import Express 				from 'express';
-import news 				from './api/news.jsx'
+import news 				from './Api/News'
 
 // Module declarations
 const app = Express();

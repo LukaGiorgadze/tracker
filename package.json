@@ -6,7 +6,7 @@
   "author": "Luka Giorgadze",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
-    "start": "nodemon --watch server --exec babel-node -- server/index.jsx"
+    "start": "nodemon --watch server --exec babel-node -- server/Index.jsx"
   },
   "private": true,
   "dependencies": {
@@ -15,7 +15,9 @@
     "react-dom": "^15.4.0",
     "react-redux": "^5.0.1",
     "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
     "semantic-ui-react": "^0.61.9"
   },
   "devDependencies": {

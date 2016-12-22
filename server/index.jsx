@@ -4,8 +4,8 @@ import Path 				from 'path';
 import webpack 				from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig		from '../webpack.config.js';
-import config 				from './config.jsx'
+import webpackConfig		from '../webpack.config';
+import config 				from './Config'
 
 // Module declarations
 const app = Express();
@@ -36,8 +36,8 @@ if(config.environment === 'development')
     });
 }
 
-app.use('/api', require('./api').app);
-app.use('/', require('./app').app);
+app.use('/api', require('./Api').app);
+app.use('/', require('./App').app);
 
 
 // App listening

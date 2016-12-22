@@ -9,7 +9,7 @@ const WebpackCleanupPlugin 	= require('webpack-cleanup-plugin');
 const loaders 				= require('./webpack.loaders');
 
 // Global Config
-const config = require('./server/config.jsx');
+const config = require('./server/Config.jsx');
 
 // Add Loaders
 loaders.push({

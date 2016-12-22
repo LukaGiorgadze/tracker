@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'semantic-ui-react'
 
-const error404 = require('../img/404.png');
+const error404 = require('../Static/img/404.png');
 
 export class NotFound extends React.Component {
 	render() {

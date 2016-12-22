@@ -1,18 +1,27 @@
+// Dependencies
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, browserHistory } from 'react-router';
-import routes from './Routes'
+import { Router } from 'react-router';
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux'
+import store, { history } from './Store';
+import routes from './Routes';
 
-require('./css/larisome.css');
-require('./css/main.css');
-// http://stackoverflow.com/questions/31079081/programmatically-navigate-using-react-router?rq=1
+// Static media files
+require('./Static/css/larisome.css');
+require('./Static/css/main.css');
+
+// App
 render(
-	<Router history={browserHistory}>
-		{routes}
-	</Router>,
+	<Provider store={store}>
+		<Router history={history}>
+			{routes}
+		</Router>
+	</Provider>,
 	document.querySelector("#app")
 );
 
+// Hot Reloading
 if(module.hot) {
 	module.hot.accept();
 }

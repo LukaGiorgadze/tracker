@@ -188,7 +188,7 @@ class MobileNav extends React.Component {
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			status: this.props.status ? 'active' : ''
+			status: nextProps.status ? 'active' : ''
 		});
 	}
 	render() {
@@ -283,7 +283,7 @@ export class Header extends React.Component {
 							<UserProfileDropdown />
 						</div>
 					</div>
-					<MobileNav status={!this.state.mobileNavStatus} closeMobileNavWithClass={this.closeMobileNavWithClass} />
+					<MobileNav status={this.state.mobileNavStatus} closeMobileNavWithClass={this.closeMobileNavWithClass} />
 				</Container>
 			</div>
 		)
