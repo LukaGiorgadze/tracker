@@ -1,4 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { fetchNewsItem } from '../Actions/News';
 import { Item, Image, Icon, Button, Comment, Header, Popup, Form } from 'semantic-ui-react'
 
 
@@ -46,10 +49,16 @@ const NewsComments = () => (
   </Comment.Group>
 )
 
-export class NewsView extends React.Component {
+class NewsView extends React.Component {
+
+
+  onClickHandler = () => {
+    this.props.fetchNewsItem(1);
+  }
+
 	render() {
 		return (
-		<div>
+		<div onClick={this.onClickHandler}>
 		<Item.Group>
 			<Item>
 				<Item.Image src="http://semantic-ui.com/images/avatar/large/jenny.jpg" size="tiny" />
@@ -81,4 +90,13 @@ export class NewsView extends React.Component {
 	}
 }
 
-export default NewsView;
+function mapStateToProps(state) {
+  return {}
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchNewsItem: bindActionCreators(fetchNewsItem, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsView);

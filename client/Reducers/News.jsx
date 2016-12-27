@@ -1,5 +1,5 @@
-function news(state = [], action) {
-	console.log(state, action);
+function news(state = [], action = {}) {
+	
 	return state;
 }
 
