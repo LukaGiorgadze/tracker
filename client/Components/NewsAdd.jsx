@@ -15,7 +15,7 @@ const ShowHideModal = (props) => (
       </Modal>
 )
 
-export class NewsAdd extends React.Component {
+class NewsAdd extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
