@@ -22,7 +22,7 @@ let NewsItem = props => {
 				</Item.Description>
 				<Item.Extra className="itemIcons">
 					<Popup trigger={<Icon name="like" />} content="მომწონს" inverted className="opacity09" />{props.data.likesN}
-					<Icon name="comments" />{props.itemcommentsN} კომენტარი
+					<Icon name="comments" />{props.itemcommentsN} კომენტარი!
 				</Item.Extra>
 				<Divider horizontal hidden />
 			</Item.Content>
