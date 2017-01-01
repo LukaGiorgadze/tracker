@@ -187,6 +187,10 @@ body {
 	float:left;
 	margin:0 0 0 10px;
 }
+.mainHeader .userHeader .userMessages .ui.dropdown.active > div > i,
+.mainHeader .userHeader .userNotifications .ui.dropdown.active > div > i {
+	color:#043B80;
+}
 .mainHeader .userHeader .userProfile .menu a.active {
 	font-weight:700;
 }

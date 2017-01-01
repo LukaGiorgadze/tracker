@@ -10,7 +10,6 @@ import ReportsView from './Components/ReportsView';
 import Settings from './Components/Settings';
 import Signout from './Components/Signout';
 import NotFound from './Components/NotFound';
-import Index from './Components/Index';
 
 export default (
 	<Route path="/" component={Main}>

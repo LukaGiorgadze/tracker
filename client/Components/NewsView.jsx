@@ -1,103 +1,130 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchNewsItem } from '../Actions/News';
-import { Item, Image, Icon, Button, Comment, Header, Popup, Form, Loader } from 'semantic-ui-react'
+import { Item, Icon, Button, Comment, Header, Popup, Form, Loader } from 'semantic-ui-react'
+import { fetchNewsItem, fetchNewsComments } from '../Actions/News';
+import { config } from '../Config';
 
+// Remove Comment Confirmation
+const ModalBasicExample = () => (
+	<Modal trigger={<Button>Basic Modal</Button>} basic size='small'>
+		<Header icon='archive' content='Archive Old Messages' />
+		<Modal.Content>
+			<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+		</Modal.Content>
+		<Modal.Actions>
+			<Button basic color='red' inverted>
+				<Icon name='remove' /> No
+			</Button>
+			<Button color='green' inverted>
+				<Icon name='checkmark' /> Yes
+			</Button>
+		</Modal.Actions>
+	</Modal>
+)
 
-import store from '../Store';
+// Add comment form
+class AddComment extends React.Component {
+	render() {
+		return (
+			<Form reply onSubmit={e => e.preventDefault()}>
+				<Form.TextArea name="comment" />
+				<Button content="კომენტარის დამატება" labelPosition="left" icon="edit" className="noBold BPGSquare" primary />
+			</Form>
+		);
+	}
+}
+
+// Comment items for loop
+let CommentsItem = props => {
+	return(
+		<Comment>
+			<Comment.Avatar src={config.baseUrl + config.dirUploads + "users/" + props.data.author.id + ".jpg"} />
+			<Comment.Content>
+				<Comment.Author as="span">
+					{props.data.author.fullname}
+				</Comment.Author>
+				<Comment.Metadata>
+					<span title={props.data.date}>{props.data.timeSince}</span>
+				</Comment.Metadata>
+				<Comment.Text>
+					{props.data.content}
+				</Comment.Text>
+				<Comment.Actions>
+					<Comment.Action>
+						<Icon name="delete" />წაშლა
+					</Comment.Action>
+				</Comment.Actions>
+			</Comment.Content>
+		</Comment>
+	);
+};
 
 class NewsView extends React.Component {
 
-  componentWillMount() {
-    this.props.fetchNewsItem(this.props.params.newsId);
-  }
+	componentWillMount() {
+		this.props.fetchNewsItem(this.props.params.newsId);
+		this.props.fetchNewsComments(this.props.params.newsId);
+	}
 
-  renderNews = () => {
-     let news = this.props.news.data;
-      return(
-        <Item>
-          <Item.Image src="http://semantic-ui.com/images/avatar/large/jenny.jpg" size="tiny" />
-          <Item.Content>
-            <Item.Header as="h2" className="BPGSquare">{news.title}</Item.Header>
-            <Item.Meta>{news.author}, {news.date}</Item.Meta>
-            <Item.Description>
-              {news.content}
-            </Item.Description>
-            <Item.Extra className="itemIcons">
-              <Popup trigger={<Icon name="like" />} content="მომწონს" inverted className="opacity09" />{news.likesN}
-              <Icon name="comments" />{news.commentsN} კომენტარი
-            </Item.Extra>
-          </Item.Content>
-         </Item>
-      );
-  }
-  renderComments = () => (
-        <Comment.Group className="commentFullWidth">
-        <Header as="h4" className="BPGExtraSquareMtavruli" dividing>კომენტარები</Header>
-        <Comment>
-          <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
-          <Comment.Content>
-            <Comment.Author as='a'>Matt</Comment.Author>
-            <Comment.Metadata>
-              <span>დღეს 5:42PM</span>
-            </Comment.Metadata>
-            <Comment.Text>How artistic!</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action>
-                <Icon name='delete' />
-                წაშლა
-              </Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-        </Comment>
-        <Comment>
-          <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
-          <Comment.Content>
-            <Comment.Author as='a'>Joe Henderson</Comment.Author>
-            <Comment.Metadata>
-              <span>5 დღის წინ</span>
-            </Comment.Metadata>
-            <Comment.Text>მიკრო მოღალულნი შეეჭიდება ცალად შენებური ვროვდებოდა სამყაროც მოჰკურცხლა. წამოასხეს რეალითი გულზე, ასეთ გამოიდარა დამიღრღნა ირონიული ბაბუებმა დათვები მდიდართათვის ორგიებისათვის.
-                გავხსნა ფურად ალერსობენ ამოსული მხეცების ლევანმა. სამყაროც ბაბუებმა პარტნიორებს ახალგაზრდაა, პორტ გელოდებით შეძლებს მიკრო გაჩენაში ამოსული ლევანმა ნახავს.</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action>
-                <Icon name='delete' />
-                წაშლა
-              </Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-        </Comment>
+	renderNews = () => {
+		let news = this.props.news.data;
+		return(
+			<Item className="nomargint">
+				<Item.Image src={config.baseUrl + config.dirUploads + "users/" + news.author.id + ".jpg"} size="tiny" />
+				<Item.Content>
+					<Item.Header as="h2" className="BPGSquare">{news.title}</Item.Header>
+					<Item.Meta>{news.author.fullname}, <span title={news.date}>{news.timeSince}</span></Item.Meta>
+					<Item.Description>
+						{news.content}
+					</Item.Description>
+					<Item.Extra className="itemIcons">
+						<Popup trigger={<Icon name="like" />} content="მომწონს" inverted className="opacity09" />{news.likesN}
+						<Icon name="comments" />{news.commentsN}კომენტარი
+						<Icon name="delete" />წაშლა
+					</Item.Extra>
+				</Item.Content>
+			</Item>
+		);
+	};
 
-        <Form reply onSubmit={e => e.preventDefault()}>
-          <Form.TextArea name="comment" />
-          <Button content="კომენტარის დამატება" labelPosition="left" icon="edit" className="noBold BPGSquare" primary />
-        </Form>
-      </Comment.Group>
-  );
+	renderComments = () => {
+		let comments = this.props.comments;
+		return (
+			<Comment.Group className="commentFullWidth">
+				{(!this.props.comments.loading && this.props.comments.data) && <Header as="h4" className="BPGExtraSquareMtavruli" dividing>კომენტარები</Header>}
+				{(!this.props.comments.loading && this.props.comments.data) && Object.values(this.props.comments.data).map(function(item, i) {
+					return (<CommentsItem data={item} key={item._id} />);
+				})}
+				<AddComment />
+			</Comment.Group>
+		);
+	};
 
 	render() {
 		return (
-  		<div>
-        <Item.Group>
-        <Loader active={this.props.news.loading} inline="centered" />
-        {!this.props.news.loading && this.props.news.data && this.renderNews()}
-        </Item.Group>
-    		{!this.props.news.loading && this.props.news.data && this.renderComments()}
-  		</div>
-	  );
+			<div>
+				<Item.Group>
+					<Loader active={this.props.news.loading} inline="centered" />
+					{!this.props.news.loading && this.props.news.data && this.renderNews()}
+				</Item.Group>
+				{!this.props.news.loading && this.props.news.data && this.renderComments()}
+			</div>
+		);
 	}
 }
 
 function mapStateToProps(state) {
-  return {
-    news: state.news.newsActive
-  }
+	return {
+		news: state.news.newsActive,
+		comments: state.news.newsComments
+	}
 }
 function mapDispatchToProps(dispatch) {
-  return {
-    fetchNewsItem: bindActionCreators(fetchNewsItem, dispatch),
-  }
+	return {
+		fetchNewsItem: bindActionCreators(fetchNewsItem, dispatch),
+		fetchNewsComments: bindActionCreators(fetchNewsComments, dispatch)
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsView);

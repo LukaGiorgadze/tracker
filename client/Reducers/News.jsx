@@ -4,7 +4,10 @@ import {
 	FETCH_NEWS_ITEMS_ERROR,
 	FETCH_NEWS_ITEM_START,
 	FETCH_NEWS_ITEM_DONE,
-	FETCH_NEWS_ITEM_ERROR
+	FETCH_NEWS_ITEM_ERROR,
+	FETCH_NEWS_COMMENTS_START,
+	FETCH_NEWS_COMMENTS_DONE,
+	FETCH_NEWS_COMMENTS_ERROR
 }
 from '../Actions/Types';
 
@@ -20,6 +23,11 @@ let initialState = {
 		loading: false,
 		error: null
 	},
+	newsComments: {
+		data: [],
+		loading: false,
+		error: null
+	}
 };
 
 
@@ -32,7 +40,7 @@ function news(state = initialState, action = {}) {
 						data: [],
 						loading: true
 					}
-				}
+				};
 			break;
 		}
 		case FETCH_NEWS_ITEMS_DONE: {
@@ -42,7 +50,7 @@ function news(state = initialState, action = {}) {
 						data: action.payload,
 						loading: false
 					}
-				}
+				};
 			break;
 		}
 		case FETCH_NEWS_ITEM_START: {
@@ -52,7 +60,7 @@ function news(state = initialState, action = {}) {
 						...state.newsActive,
 						loading: true
 					}
-				}
+				};
 			break;
 		}
 		case FETCH_NEWS_ITEM_DONE: {
@@ -62,7 +70,27 @@ function news(state = initialState, action = {}) {
 						data: action.payload,
 						loading: false
 					}
+				};
+			break;
+		}
+		case FETCH_NEWS_COMMENTS_START: {
+			return {
+				...state,
+				newsComments: {
+					data: [],
+					loading: true
 				}
+			};
+			break;
+		}
+		case FETCH_NEWS_COMMENTS_DONE: {
+			return {
+				...state,
+				newsComments: {
+					data: action.payload,
+					loading: false
+				}
+			};
 			break;
 		}
 		default: {

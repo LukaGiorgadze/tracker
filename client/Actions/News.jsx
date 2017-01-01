@@ -4,10 +4,14 @@ import {
 	FETCH_NEWS_ITEMS_ERROR,
 	FETCH_NEWS_ITEM_START,
 	FETCH_NEWS_ITEM_DONE,
-	FETCH_NEWS_ITEM_ERROR
+	FETCH_NEWS_ITEM_ERROR,
+	FETCH_NEWS_COMMENTS_START,
+	FETCH_NEWS_COMMENTS_DONE,
+	FETCH_NEWS_COMMENTS_ERROR
 }
 from '../Actions/Types';
-import { dataNews } from '../Data';
+import _ from 'lodash';
+import { dataNews, dataComments } from '../Data';
 
 
 // Fetch News Items
@@ -19,9 +23,9 @@ export function fetchNewsItems() {
 		setTimeout(() => {
 			dispatch({
 				type: FETCH_NEWS_ITEMS_DONE,
-				payload: _.mapKeys(dataNews, 'id')
+				payload: _.mapKeys(dataNews, '_id')
 			});
-		}, 1000);		
+		}, 500);
 	};
 }
 
@@ -34,8 +38,23 @@ export function fetchNewsItem(id) {
 		setTimeout(() => {
 			dispatch({
 				type: FETCH_NEWS_ITEM_DONE,
-				payload: _.mapKeys(dataNews, 'id')[id]
+				payload: _.mapKeys(dataNews, '_id')[id]
 			});
-		}, 1000);
+		}, 400);
+	};
+}
+
+// Fetch News Comments by News ID
+export function fetchNewsComments(id) {
+	return dispatch => {
+		dispatch({
+			type: FETCH_NEWS_COMMENTS_START
+		});
+		setTimeout(() => {
+			dispatch({
+				type: FETCH_NEWS_COMMENTS_DONE,
+				payload: _.mapKeys(dataComments, '_id')
+			});
+		}, 700);
 	};
 }

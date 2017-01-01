@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Grid, Image, Dropdown, Icon, Label, Feed } from 'semantic-ui-react'
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
 
 let UserProfileDropdownTrigger = (
 	<span>
