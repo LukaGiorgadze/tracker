@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Grid, Image, Dropdown, Icon, Label, Feed } from 'semantic-ui-react'
 import { Link } from 'react-router';
+import UserNotifications from './Notifications';
 
 let UserProfileDropdownTrigger = (
 	<span>
@@ -14,13 +15,6 @@ let UserMessagesTrigger = (
 		<Label color="red" size="mini" floating>3</Label>
 	</div>
 )
-let UserNotificationsTrigger = (
-	<div title="შეტყობინებები">
-		<Icon name="alarm outline" size="large" />
-		<Label color="red" size="mini" floating>1</Label>
-	</div>
-)
-
 class UserProfileDropdown extends React.Component {
 	render() {
 		return (
@@ -50,120 +44,6 @@ class UserProfileDropdown extends React.Component {
 		)
 	}
 }
-
-class UserNotifications extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	clickHandler = () => {
-		this.props.closeMobileNav();
-	}
-
-	render() {
-		return (
-			<Dropdown trigger={UserNotificationsTrigger} pointing="top right" icon={null}>
-				<Dropdown.Menu>
-					<Dropdown.Item onClick={this.clickHandler}>
-						<Feed size="small">
-							<Feed.Event>
-								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
-								</Feed.Label>
-								<Feed.Content>
-									<Feed.Date>18 წუთის წინ</Feed.Date>
-									<Feed.Summary>
-										<Feed.User>თეიმურაზ ბობოლაშვილი</Feed.User>
-									</Feed.Summary>
-									<Feed.Meta>
-							          	<Icon name="comment" color="grey" /> გააკეთა კომენტარი
-							        </Feed.Meta>
-								</Feed.Content>
-							</Feed.Event>
-						</Feed>
-					</Dropdown.Item>
-					<Dropdown.Divider className="noMargin" />
-					<Dropdown.Item>
-						<Feed size="small">
-							<Feed.Event>
-								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar/small/laura.jpg" />
-								</Feed.Label>
-								<Feed.Content>
-									<Feed.Date>3 საათის წინ</Feed.Date>
-									<Feed.Summary>
-										  <Feed.User>ნატალი გიოგაძე</Feed.User>
-									</Feed.Summary>
-									<Feed.Meta>
-							          	<Icon name="like" color="red" /> მოიწონა სიახლე
-							        </Feed.Meta>
-								</Feed.Content>
-							</Feed.Event>
-						</Feed>
-					</Dropdown.Item>
-					<Dropdown.Divider className="noMargin" />
-					<Dropdown.Item>
-						<Feed size="small">
-							<Feed.Event>
-								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar/small/laura.jpg" />
-								</Feed.Label>
-								<Feed.Content>
-									<Feed.Date>3 საათის წინ</Feed.Date>
-									<Feed.Summary>
-										  <Feed.User>ნატალი გიოგაძე</Feed.User>
-									</Feed.Summary>
-									<Feed.Meta>
-							          	<Icon name="like" color="red" /> მოიწონა სიახლე
-							        </Feed.Meta>
-								</Feed.Content>
-							</Feed.Event>
-						</Feed>
-					</Dropdown.Item>
-					<Dropdown.Divider className="noMargin" />
-					<Dropdown.Item>
-						<Feed size="small">
-							<Feed.Event>
-								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar/small/laura.jpg" />
-								</Feed.Label>
-								<Feed.Content>
-									<Feed.Date>3 საათის წინ</Feed.Date>
-									<Feed.Summary>
-										  <Feed.User>ნატალი გიოგაძე</Feed.User>
-									</Feed.Summary>
-									<Feed.Meta>
-							          	<Icon name="like" color="red" /> მოიწონა სიახლე
-							        </Feed.Meta>
-								</Feed.Content>
-							</Feed.Event>
-						</Feed>
-					</Dropdown.Item>
-					<Dropdown.Divider className="noMargin" />
-					<Dropdown.Item>
-						<Feed size="small">
-							<Feed.Event>
-								<Feed.Label>
-									<Image avatar src="http://semantic-ui.com/images/avatar/small/laura.jpg" />
-								</Feed.Label>
-								<Feed.Content>
-									<Feed.Date>3 საათის წინ</Feed.Date>
-									<Feed.Summary>
-										  <Feed.User>ნატალი გიოგაძე</Feed.User>
-									</Feed.Summary>
-									<Feed.Meta>
-							          	<Icon name="like" color="red" /> მოიწონა სიახლე
-							        </Feed.Meta>
-								</Feed.Content>
-							</Feed.Event>
-						</Feed>
-					</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		)
-	}
-}
-
 
 class UserMessages extends React.Component {
 	render() {
