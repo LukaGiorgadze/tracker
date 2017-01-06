@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Item, Icon, Popup, Divider, Loader } from 'semantic-ui-react';
+import _ from 'lodash';
 import NewsAdd from './NewsAdd';
 import { fetchNewsItems } from '../Actions/News';
 import { config } from '../Config';
@@ -43,7 +44,7 @@ class News extends React.Component {
 				<NewsAdd />
 				<Divider horizontal hidden />
 				<Item.Group>
-					{(!this.props.news.loading && this.props.news.data) && Object.values(this.props.news.data).map(function(item, i) {
+					{(!this.props.news.loading && !_.isEmpty(this.props.news.data)) && Object.values(this.props.news.data).map(function(item, i) {
 						return (<NewsItem data={item} key={item._id} />);
 					})}
 					<Loader active={this.props.news.loading} inline="centered" />

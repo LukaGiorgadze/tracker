@@ -9,6 +9,7 @@ from '../Actions/Types';
 let initialState = {
 	notificationsList: {
 		data: [],
+		new: 0,
 		loading: false,
 		error: null
 	}
@@ -22,6 +23,7 @@ function notifications(state = initialState, action = {}) {
 					...state,
 					notificationsList: {
 						data: [],
+						new: 0,
 						loading: true
 					}
 				};
@@ -32,6 +34,7 @@ function notifications(state = initialState, action = {}) {
 					...state,
 					notificationsList: {
 						data: action.payload,
+						new: action.new,
 						loading: false
 					}
 				};

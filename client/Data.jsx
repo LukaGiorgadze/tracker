@@ -1,31 +1,35 @@
 // Notifications
 export let dataNotifications =
-	[
-		{
-			"_id": 1,
-			"type": "comment",
-			"date": "30 დეკემბერი, 2016",
-			"timeSince": "3 საათის წინ",
-			"author": {
-				"id": 2,
-				"fullname": "ნატალი გიორგაძე"
+	{
+		"new": 2,
+		"data":
+		[
+			{
+				"_id": 1,
+				"type": "comment",
+				"date": "30 დეკემბერი, 2016",
+				"timeSince": "3 საათის წინ",
+				"author": {
+					"id": 2,
+					"fullname": "ნატალი გიორგაძე"
+				},
+				"link": "news/view/157",
+				"read": false
 			},
-			"link": "news/view/157",
-			"read": false
-		},
-		{
-			"_id": 2,
-			"type": "like",
-			"date": "29 დეკემბერი, 2016",
-			"timeSince": "1 დღის წინ",
-			"author": {
-				"id": 1,
-				"fullname": "ლუკა გიორგაძე"
-			},
-			"link": "news/view/158",
-			"read": false
-		}
-	];
+			{
+				"_id": 2,
+				"type": "like",
+				"date": "29 დეკემბერი, 2016",
+				"timeSince": "1 დღის წინ",
+				"author": {
+					"id": 1,
+					"fullname": "ლუკა გიორგაძე"
+				},
+				"link": "news/view/158",
+				"read": false
+			}
+		]
+	};
 
 // News
 export let dataNews =

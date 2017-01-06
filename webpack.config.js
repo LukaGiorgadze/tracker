@@ -45,7 +45,9 @@ module.exports = {
 		}),
 		new Webpack.NoErrorsPlugin(),
 		// Remove old Assets
-		new WebpackCleanupPlugin(),
+		new WebpackCleanupPlugin({
+			exclude: ["up/**/*"]
+		}),
 		// Uglify Scripts
 		new Webpack.optimize.UglifyJsPlugin({
 			compress: {

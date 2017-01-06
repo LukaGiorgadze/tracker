@@ -7,7 +7,6 @@ from '../Actions/Types';
 import _ from 'lodash';
 import { dataNotifications } from '../Data';
 
-
 // Fetch News Items
 export function fetchNotifications() {
 	return dispatch => {
@@ -17,8 +16,9 @@ export function fetchNotifications() {
 		setTimeout(() => {
 			dispatch({
 				type: FETCH_NOTIFICATIONS_DONE,
-				payload: _.mapKeys(dataNotifications, '_id')
+				payload: _.mapKeys(dataNotifications.data, '_id'),
+				new: dataNotifications.new
 			});
-		}, 500);
+		}, 200);
 	};
 }

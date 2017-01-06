@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Item, Icon, Button, Comment, Header, Popup, Form, Loader } from 'semantic-ui-react'
+import _ from 'lodash';
 import { fetchNewsItem, fetchNewsComments } from '../Actions/News';
 import { config } from '../Config';
 
@@ -92,8 +93,8 @@ class NewsView extends React.Component {
 		let comments = this.props.comments;
 		return (
 			<Comment.Group className="commentFullWidth">
-				{(!this.props.comments.loading && this.props.comments.data) && <Header as="h4" className="BPGExtraSquareMtavruli" dividing>კომენტარები</Header>}
-				{(!this.props.comments.loading && this.props.comments.data) && Object.values(this.props.comments.data).map(function(item, i) {
+				{(!this.props.comments.loading && !_.isEmpty(this.props.comments.data)) && <Header as="h4" className="BPGExtraSquareMtavruli" dividing>კომენტარები</Header>}
+				{(!this.props.comments.loading && !_.isEmpty(this.props.comments.data)) && Object.values(this.props.comments.data).map(function(item, i) {
 					return (<CommentsItem data={item} key={item._id} />);
 				})}
 				<AddComment />
@@ -106,9 +107,9 @@ class NewsView extends React.Component {
 			<div>
 				<Item.Group>
 					<Loader active={this.props.news.loading} inline="centered" />
-					{!this.props.news.loading && this.props.news.data && this.renderNews()}
+					{!this.props.news.loading && !_.isEmpty(this.props.news.data) && this.renderNews()}
 				</Item.Group>
-				{!this.props.news.loading && this.props.news.data && this.renderComments()}
+				{!this.props.news.loading && !_.isEmpty(this.props.news.data) && this.renderComments()}
 			</div>
 		);
 	}
