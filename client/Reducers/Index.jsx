@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import news from './News';
+import posts from './Posts';
 import notifications from './Notifications';
 
 export let allReducers = combineReducers({
-	'news': news,
+	'posts': posts,
 	'notifications': notifications,
 	'routing': routerReducer
 });

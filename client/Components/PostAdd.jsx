@@ -13,7 +13,7 @@ const ShowHideModal = (props) => (
           </Button>
         </Modal.Actions>
       </Modal>
-)
+);
 
 class NewsAdd extends React.Component {
 	constructor(props) {
@@ -25,16 +25,16 @@ class NewsAdd extends React.Component {
 	
 	handleOpenModal = (e) => {
 		this.setState({
-			modalOpen: true,
-		})
+			modalOpen: true
+		});
 		e.preventDefault();
-	}
+	};
 
 	handleCloseModal = (e) => {
 		this.setState({
-			modalOpen: false,
+			modalOpen: false
 		})
-	}
+	};
 
 	autoResize(e) {
 		let o = e.target;

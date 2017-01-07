@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import Main from './Components/Layout/Main';
-import News from './Components/News';
-import NewsView from './Components/NewsView';
+import Posts from './Components/Posts';
+import PostView from './Components/PostView';
 import Payments from './Components/Payments';
 import PaymentsPay from './Components/PaymentsPay';
 import Reports from './Components/Reports';
@@ -13,10 +13,10 @@ import NotFound from './Components/NotFound';
 
 export default (
 	<Route path="/" component={Main}>
-		<IndexRoute component={News} />
-		<Route path="news">
-			<IndexRoute component={News} />
-			<Route path="view/:newsId" component={NewsView} />
+		<IndexRedirect to="posts" />
+		<Route path="posts">
+			<IndexRoute component={Posts} />
+			<Route path="view/:postId" component={PostView} />
 		</Route>
 		<Route path="payments">
 			<IndexRoute component={Payments} />

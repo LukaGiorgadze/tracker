@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { Menu, Icon, Label } from 'semantic-ui-react'
+import { Link, IndexLink } from 'react-router';
+import { connect } from 'react-redux';
+import { Menu, Icon, Label } from 'semantic-ui-react';
 
 export class NavigationSidebar extends React.Component {
 	render() {
+		let active = /^post\//g.test(this.props.routing.locationBeforeTransitions.pathname) ? 'active' : '';
+
 		return (
 			<Menu fluid pointing secondary vertical>
-				<Link className="BPGSquare item" to="/news" activeClassName="active">
+				<Link className="BPGSquare item" to="/posts" activeClassName="active">
 					<Icon.Group className="navIcon">
 						<Icon name="feed" />
 					</Icon.Group>
@@ -42,4 +45,17 @@ export class NavigationSidebar extends React.Component {
 	}
 }
 
-export default NavigationSidebar;
+// State for this component
+function mapStateToProps(state) {
+	return {
+		routing: state.routing
+	}
+}
+
+// Default dispatches
+function mapDispatchToProps(dispatch) {
+	return {}
+}
+
+// React redux connect
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationSidebar);

@@ -1,9 +1,10 @@
 'use strict';
-
 import { browserHistory } from 'react-router';
+import { config } from './Config';
 
 export function link(url) {
-	return browserHistory.push(url);
+	let _url = config.baseUrl + url.replace(/^\/|\/$/g, '');
+	return browserHistory.push(_url);
 }
 
 export function formatContentToHTML(content) {

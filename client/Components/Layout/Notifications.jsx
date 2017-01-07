@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Image, Dropdown, Icon, Label, Feed, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
 import { config } from '../../Config';
-import { fetchNotifications } from '../../Actions/Notifications';
+import { link } from '../../Functions';
+import { fetchNotifications, fetchNotificationsN, viewNotifications } from '../../Actions/Notifications';
 
 let UserNotificationsTrigger = (props) => {
 	return(
@@ -13,22 +14,37 @@ let UserNotificationsTrigger = (props) => {
 			{(props > 0) && <Label color="red" size="mini" floating>{props}</Label>}
 		</div>
 	);
-}
+};
 
 
 class UserNotifications extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {timeout: 0};
+	};
+
 	componentWillMount() {
-		_.isEmpty(this.props.notifications.data) && this.props.fetchNotifications();
-	}
+		this.props.fetchNotificationsN();
+	};
 
 	onOpen = () => {
-		
-	}
+		(this.props.notificationsN > 0 || _.isEmpty(this.props.notifications.data)) && this.props.fetchNotifications();
+		if(this.props.notificationsN > 0) {
+			this.setState({
+				timeout: setTimeout(() => { this.props.viewNotifications(); }, 1000)
+			});
+		}
+	};
 
-	itemOnClick = () => {
+	onClose = () => {
+		this.props.notificationsN > 0 && clearTimeout(this.state.timeout);
+	};
+
+	itemOnClick = (props) => {
 		this.props.closeMobileNav();
-	}
+		link(props);
+	};
 	
 	loadingItem = () => {
 		return (
@@ -36,7 +52,7 @@ class UserNotifications extends React.Component {
 				<Loader active inline="centered" />
 			</Dropdown.Item>
 		);
-	}
+	};
 
 	notificationType = (props) => {
 		let data = {};
@@ -59,17 +75,16 @@ class UserNotifications extends React.Component {
 				break;
 		}
 		return data;
-	}
+	};
 
-	getNotifications = (props) => {
+	renderNotifications = () => {
 		let itemOnClick = this.itemOnClick;
 		let notificationType = this.notificationType;
 
 		return _.map(this.props.notifications.data, function(item, key) {
 			let notification = notificationType(item.type);
-
 			return(
-				<Dropdown.Item key={key} onClick={itemOnClick}>
+				<Dropdown.Item key={item._id} onClick={() => { itemOnClick(item.link) }} className={!item.read ? 'unread' : null}>
 					<Feed size="small">
 						<Feed.Event>
 							<Feed.Label>
@@ -89,19 +104,18 @@ class UserNotifications extends React.Component {
 				</Dropdown.Item>
 			);
 		});
-	}
-
+	};
 
 	render() {
 		return (
-			<Dropdown trigger={UserNotificationsTrigger(this.props.notifications.new)} pointing="top right" icon={null} onOpen={this.onOpen}>
+			<Dropdown trigger={UserNotificationsTrigger(this.props.notificationsN)} pointing="top right" icon={null} onOpen={this.onOpen} onClose={this.onClose}>
 				<Dropdown.Menu>
 					{
 						(this.props.notifications.loading || _.isEmpty(this.props.notifications.data))
 						?
 						this.loadingItem()
 						:
-						this.getNotifications()
+						this.renderNotifications()
 					}
 				</Dropdown.Menu>
 			</Dropdown>
@@ -113,14 +127,17 @@ class UserNotifications extends React.Component {
 // State for this component
 function mapStateToProps(state) {
 	return {
-		notifications: state.notifications.notificationsList
+		notifications: state.notifications.notificationsList,
+		notificationsN: state.notifications.notificationsN
 	}
 }
 
 // Default dispatches
 function mapDispatchToProps(dispatch) {
 	return {
-		fetchNotifications: bindActionCreators(fetchNotifications, dispatch)
+		fetchNotifications: bindActionCreators(fetchNotifications, dispatch),
+		fetchNotificationsN: bindActionCreators(fetchNotificationsN, dispatch),
+		viewNotifications: bindActionCreators(viewNotifications, dispatch)
 	}
 }
 
