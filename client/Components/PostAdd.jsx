@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Segment, TextArea, Button, Icon, Header, Modal } from 'semantic-ui-react'
+import { Form, Segment, TextArea, Button, Icon, Header, Modal } from 'semantic-ui-react';
+import { autoResizeInput } from '../Functions';
 
 const ShowHideModal = (props) => (
 	<Modal open={props.opener} basic size="small">
@@ -36,21 +37,13 @@ class NewsAdd extends React.Component {
 		})
 	};
 
-	autoResize(e) {
-		let o = e.target;
-		setTimeout(function(){
-			o.style.height = "auto";
-			o.style.height = (o.scrollHeight)+"px";
-		},0);
-	}
-
 	render() {
 		return (
 			<div>
 				<ShowHideModal opener={this.state.modalOpen} closer={this.handleCloseModal} />
 				<Form >
 					<Segment clearing>
-						<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={this.autoResize} className="expandingTextarea" />
+						<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={autoResizeInput} className="expandingTextarea" />
 						<div className="newsAddButtons">
 							<div>
 								<Button basic icon="upload" floated="left" />

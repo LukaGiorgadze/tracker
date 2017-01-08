@@ -10,7 +10,16 @@ import {
 	FETCH_POST_COMMENTS_ERROR,
 	TOGGLE_LIKE_START,
 	TOGGLE_LIKE_DONE,
-	TOGGLE_LIKE_ERROR
+	TOGGLE_LIKE_ERROR,
+	DELETE_POST_ITEM_START,
+	DELETE_POST_ITEM_DONE,
+	DELETE_POST_ITEM_ERROR,
+	DELETE_COMMENT_ITEM_START,
+	DELETE_COMMENT_ITEM_DONE,
+	DELETE_COMMENT_ITEM_ERROR,
+	ADD_COMMENT_ITEM_START,
+	ADD_COMMENT_ITEM_DONE,
+	ADD_COMMENT_ITEM_ERROR
 }
 from '../Actions/Types';
 import _ from 'lodash';
@@ -80,6 +89,37 @@ export function toggleLike(item) {
 			dispatch({
 				type: TOGGLE_LIKE_DONE,
 				payload: newItem
+			});
+		}, 100);
+	};
+}
+
+// Delete Post Item by ID
+export function deletePostItem(id) {
+	return dispatch => {
+		dispatch({
+			type: DELETE_POST_ITEM_START
+		});
+		setTimeout(() => {
+			dispatch({
+				type: DELETE_POST_ITEM_DONE,
+				payload: id
+			});
+		}, 100);
+	};
+}
+
+
+// Delete Comment Item by ID
+export function deleteCommentItem(id) {
+	return dispatch => {
+		dispatch({
+			type: DELETE_COMMENT_ITEM_START
+		});
+		setTimeout(() => {
+			dispatch({
+				type: DELETE_COMMENT_ITEM_DONE,
+				payload: id
 			});
 		}, 100);
 	};

@@ -9,7 +9,6 @@ import config 				from './Config';
 
 // Module declarations
 const app = Express();
-const router = Express.Router();
 
 // Development Environment
 if(config.environment === 'development')
@@ -36,9 +35,13 @@ if(config.environment === 'development')
     });
 }
 
-app.use('/api', require('./Api').app);
-app.use('/', require('./App').app);
+// Set default public html directory
+app.use(Express.static(Path.join(__dirname, '../', config.publicHtml)));
 
+// All Get request goes here
+app.get('/*', (req, res) => {
+	res.sendFile(Path.join(__dirname, '../', config.publicHtml, 'index.html'));
+});
 
 // App listening
 app.listen(config.port);

@@ -80,7 +80,7 @@ class MobileNav extends React.Component {
 					</div>
 					<ul>
 						<li>
-							<Link to="/news" activeClassName="active" className="mobileNavCloser">
+							<Link to="/posts" activeClassName="active" className="mobileNavCloser">
 								სიახლეები
 							</Link>
 						</li>

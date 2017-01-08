@@ -265,7 +265,9 @@ body {
 	font-family:"BPGSquareMtavruli";
 	border-bottom:1px solid #f5f5f5;
 }
-.mainHeader .mobileNav ul li a.active {
+.mainHeader .mobileNav ul li a.active,
+.mainHeader .mobileNav ul li:active a,
+.mainHeader .mobileNav ul li a:active {
 	background:#eee;
 	border-bottom:1px solid #e9e9e9;
 }

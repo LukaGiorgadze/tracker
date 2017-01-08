@@ -1,6 +1,7 @@
 // Application Initialization and Module Dependencies
-import Express 				from 'express';
-import news 				from './Api/News';
+import Express 	from 'express';
+import config from '../Config';
+import news	from './News';
 
 // Module declarations
 const app = Express();
@@ -11,4 +12,5 @@ app.get('/*',  function(req, res) {
 	res.send('Nothing to show');
 });
 
-exports.app = app;
+// App listening
+app.listen(config.portAPI);

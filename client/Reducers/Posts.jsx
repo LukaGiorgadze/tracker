@@ -10,10 +10,19 @@ import {
 	FETCH_POST_COMMENTS_ERROR,
 	TOGGLE_LIKE_START,
 	TOGGLE_LIKE_DONE,
-	TOGGLE_LIKE_ERROR
+	TOGGLE_LIKE_ERROR,
+	DELETE_POST_ITEM_START,
+	DELETE_POST_ITEM_DONE,
+	DELETE_POST_ITEM_ERROR,
+	DELETE_COMMENT_ITEM_START,
+	DELETE_COMMENT_ITEM_DONE,
+	DELETE_COMMENT_ITEM_ERROR,
+	ADD_COMMENT_ITEM_START,
+	ADD_COMMENT_ITEM_DONE,
+	ADD_COMMENT_ITEM_ERROR
 }
 from '../Actions/Types';
-
+import _ from 'lodash';
 
 let initialState = {
 	postList: {
@@ -36,6 +45,7 @@ let initialState = {
 
 function posts(state = initialState, action = {}) {
 	switch(action.type) {
+		// action.payload = Objects
 		case FETCH_POST_ITEMS_START: {
 			return {
 					...state,
@@ -54,6 +64,7 @@ function posts(state = initialState, action = {}) {
 					}
 				};
 		}
+		// action.payload = Item object
 		case FETCH_POST_ITEM_START: {
 			return {
 					...state,
@@ -72,6 +83,7 @@ function posts(state = initialState, action = {}) {
 					}
 				};
 		}
+		// action.payload = Objects
 		case FETCH_POST_COMMENTS_START: {
 			return {
 				...state,
@@ -90,6 +102,7 @@ function posts(state = initialState, action = {}) {
 				}
 			};
 		}
+		// action.payload = Item object
 		case TOGGLE_LIKE_START: {
 			return state;
 		}
@@ -98,11 +111,45 @@ function posts(state = initialState, action = {}) {
 				...state,
 				postList: {
 					...state.postList,
-					data: {...state.postList.data, [action.payload._id]: action.payload}
+					data: state.postList.data[action.payload._id] !== undefined ? {...state.postList.data, [action.payload._id]: action.payload} : {...state.postList.data}
 				},
 				postActive: {
 					...state.postActive,
 					data: state.postActive.data !== null && state.postActive.data._id == action.payload._id ? action.payload : state.postActive.data
+				}
+			}
+		}
+		// action.payload = ID
+		case DELETE_POST_ITEM_START: {
+			return state;
+		}
+		case DELETE_POST_ITEM_DONE: {
+			return {
+				...state,
+				postList: {
+					...state.postList,
+					data: state.postList.data[action.payload] !== undefined ? _.omit(state.postList.data, action.payload) : {...state.postList.data}
+				},
+				postActive: {
+					...state.postActive,
+					data: {}
+				},
+				postComments: {
+					...state.postComments,
+					data: {}
+				}
+			}
+		}
+		// action.payload = ID
+		case DELETE_COMMENT_ITEM_START: {
+			return state;
+		}
+		case DELETE_COMMENT_ITEM_DONE: {
+			return {
+				...state,
+				postComments: {
+					...state.postComments,
+					data: state.postComments.data[action.payload] !== undefined ? _.omit(state.postComments.data, action.payload) : {...state.postComments.data}
 				}
 			}
 		}

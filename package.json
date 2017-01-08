@@ -6,11 +6,13 @@
   "author": "Luka Giorgadze",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
-    "start": "nodemon --watch server --exec babel-node -- server/Index.jsx"
+    "start": "nodemon --ignore server/api/ --watch server --exec babel-node -- server/Index.jsx",
+    "api": "nodemon --ignore server/Index.jsx --watch server --exec babel-node -- server/Api/Api.jsx"
   },
   "private": true,
   "dependencies": {
     "express": "*",
+    "jsonwebtoken": "^7.2.1",
     "lodash": "*",
     "react": "*",
     "react-dom": "*",
