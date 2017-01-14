@@ -1,5 +1,6 @@
 module.exports = {
 	host: 'http://localhost',
+	database: 'mongodb://localhost:27017/tracker',
 	port: '3000',
 	portAPI: '3001',
 	publicHtml: 'www',	// Public path of stored files

@@ -14,7 +14,6 @@ let store = createStore(
 );
 
 if (module.hot) {
-
 	// Enable Webpack hot module replacement for reducers
 	module.hot.accept('./App', () => {
 		const allReducers = require('./Reducers/Index');

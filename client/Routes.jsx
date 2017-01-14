@@ -10,8 +10,10 @@ import ReportsView from './Components/ReportsView';
 import Settings from './Components/Settings';
 import Signout from './Components/Signout';
 import NotFound from './Components/NotFound';
+import SignContainer from './Components/Sign/SignContainer';
+import Signin from './Components/Sign/Signin';
 
-export default (
+const InnerRoutes = (
 	<Route path="/" component={Main}>
 		<IndexRedirect to="posts" />
 		<Route path="posts">
@@ -30,4 +32,16 @@ export default (
 		<Route path="signout" component={Signout} />
 		<Route path="*" component={NotFound} />
 	</Route>
-)
+);
+
+const SignRoutes = (
+	<Route path="/" component={SignContainer}>
+		<IndexRoute component={Signin} />
+		<Route path="*" component={NotFound} />
+	</Route>
+);
+
+
+let LoggedIn = false;
+!LoggedIn && document.querySelector('#app').classList.add('verticalCenteringContainer');
+export default !LoggedIn ? SignRoutes : InnerRoutes;
