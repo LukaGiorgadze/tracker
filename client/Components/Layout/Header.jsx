@@ -1,20 +1,21 @@
 import React from 'react';
-import { Container, Grid, Image, Dropdown, Icon, Label, Feed } from 'semantic-ui-react'
+import { Container, Grid, Image, Dropdown, Icon, Label } from 'semantic-ui-react'
+import { signout } from '../../Functions';
 import { Link } from 'react-router';
 import UserNotifications from './Notifications';
 
 let UserProfileDropdownTrigger = (
 	<span>
-		<Image avatar src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
+		<Image className="avatar2" src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
 		ლუკა გიორგაძე
 	</span>
-)
+);
 let UserMessagesTrigger = (
 	<div title="პირადი წერილები">
 		<Icon name="comment outline" size="large" />
 		<Label color="red" size="mini" floating>3</Label>
 	</div>
-)
+);
 class UserProfileDropdown extends React.Component {
 	render() {
 		return (
@@ -34,10 +35,10 @@ class UserProfileDropdown extends React.Component {
 					</Dropdown.Item>
 					<Dropdown.Divider className="noMargin" />
 					<Dropdown.Item>
-						<Link to="/signout" activeClassName="active">
+						<a onClick={signout}>
 							<Icon name="sign out" size="small" />
 							{' '} გასვლა
-						</Link>
+						</a>
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -100,7 +101,7 @@ class MobileNav extends React.Component {
 							</Link>
 						</li>
 						<li>
-							<Link to="/logout" activeClassName="active" className="mobileNavCloser">
+							<Link onClick={signout} activeClassName="active" className="mobileNavCloser">
 								გასვლა
 							</Link>
 						</li>
@@ -124,13 +125,13 @@ export class Header extends React.Component {
 		this.setState({
 			mobileNavStatus: !this.state.mobileNavStatus
 		});
-	}
+	};
 
 	closeMobileNav = () => {
 		this.setState({
 			mobileNavStatus: false
 		});
-	}
+	};
 
 	closeMobileNavWithClass = (e) => {
 		if(e.target.classList.contains('mobileNavCloser')) {
@@ -138,7 +139,7 @@ export class Header extends React.Component {
 				mobileNavStatus: false
 			});
 		}
-	}
+	};
 
 	render() {
 		return (

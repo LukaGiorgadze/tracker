@@ -6,7 +6,7 @@
   "author": "Luka Giorgadze",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
-    "start": "nodemon --ignore server/api/ --watch server --exec babel-node -- server/Index.jsx",
+    "start": "nodemon --ignore server/api/ --ignore server/Middleware --watch server --exec babel-node -- server/Index.jsx",
     "api": "nodemon --ignore server/Index.jsx --watch server --exec babel-node -- server/Api/Index.jsx"
   },
   "private": true,
@@ -15,12 +15,14 @@
     "body-parser": "^1.15.2",
     "express": "*",
     "jsonwebtoken": "^7.2.1",
+    "jwt-decode": "^2.1.0",
     "lodash": "*",
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.6",
     "react": "*",
     "react-dom": "*",
     "react-redux": "*",
+    "react-redux-i18n": "^1.7.1",
     "react-router": "*",
     "react-router-redux": "*",
     "redux": "*",

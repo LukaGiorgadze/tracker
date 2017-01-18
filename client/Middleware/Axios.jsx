@@ -1,14 +1,25 @@
 import axios from 'axios';
+import config from '../Config';
 
-const api = axios.create({
-	baseURL: 'http://localhost:3001',
+export const api = axios.create({
+	baseURL: config.APIUrl,
 	timeout: 1000,
-	withCredentials: true,
-	//transformRequest: [(data) => JSON.stringify(data.data)],
+	withCredentials: false,
+	responseType: 'json',
 	headers: {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json'
 	}
 });
+
+export const setAuthToken = (token) => {
+	if(token) {
+		api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+	} else {
+		delete api.defaults.headers.common['Authorization'];
+	}
+};
+
+
 
 export default api;

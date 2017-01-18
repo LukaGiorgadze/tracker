@@ -15,7 +15,8 @@ const usersSchema = new Schema({
 	},
 	email: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	password: {
 		type: String,
@@ -24,8 +25,9 @@ const usersSchema = new Schema({
 	phone: {
 		type: Number
 	},
-	group: {
-		type: Schema.ObjectId
+	groupId: {
+		type: Schema.ObjectId,
+		index: true
 	},
 	since: {
 		type: Date,
@@ -43,8 +45,24 @@ const usersSchema = new Schema({
 const Users = module.exports = mongoose.model('users', usersSchema);
 
 // Sign in
-module.exports.signIn = (user, pass) => {
-	console.log(user, pass);
+module.exports.signIn = (user, pass, callback) => {
+	Users.findOne({
+		email: user,
+		password: pass
+	}, callback);
+};
+// Get user by ID
+module.exports.getUserById = (id, callback) => {
+	Users.findOne({
+		_id: id
+	}, callback);
+};
+// Get user by group ID and ID
+module.exports.getUserByGroupId = (id, groupId, callback) => {
+	Users.findOne({
+		_id: id,
+		groupId: groupId
+	}, callback);
 };
 // Add User
 module.exports.add = (data) => {

@@ -54,7 +54,7 @@ module.exports = {
 				warnings: false,
 				screw_ie8: true,
 				drop_console: config.environment === 'production',
-				drop_debugger: config.environment === 'production',
+				drop_debugger: config.environment === 'production'
 			}
 		}),
 		// Minimize CSS

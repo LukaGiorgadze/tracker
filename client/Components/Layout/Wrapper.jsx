@@ -3,7 +3,7 @@ import { Container, Grid, Divider } from 'semantic-ui-react'
 import Header from './Header';
 import NavigationSidebar from './NavigationSidebar';
 
-export class Main extends React.Component {
+export class Wrapper extends React.Component {
 	render() {
 		return (
 			<div>
@@ -27,4 +27,4 @@ export class Main extends React.Component {
 	}
 }
 
-export default Main;
+export default Wrapper;

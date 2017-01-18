@@ -46,10 +46,7 @@ class NewsAdd extends React.Component {
 						<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={autoResizeInput} className="expandingTextarea" />
 						<div className="newsAddButtons">
 							<div>
-								<Button basic icon="upload" floated="left" />
-							</div>
-							<div>
-								<Button content="დამატება" labelPosition="left" icon="announcement" className="noBold BPGSquare" floated="left" color="green" onClick={this.handleOpenModal} />
+								<Button content="დამატება" labelPosition="left" icon="announcement" className="noBold BPGSquare" floated="left" color="green" onClick={this.handleOpenModal} disabled={true} />
 							</div>
 						</div>
 					</Segment>

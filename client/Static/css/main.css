@@ -92,7 +92,7 @@ input[type=number] {
   }
   .ui.items>.item>.image, 
   .ui.items>.item>.image>img {
-    max-height:200px !important;
+    max-height:100px !important;
   }
 }
 .opacity09 {opacity:0.9;}
@@ -118,13 +118,58 @@ input[type=number] {
 }
 .verticalCenteringContainer {
 	display:flex;
-	height:100%;
 	align-items:center;
 	justify-content:center;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	text-align:center;
+	margin:0 auto;
 }
 .verticalCenteringContainer > div {
-	display:flex;
-	flex:1;
+	width:400px;
+	max-width:90%;
+	height:auto;
+	margin:0 auto;
+	text-align:left;
+}
+.verticalCenteringContainer > div .segment {
+	margin:0 !important;
+}
+.verticalCenteringContainer > div .segment .form {
+	padding:1em;
+}
+.verticalCenteringContainer > div .links {
+	float:left;
+	margin:10px 0 0 10px;
+}
+.verticalCenteringContainer > div .links li {
+	display:block;
+	margin-top:10px;
+	font-size:0.9em;
+	color:rgba(0,0,0,.7);
+}
+.verticalCenteringContainer > div .links li a {
+	color:rgba(0,0,0,.7);
+}
+.verticalCenteringContainer > div .links li a:hover {
+	color:#1e70bf;
+}
+.BPGSquare {
+	font-family:"BPGSquare", sans-serif !important;
+}
+.BPGSquareMtavruli {
+	font-family:"BPGSquareMtavruli", sans-serif !important;
+}
+.BPGExtraSquareMtavruli {
+	font-family:"BPGExtraSquareMtavruli", sans-serif !important;
+}
+.link {
+	color:#1e70bf !important;
 }
 /*******************************************/
 /*	LAYOUT
@@ -136,15 +181,6 @@ html,body {
 	font-family:"BPGSquare", sans-serif;
 	background:#FAFAFA;
 	zoom:1;
-}
-.BPGSquare {
-	font-family:"BPGSquare", sans-serif !important;
-}
-.BPGSquareMtavruli {
-	font-family:"BPGSquareMtavruli", sans-serif !important;
-}
-.BPGExtraSquareMtavruli {
-	font-family:"BPGExtraSquareMtavruli", sans-serif !important;
 }
 .mainHeader {
 	position:fixed;
@@ -197,6 +233,12 @@ html,body {
 	float:right;
 	text-align:right;
 }
+.mainHeader .userHeader .userProfile .menu a.active {
+	font-weight:700;
+}
+.mainHeader .userHeader .userProfile .menu a {
+	padding:10px 0;
+}
 .userNotificationsContainer {
 	float:right;
 }
@@ -210,9 +252,7 @@ html,body {
 .mainHeader .userHeader .userNotifications .ui.dropdown.active > div > i {
 	color:#043B80;
 }
-.mainHeader .userHeader .userProfile .menu a.active {
-	font-weight:700;
-}
+
 .mainHeader .mobileNav {
 	display:none;
 	position:fixed;
@@ -276,6 +316,7 @@ html,body {
 	color:#49565E;
 	font-family:"BPGSquareMtavruli";
 	border-bottom:1px solid #f5f5f5;
+	cursor:pointer;
 }
 .mainHeader .mobileNav ul li a.active,
 .mainHeader .mobileNav ul li:active a,
@@ -311,8 +352,7 @@ html,body {
 	border-bottom:1px solid #efefef;
 }
 .ui.dropdown .menu>.item:last-child{border-bottom:0;}
-.ui.dropdown .menu>.item a, 
-.ui.items>.item>.content>.header a {
+.ui.dropdown .menu>.item a {
 	color:rgba(0,0,0,.87);
 }
 .ui.items>.item>.content>.header:hover>a {
@@ -453,4 +493,11 @@ html,body {
 }
 .ui.items>.item>.content .like.icon:active, .ui.items>.item>.content .like.icon:focus {
 	animation:pulse 1s linear infinite;
+}
+.ui.image.avatar2 {
+	display:inline-block;
+	width:2em;
+	height:2em;
+	margin-right:.25em;
+	border-radius:.125rem;
 }

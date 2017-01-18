@@ -5,8 +5,6 @@ import { Menu, Icon, Label } from 'semantic-ui-react';
 
 export class NavigationSidebar extends React.Component {
 	render() {
-		let active = /^post\//g.test(this.props.routing.locationBeforeTransitions.pathname) ? 'active' : '';
-
 		return (
 			<Menu fluid pointing secondary vertical>
 				<Link className="BPGSquare item" to="/posts" activeClassName="active">
@@ -33,12 +31,6 @@ export class NavigationSidebar extends React.Component {
 						<Icon name="settings" />
 					</Icon.Group>
 					პარამეტრები
-				</Link>
-				<Link className="BPGSquare item" to="/signout" activeClassName="active">
-					<Icon.Group className="navIcon">
-						<Icon name="sign out" />
-					</Icon.Group>
-					გასვლა
 				</Link>
 			</Menu>
 		)

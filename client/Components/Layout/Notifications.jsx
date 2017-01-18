@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Image, Dropdown, Icon, Label, Feed, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
-import { config } from '../../Config';
+import config from '../../Config';
 import { link } from '../../Functions';
 import { fetchNotifications, fetchNotificationsN, viewNotifications } from '../../Actions/Notifications';
 

@@ -24,15 +24,6 @@ if(config.environment === 'development')
 		}
 	}));
 	app.use(webpackHotMiddleware(compiler));
-
-	//development error handler (will print stacktrace)
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
 }
 
 // Set default public html directory
@@ -44,4 +35,4 @@ app.get('/*', (req, res) => {
 });
 
 // App listening
-app.listen(config.port);
+app.listen(config.port, config.host);

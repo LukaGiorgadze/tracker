@@ -1,14 +1,17 @@
 import {
 	SIGNIN_START,
 	SIGNIN_DONE,
-	SIGNIN_ERROR
+	SIGNIN_ERROR,
+	SET_CURRENT_USER
 }
 from '../Actions/Types';
 
 
 let initialState = {
 	loading: false,
-	data: null
+	isAuthenticated: false,
+	data: null,
+	error: null
 };
 
 
@@ -23,8 +26,22 @@ function signin(state = initialState, action = {}) {
 		case SIGNIN_DONE: {
 			return {
 				...state,
+				loading: false
+			};
+		}
+		case SIGNIN_ERROR: {
+			return {
+				...state,
 				loading: false,
-				data: action.payload
+				error: action.payload
+			};
+		}
+		case SET_CURRENT_USER: {
+			return {
+				...state,
+				loading: false,
+				isAuthenticated: action.isAuthenticated,
+				data: action.data
 			};
 		}
 		default: {

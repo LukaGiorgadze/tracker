@@ -1,31 +1,57 @@
 import {
 	SIGNIN_START,
 	SIGNIN_DONE,
-	SIGNIN_ERROR
+	SIGNIN_ERROR,
+	SET_CURRENT_USER
 }
 from '../Actions/Types';
-import api from '../Middleware/Axios';
+import jwtDecode from 'jwt-decode';
+import { api, setAuthToken }from '../Middleware/Axios';
 
-// Fetch Notification Number
+// Default sign in action
+export function setCurrentUser(user = {}) {
+	return {
+		type: SET_CURRENT_USER,
+		isAuthenticated: user.isAuthenticated,
+		data: user.data
+	}
+}
+
+// User Sign in action
 export function signin(data) {
 	return dispatch => {
 		dispatch({
 			type: SIGNIN_START
 		});
 		return api.post('/signin', data)
-			.then(function (response) {
+			.then(function (res) {
 				dispatch({
-					type: SIGNIN_DONE,
-					payload: response.data
+					type: SIGNIN_DONE
 				});
-				return response.data;
+				dispatch(setCurrentUser({
+					data: jwtDecode(res.data.token),
+					isAuthenticated: true
+				}));
+				if(data.remember) {
+					localStorage.setItem('jwtToken', res.data.token);
+				} else {
+					sessionStorage.setItem('jwtToken', res.data.token);
+				}
+				setAuthToken(res.data.token);
+				return true;
 			})
-			.catch(function (error) {
+			.catch(function (err) {
+				let error = 'UNKNOWN_ERROR';
+				if(typeof err.response !== 'undefined') {
+					error = err.response.data.error;
+				} else if(typeof err.code !== 'undefined') {
+					error = err.code;
+				}
 				dispatch({
 					type: SIGNIN_ERROR,
-					payload: error.data
+					payload: error
 				});
-				throw new Error(error.data);
+				throw new Error(err);
 			});
 	};
 }

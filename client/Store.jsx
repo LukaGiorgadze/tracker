@@ -2,8 +2,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { syncTranslationWithStore, loadTranslations } from 'react-redux-i18n';
 import { allReducers } from './Reducers/Index';
+import { languages } from './I18n';
 
+// Initialize Store
 let store = createStore(
 	allReducers,
 	{},
@@ -13,7 +16,12 @@ let store = createStore(
 	)
 );
 
-if (module.hot) {
+// Set Language
+syncTranslationWithStore(store);
+store.dispatch(loadTranslations(languages));
+
+// Hot reloading
+if(module.hot) {
 	// Enable Webpack hot module replacement for reducers
 	module.hot.accept('./App', () => {
 		const allReducers = require('./Reducers/Index');
@@ -21,6 +29,8 @@ if (module.hot) {
 	});
 }
 
+// Export browser history
 export let history = syncHistoryWithStore(browserHistory, store);
 
+// Export Sotre
 export default store;

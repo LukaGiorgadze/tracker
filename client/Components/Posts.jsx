@@ -6,7 +6,8 @@ import { Item, Icon, Popup, Divider, Loader, Modal, Header, Button } from 'seman
 import _ from 'lodash';
 import PostAdd from './PostAdd';
 import { fetchPostItems, toggleLike, deletePostItem } from '../Actions/Posts';
-import { config } from '../Config';
+import { link } from '../Functions';
+import config from '../Config';
 
 
 // Posts items loop and container
@@ -36,16 +37,16 @@ class Posts extends React.Component {
 
 	postDeleteModal() {
 		return(
-			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick basic size="small">
+			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer={false}>
 				<Header icon="delete" content="პოსტის წაშლა" className="BPGSquareMtavruli" />
 				<Modal.Content>
 					<p>დარწმუნებული ხართ, რომ გსურთ წაშალოთ პოსტი "{this.state.postDeleteModalItem.title}"?</p>
 				</Modal.Content>
 				<Modal.Actions>
-					<Button  color="red" inverted className="BPGSquare" onClick={() => this.deletePost(this.state.postDeleteModalItem._id)}>
+					<Button color="red" inverted className="BPGSquare" onClick={() => this.deletePost(this.state.postDeleteModalItem._id)}>
 						<Icon name="remove" /> კი
 					</Button>
-					<Button basic color="green" inverted className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
+					<Button color="green" inverted className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
 						<Icon name="checkmark" /> არა
 					</Button>
 				</Modal.Actions>
@@ -76,10 +77,13 @@ class Posts extends React.Component {
 						</Item.Description>
 						<Item.Extra className="itemIcons noSelect">
 							<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(item)} color={item.liked ? "red" : "grey"} />} content="მომწონს" inverted className="opacity09" />{item.likesN}
-							<Icon name="comments" />{item.commentsN} კომენტარი
-							<a onClick={() => that.postDeleteModalHandleOpen(item)}><Icon name="delete" />წაშლა</a>
+							<Link to={"posts/view/" + item._id}>
+								<Icon name="comments" />{item.commentsN} კომენტარი
+							</Link>
+							<a onClick={() => that.postDeleteModalHandleOpen(item)}>
+								<Icon name="delete" />წაშლა
+							</a>
 						</Item.Extra>
-						<Divider horizontal hidden />
 					</Item.Content>
 				</Item>
 			);
@@ -91,7 +95,7 @@ class Posts extends React.Component {
 			<div>
 				<PostAdd />
 				<Divider horizontal hidden />
-				<Item.Group>
+				<Item.Group divided relaxed>
 					{(!this.props.posts.loading && !_.isEmpty(this.props.posts.data)) && this.renderPostItems()}
 					<Loader active={this.props.posts.loading} inline="centered" />
 				</Item.Group>

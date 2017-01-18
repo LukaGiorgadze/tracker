@@ -36,3 +36,4 @@ export const DELETE_COMMENT_ITEM_ERROR		= 'DELETE_COMMENT_ITEM_ERROR';
 export const SIGNIN_START					 = 'SIGNIN_START';
 export const SIGNIN_DONE					 = 'SIGNIN_DONE';
 export const SIGNIN_ERROR					 = 'SIGNIN_ERROR';
+export const SET_CURRENT_USER				 = 'SET_CURRENT_USER';

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Item, Icon, Button, Comment, Header, Popup, Form, Loader, Modal, Message } from 'semantic-ui-react'
 import _ from 'lodash';
 import { fetchPostItem, fetchPostComments, deletePostItem, deleteCommentItem, toggleLike } from '../Actions/Posts';
-import { config } from '../Config';
+import config from '../Config';
 import ComponentMessage from './Layout/ComponentMessage';
 
 
@@ -105,16 +105,16 @@ class PostView extends React.Component {
 				break;
 		}
 		return(
-			<Modal open={this.state.modalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick basic size="small">
+			<Modal open={this.state.modalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer={false}>
 				<Header icon="delete" content={modalText.title} className="BPGSquareMtavruli" />
 				<Modal.Content>
 					<p>{modalText.text} {this.state.modalItem.title ? '"' + this.state.modalItem.title + '"' : ''}</p>
 				</Modal.Content>
 				<Modal.Actions>
-					<Button  color="red" inverted className="BPGSquare" onClick={modalAction}>
+					<Button color="red" inverted className="BPGSquare" onClick={modalAction}>
 						<Icon name="remove" /> კი
 					</Button>
-					<Button basic color="green" inverted className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
+					<Button color="green" inverted className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
 						<Icon name="checkmark" /> არა
 					</Button>
 				</Modal.Actions>

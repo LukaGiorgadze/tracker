@@ -1,15 +1,13 @@
 'use strict';
 import { browserHistory } from 'react-router';
-import { config } from './Config';
+import config from './Config';
+import store from './Store';
+import { setCurrentUser } from './Actions/Signin';
+import { setAuthToken }from './Middleware/Axios';
 
 export function link(url) {
 	let _url = config.baseUrl + url.replace(/^\/|\/$/g, '');
 	return browserHistory.push(_url);
-}
-
-export function formatContentToHTML(content) {
-	content = content.replace(/(?:\r\n|\r|\n)/g, '<p></p>');
-	return content;
 }
 
 export function autoResizeInput(e) {
@@ -18,4 +16,15 @@ export function autoResizeInput(e) {
 		o.style.height = "auto";
 		o.style.height = (o.scrollHeight)+"px";
 	},0);
+}
+
+export function signout() {
+	store.dispatch(setCurrentUser({
+		data: {},
+		isAuthenticated: false
+	}));
+	localStorage.removeItem('jwtToken');
+	sessionStorage.removeItem('jwtToken');
+	setAuthToken(false);
+	link('/');
 }
