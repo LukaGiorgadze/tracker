@@ -25,13 +25,18 @@ const usersSchema = new Schema({
 	phone: {
 		type: Number
 	},
+	avatar: {
+		type: String,
+		default: 'noavatar.jpg'
+	},
 	groupId: {
 		type: Schema.ObjectId,
 		index: true
 	},
 	since: {
 		type: Date,
-		required: true
+		required: true,
+		default: Date.now
 	},
 	settings: {
 		notificationSms: {

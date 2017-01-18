@@ -1,7 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Item, Icon, Button, Comment, Header, Popup, Form, Loader, Modal, Message } from 'semantic-ui-react'
+import { Item, Icon, Button, Comment, Header, Popup, Form, Loader, Modal } from 'semantic-ui-react'
+import { Translate } from 'react-redux-i18n';
 import _ from 'lodash';
 import { fetchPostItem, fetchPostComments, deletePostItem, deleteCommentItem, toggleLike } from '../Actions/Posts';
 import config from '../Config';
@@ -44,13 +45,13 @@ class PostView extends React.Component {
 			modalAction: false,
 			modalTexts: {
 				deletePost: {
-					title: 'პოსტის წაშლა',
-					text: 'დარწმუნებული ხართ, რომ გსურთ წაშალოთ პოსტი',
-					successText: 'პოსტი წაშლილია.'
+					title: <Translate value="posts.delete" />,
+					text: <Translate value="posts.deleteConfirm" />,
+					successText: <Translate value="posts.deleted" />
 				},
 				deleteComment: {
-					title: 'კომენტარის წაშლა',
-					text: 'დარწმუნებული ხართ, რომ გსურთ კომენტარის წაშლა?'
+					title: <Translate value="posts.deleteComment" />,
+					text: <Translate value="posts.deleteCommentConfirm" />
 				}
 			},
 			componentMessage: {
@@ -59,7 +60,7 @@ class PostView extends React.Component {
 				text: '',
 				type: '',
 				link: '/',
-				linkText: 'უკან'
+				linkText: <Translate value="app.back" />
 			}
 		};
 	}
@@ -112,10 +113,10 @@ class PostView extends React.Component {
 				</Modal.Content>
 				<Modal.Actions>
 					<Button color="red" inverted className="BPGSquare" onClick={modalAction}>
-						<Icon name="remove" /> კი
+						<Icon name="remove" /> <Translate value="app.yes" />
 					</Button>
 					<Button color="green" inverted className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
-						<Icon name="checkmark" /> არა
+						<Icon name="checkmark" /> <Translate value="app.no" />
 					</Button>
 				</Modal.Actions>
 			</Modal>
@@ -145,7 +146,7 @@ class PostView extends React.Component {
 		let that = this;
 		return(
 			<Item>
-				<Item.Image src={config.baseUrl + config.dirUploads + "users/" + post.author.id + ".jpg"} size="tiny" />
+				<Item.Image src={this.props.user.data.avatar} size="tiny" />
 				<Item.Content>
 					<Item.Header as="h2" className="BPGSquare">{post.title}</Item.Header>
 					<Item.Meta>{post.author.fullname}, <span title={post.date}>{post.timeSince}</span></Item.Meta>
@@ -153,9 +154,9 @@ class PostView extends React.Component {
 						{post.content}
 					</Item.Description>
 					<Item.Extra className="itemIcons noSelect">
-						<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(post)} color={post.liked ? "red" : "grey"} />} content="მომწონს" inverted className="opacity09" />{post.likesN}
-						<Icon name="comments" />{post.commentsN} კომენტარი
-						<a onClick={() => that.modalHandleOpen(post, 'deletePost')}><Icon name="delete" />წაშლა</a>
+						<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(post)} color={post.liked ? "red" : "grey"} />} content={<Translate value="posts.like" />} inverted className="opacity09" />{post.likesN}
+						<Icon name="comments" />{post.commentsN} {post.commentsN > 1 ? <Translate value="posts.comments" /> : <Translate value="posts.comment" />}
+						<a onClick={() => that.modalHandleOpen(post, 'deletePost')}><Icon name="delete" /><Translate value="app.delete" /></a>
 					</Item.Extra>
 				</Item.Content>
 			</Item>
@@ -225,6 +226,7 @@ class PostView extends React.Component {
 function mapStateToProps(state) {
 	return {
 		post: state.posts.postActive,
+		user: state.user,
 		comments: state.posts.postComments
 	}
 }

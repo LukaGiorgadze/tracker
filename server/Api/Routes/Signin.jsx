@@ -15,7 +15,8 @@ router.post('/', function(req, res) {
 			const token = jwt.sign({
 				id: doc._id,
 				groupId: doc.groupId,
-				fullname: doc.fName + ' ' + doc.lName
+				fullname: doc.fName + ' ' + doc.lName,
+				avatar: doc.avatar
 			}, config.jwtSecret);
 			res.status(200).send({
 				token

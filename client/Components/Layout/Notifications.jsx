@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Image, Dropdown, Icon, Label, Feed, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
+import { Translate, I18n } from 'react-redux-i18n';
 import config from '../../Config';
 import { link } from '../../Functions';
 import { fetchNotifications, fetchNotificationsN, viewNotifications } from '../../Actions/Notifications';
 
 let UserNotificationsTrigger = (props) => {
 	return(
-		<div title="შეტყობინებები">
+		<div title={I18n.t('layout.notifications')}>
 			<Icon name="alarm outline" size="large" />
 			{(props > 0) && <Label color="red" size="mini" floating>{props}</Label>}
 		</div>
@@ -61,12 +62,12 @@ class UserNotifications extends React.Component {
 			case 'comment':
 				data.type = 'comment';
 				data.color = 'grey';
-				data.text = 'გააკეთა კომენტარი';
+				data.text = <Translate value="layout.commented" />;
 				break;
 			case 'like':
 				data.type = 'like';
 				data.color = 'red';
-				data.text = 'მოიწონა პოსტი';
+				data.text = <Translate value="layout.likedPost" />;
 				break;
 			default:
 				data.type = '';
@@ -88,7 +89,7 @@ class UserNotifications extends React.Component {
 					<Feed size="small">
 						<Feed.Event>
 							<Feed.Label>
-								<Image avatar src={config.baseUrl + config.dirUploads + "users/" + item.author.id + ".jpg"} />
+								<Image className="avatar2" src={config.dirUploadsUsers + item.author.avatar} />
 							</Feed.Label>
 							<Feed.Content>
 								<Feed.Date>{item.since}</Feed.Date>

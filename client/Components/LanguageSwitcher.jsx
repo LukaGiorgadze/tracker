@@ -32,7 +32,7 @@ export class LanguageSwitcher extends React.Component {
 		});
 	}
 	changeLang = (lang) => {
-		if(_.find(langs, { value: lang })) {
+		if(this.state.lang !== lang && _.find(langs, { value: lang })) {
 			store.dispatch(setLocale(lang));
 			localStorage.setItem('language', lang);
 			this.setState({
@@ -42,7 +42,7 @@ export class LanguageSwitcher extends React.Component {
 	};
 	render() {
 		return(
-			<Dropdown text="Language">
+			<Dropdown text="Language" className="BPGSquare">
 				<Dropdown.Menu>
 					{langs.map((option) =>
 						<Dropdown.Item key={option.value} onClick={() => this.changeLang(option.value)} selected={this.state.lang === option.value}>

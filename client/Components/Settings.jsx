@@ -1,13 +1,13 @@
 import React from 'react';
-import { Form, Input, Checkbox, Image, Grid, Button, Dropdown, Popup, Icon, Accordion }  from 'semantic-ui-react'
+import { Form, Input, Checkbox, Image, Grid, Button, Dropdown, Popup, Icon, Accordion, Divider }  from 'semantic-ui-react'
 
 const indexes = [
   { text: '595', value: '595' },
   { text: '599', value: '599' },
   { text: '593', value: '593' },
   { text: '577', value: '577' },
-  { text: '555', value: '555' },
-]
+  { text: '555', value: '555' }
+];
 
 const FormSettings = () => (
     <Form className='fluid'>
@@ -73,7 +73,7 @@ const FormSettings = () => (
         </Form.Group>
         <Button type='submit' name="changeSettings" primary className="noBold BPGSquare">შენახვა</Button>
     </Form>
-)
+);
 
 
 const FormPassword = () => (
@@ -119,7 +119,7 @@ const FormPassword = () => (
         </Form.Group>
         <Button type='submit' name="changePassword" primary className="noBold BPGSquare">პაროლის შეცვლა</Button>
     </Form>
-)
+);
 
 
 const SettingsAll = () => (
@@ -152,7 +152,7 @@ const SettingsAll = () => (
 	      </div>
 	    </Accordion.Content>
 	  </Accordion>
-)
+);
 
 export class Settings extends React.Component {
 	render() {

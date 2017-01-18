@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../Config';
+require('es6-promise').polyfill();
 
 export const api = axios.create({
 	baseURL: config.APIUrl,

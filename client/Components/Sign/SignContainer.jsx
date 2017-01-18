@@ -9,5 +9,4 @@ export class SignContainer extends React.Component {
 	    );
 	}
 }
-
 export default SignContainer;

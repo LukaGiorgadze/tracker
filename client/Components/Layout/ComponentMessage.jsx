@@ -1,5 +1,6 @@
 import React from 'react';
 import { Message, Button, Icon } from 'semantic-ui-react';
+import { Translate } from 'react-redux-i18n';
 import { link } from '../../Functions';
 
 class ComponentMessage extends React.Component {
@@ -12,7 +13,7 @@ class ComponentMessage extends React.Component {
 			icon: props.icon || false,
 			text: props.text,
 			link: props.link || false,
-			linkText: props.linkText || 'უკან',
+			linkText: props.linkText || <Translate value="layout.back" />,
 			info: props.type === 'info',
 			success: props.type === 'success',
 			warning: props.type === 'warning',
@@ -27,7 +28,7 @@ class ComponentMessage extends React.Component {
 			icon: nextProps.icon || false,
 			text: nextProps.text,
 			link: nextProps.link || false,
-			linkText: nextProps.linkText || 'უკან',
+			linkText: nextProps.linkText || <Translate value="layout.back" />,
 			info: nextProps.type === 'info',
 			success: nextProps.type === 'success',
 			warning: nextProps.type === 'warning',

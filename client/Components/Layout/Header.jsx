@@ -1,43 +1,38 @@
 import React from 'react';
-import { Container, Grid, Image, Dropdown, Icon, Label } from 'semantic-ui-react'
-import { signout } from '../../Functions';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Translate, I18n } from 'react-redux-i18n';
+import { Container, Image, Dropdown, Icon } from 'semantic-ui-react'
+import config from '../../Config';
+import { signout } from '../../Functions';
 import UserNotifications from './Notifications';
 
-let UserProfileDropdownTrigger = (
+let UserProfileDropdownTrigger = (props)=> (
 	<span>
-		<Image className="avatar2" src="http://semantic-ui.com/images/avatar2/small/patrick.png" />
-		ლუკა გიორგაძე
+		<Image className="avatar2" src={config.dirUploadsUsers + props.user.data.avatar} />
+		{props.user.data.fullname}
 	</span>
 );
-let UserMessagesTrigger = (
-	<div title="პირადი წერილები">
-		<Icon name="comment outline" size="large" />
-		<Label color="red" size="mini" floating>3</Label>
-	</div>
-);
+
 class UserProfileDropdown extends React.Component {
 	render() {
 		return (
-			<Dropdown className="userProfile" trigger={UserProfileDropdownTrigger} pointing="top right">
+			<Dropdown className="userProfile" trigger={UserProfileDropdownTrigger(this.props)} pointing="top right">
 				<Dropdown.Menu>
 					<Dropdown.Item>
 						<Link to="/payments" activeClassName="active">
-							<Icon name="payment" size="small" />
-							{' '} გადახდები
+							<Icon name="payment" size="small" /> <Translate value="layout.payments" />
 						</Link>
 					</Dropdown.Item>
 					<Dropdown.Item>
 						<Link to="/settings" activeClassName="active">
-							<Icon name="settings" size="small" />
-							{' '} პარამეტრები
+							<Icon name="settings" size="small" /> <Translate value="layout.settings" />
 						</Link>
 					</Dropdown.Item>
 					<Dropdown.Divider className="noMargin" />
 					<Dropdown.Item>
 						<a onClick={signout}>
-							<Icon name="sign out" size="small" />
-							{' '} გასვლა
+							<Icon name="sign out" size="small" /> <Translate value="sign.signout" />
 						</a>
 					</Dropdown.Item>
 				</Dropdown.Menu>
@@ -46,19 +41,6 @@ class UserProfileDropdown extends React.Component {
 	}
 }
 
-class UserMessages extends React.Component {
-	render() {
-		return (
-			<Dropdown trigger={UserMessagesTrigger} pointing="top right" icon={null}>
-				<Dropdown.Menu>
-					<Dropdown.Item>
-						შეტყობინებები
-					</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		)
-	}
-}
 
 class MobileNav extends React.Component {
 	constructor(props) {
@@ -77,32 +59,32 @@ class MobileNav extends React.Component {
 			<div className={"mobileNav mobileNavCloser showOnTabletAndDown " + this.state.status} onClick={this.props.closeMobileNavWithClass}>
 				<div className="bg">
 					<div className="navAvatar">
-						<Image centered shape='circular' size="tiny" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
+						<Image centered shape='circular' size="tiny" src={config.dirUploadsUsers + this.props.user.data.avatar} />
 					</div>
 					<ul>
 						<li>
 							<Link to="/posts" activeClassName="active" className="mobileNavCloser">
-								სიახლეები
+								{I18n.t('layout.posts')}
 							</Link>
 						</li>
 						<li>
 							<Link to="/payments" activeClassName="active" className="mobileNavCloser">
-								გადასახადები
+								{I18n.t('layout.notifications')}
 							</Link>
 						</li>
 						<li>
 							<Link to="/reports" activeClassName="active" className="mobileNavCloser">
-								რეპორტი
+								{I18n.t('layout.reports')}
 							</Link>
 						</li>
 						<li>
 							<Link to="/settings" activeClassName="active" className="mobileNavCloser">
-								პარამეტრები
+								{I18n.t('layout.settings')}
 							</Link>
 						</li>
 						<li>
 							<Link onClick={signout} activeClassName="active" className="mobileNavCloser">
-								გასვლა
+								{I18n.t('sign.signout')}
 							</Link>
 						</li>
 					</ul>
@@ -154,20 +136,35 @@ export class Header extends React.Component {
 					<div className="userHeader">
 						<div className="userNotificationsContainer">
 							<div className="userMessages">
-								<UserMessages />
 							</div>
 							<div className="userNotifications">
 								<UserNotifications closeMobileNav={this.closeMobileNav} />
 							</div>
 						</div>
 						<div className="userProfile hideOnTabletAndDown">
-							<UserProfileDropdown />
+							<UserProfileDropdown user={this.props.user} />
 						</div>
 					</div>
-					<MobileNav status={this.state.mobileNavStatus} closeMobileNavWithClass={this.closeMobileNavWithClass} />
+					<MobileNav status={this.state.mobileNavStatus} closeMobileNavWithClass={this.closeMobileNavWithClass} user={this.props.user} />
 				</Container>
 			</div>
 		)
 	}
 }
-export default Header;
+
+// State for this component
+function mapStateToProps(state) {
+	return {
+		user: state.user
+	}
+}
+
+// Default dispatches
+function mapDispatchToProps(dispatch) {
+	return {
+
+	}
+}
+
+// React redux connect
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

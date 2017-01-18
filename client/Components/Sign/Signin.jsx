@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Button, Checkbox, Form, Input, Icon, Popup, Message } from 'semantic-ui-react';
+import { Segment, Button, Checkbox, Form, Input, Icon, Popup, Modal, Header } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Translate } from 'react-redux-i18n';
 import { Link } from 'react-router';
@@ -49,51 +49,68 @@ export class Signin extends React.Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
+		this.setState({
+			disabled: true,
+			error: null
+		});
 		this.props.signin({
 			'user': this.state.user,
-			'pass': this.state.pass
+			'pass': this.state.pass,
+			'remember': this.state.remember
 		}).then(
 			(res) => {
 				link('/posts');
 			},
 			(err) => {
 				this.setState({
-					error: this.props.user.error || err.message
+					error: this.props.user.error || err.message,
+					disabled: false
 				});
 			}
 		);
 	};
 
-	showMessage = () => {
+	closeModal = () => {
+		this.setState({
+			error: null
+		});
+	};
+
+	showModal = () => {
 		return(
-			<Message negative className="BPGSquare" hidden={!this.state.error}>
-				{this.state.error}
-			</Message>
+			<Modal open={this.state.error !== null} onClose={this.closeModal} basic closeOnEscape closeOnRootNodeClick dimmer="blurring" size="small">
+				<Header icon="exclamation triangle" className="noBold BPGExtraSquareMtavruli" content={<Translate value="app.error" />} />
+				<Modal.Content>
+					<h4 className="noBold BPGSquare"><Translate value={"sign." + this.state.error} /></h4>
+				</Modal.Content>
+				<Modal.Actions>
+					<Button basic inverted color="red" onClick={this.closeModal} className="BPGSquare">OK</Button>
+				</Modal.Actions>
+			</Modal>
 		);
 	};
 
 	render() {
 		return (
 			<div>
-				{this.showMessage()}
-				<Segment padded loading={this.props.user.loading}>
+				<Segment padded basic>
 					<Form onChange={this.onChange} onSubmit={this.onSubmit} id="signinForm">
-						<Form.Field>
-							<label htmlFor="user"><Translate value="sign.email" /></label>
-							<Input type="text" name="user" id="user" value={this.state.user} iconPosition="left" autoComplete={this.autoComplete()}>
+						<Form.Field error={this.state.error !== null}>
+							<label htmlFor="user" className="white"><Translate value="sign.email" /></label>
+							<Input type="text" name="user" id="user" value={this.state.user} iconPosition="left"  autoComplete={this.autoComplete()}>
 								<Icon name="at" />
 								<input />
 							</Input>
 						</Form.Field>
-						<Form.Field>
-							<label htmlFor="pass"><Translate value="sign.password" /></label>
+						<Form.Field error={this.state.error !== null}>
+							<label htmlFor="pass" className="white"><Translate value="sign.password" /></label>
 							<Input type="password" name="pass" id="pass" value={this.state.pass} iconPosition="left" autoComplete={this.autoComplete()}>
 								<Icon name="lock" />
 								<input />
 							</Input>
 						</Form.Field>
 						<Form.Field>
-							<Button primary type="submit" disabled={this.state.disabled} className="BPGSquare noBold" floated="left"><Translate value="sign.signin" /></Button>
+							<Button loading={this.props.user.loading} disabled={this.state.disabled} primary type="submit" className="BPGSquare noBold" floated="left"><Translate value="sign.signin" /></Button>
 							<Popup trigger={<Checkbox onChange={this.rememberMe} defaultChecked={this.state.remember} name="remember" slider style={{marginTop:'11px',float:'right',fontSize:'0.9em'}} />} content={<Translate value="sign.remember" />} inverted className="opacity09" />
 						</Form.Field>
 						<div className="clear"></div>
@@ -105,6 +122,7 @@ export class Signin extends React.Component {
 					<li><Icon name="globe" /> <LanguageSwitcher /></li>
 				</ul>
 				<div className="clear"></div>
+				{this.showModal()}
 			</div>
 	    );
 	}

@@ -8,7 +8,8 @@ export let dataNotifications =
 			"timeSince": "3 საათის წინ",
 			"author": {
 				"id": 2,
-				"fullname": "ნატალი გიორგაძე"
+				"fullname": "ნატალი გიორგაძე",
+				"avatar": "2.jpg"
 			},
 			"link": "posts/view/157",
 			"read": false
@@ -20,7 +21,8 @@ export let dataNotifications =
 			"timeSince": "1 დღის წინ",
 			"author": {
 				"id": 1,
-				"fullname": "ლუკა გიორგაძე"
+				"fullname": "ლუკა გიორგაძე",
+				"avatar": "587a46542023181c90f4b049.jpg"
 			},
 			"link": "posts/view/157",
 			"read": false
@@ -32,7 +34,8 @@ export let dataNotifications =
 			"timeSince": "2 დღის წინ",
 			"author": {
 				"id": 1,
-				"fullname": "გიორგი მაჭავარიანი"
+				"fullname": "გიორგი მაჭავარიანი",
+				"avatar": "noavatar.jpg"
 			},
 			"link": "posts/view/158",
 			"read": true
@@ -44,7 +47,8 @@ export let dataNotifications =
 			"timeSince": "2 კვირის წინ",
 			"author": {
 				"id": 1,
-				"fullname": "გიო გიორგაძე"
+				"fullname": "გიო გიორგაძე",
+				"avatar": "noavatar.jpg"
 			},
 			"link": "posts/view/158",
 			"read": true
@@ -61,7 +65,8 @@ export let dataPosts =
 			"title": "დაიწყო კორპუსის ეზოს კეთილმოწყობა",
 			"author": {
 				"id": 2,
-				"fullname": "ნატალი გიორგაძე"
+				"fullname": "ნატალი გიორგაძე",
+				"avatar": "587a46542023181c90f4b049.jpg"
 			},
 			"date": "05 დეკემბერი, 2016",
 			"timeSince": "3 დღის წინ",
@@ -81,7 +86,8 @@ export let dataPosts =
 			"title": "მეორე ახალი სიახლე",
 			"author": {
 				"id": 2,
-				"fullname": "ნატალი გიორგაძე"
+				"fullname": "ნატალი გიორგაძე",
+				"avatar": "587a46542023181c90f4b049.jpg"
 			},
 			"date": "06 დეკემბერი, 2016",
 			"timeSince": "2 დღის წინ",
@@ -92,7 +98,7 @@ export let dataPosts =
 					"სწორედ ასეთ დროს არის მოსახერხებელი ამ გენერატორით შექმნილი ტექსტის გამოყენება, რადგან უბრალოდ „ტექსტი ტექსტი ტექსტი“ ან სხვა გამეორებადი სიტყვების ჩაყრა.",
 			"likesN": 14,
 			"liked": false,
-			"commentsN": 8
+			"commentsN": 1
 		}
 	];
 

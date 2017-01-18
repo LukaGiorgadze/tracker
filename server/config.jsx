@@ -5,8 +5,10 @@ module.exports = {
 	database: 'mongodb://127.0.0.1:27017/tracker',
 	jwtSecret: 'MySecretIs-11:09@foreverAsOne!',
 	publicHtml: 'www',	// Public path of stored files
+	baseUrl: "/",
+	dirUploads: "up/",
 	serverMain: 'App.jsx',	// Main file of client side
 	clientMain: 'App.jsx',	// Main file of server side
 	//environment: process.env.NODE_ENV
-	environment: 'development'	// development or production
+	environment: process.env.NODE_ENV || 'development'	// development or production
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Item, Icon, Popup, Divider, Loader, Modal, Header, Button } from 'semantic-ui-react';
+import { Item, Icon, Popup, Divider, Loader, Confirm } from 'semantic-ui-react';
+import { Translate } from 'react-redux-i18n';
 import _ from 'lodash';
 import PostAdd from './PostAdd';
 import { fetchPostItems, toggleLike, deletePostItem } from '../Actions/Posts';
-import { link } from '../Functions';
 import config from '../Config';
 
 
@@ -37,20 +37,22 @@ class Posts extends React.Component {
 
 	postDeleteModal() {
 		return(
-			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer={false}>
-				<Header icon="delete" content="პოსტის წაშლა" className="BPGSquareMtavruli" />
-				<Modal.Content>
-					<p>დარწმუნებული ხართ, რომ გსურთ წაშალოთ პოსტი "{this.state.postDeleteModalItem.title}"?</p>
-				</Modal.Content>
-				<Modal.Actions>
-					<Button color="red" inverted className="BPGSquare" onClick={() => this.deletePost(this.state.postDeleteModalItem._id)}>
-						<Icon name="remove" /> კი
-					</Button>
-					<Button color="green" inverted className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
-						<Icon name="checkmark" /> არა
-					</Button>
-				</Modal.Actions>
-			</Modal>
+			// <Confirm
+			// 	open={this.state.postDeleteModalOpen}
+			// 	header={<Translate value="posts.delete" />}
+			// 	content={<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}
+			// 	cancelButton={<Translate value="app.yes" />}
+			// 	confirmButton={<Translate value="app.no" />}
+			// 	onCancel={this.postDeleteModalHandleClose(true)}
+			// 	onConfirm={this.deletePost(this.state.postDeleteModalItem._id)}
+			// />
+			<Confirm
+				open={this.state.postDeleteModalOpen}
+				header={<Translate value="posts.delete" />}
+				content={<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}
+				cancelButton={<Translate value="app.no" />}
+				confirmButton={<Translate value="app.yes" />}
+			/>
 		);
 	}
 	
@@ -66,7 +68,7 @@ class Posts extends React.Component {
 		return _.map(posts, function(item, key) {
 			return(
 				<Item key={item._id} className={"newsItem" + item._id}>
-					<Item.Image src={config.baseUrl + config.dirUploads + "users/" + item.author.id + ".jpg"} size="tiny" />
+					<Item.Image src={config.dirUploadsUsers + item.author.avatar} size="tiny" />
 					<Item.Content>
 						<Item.Header className="BPGSquare">
 							<Link to={"posts/view/" + item._id}>{item.title}</Link>
@@ -76,12 +78,12 @@ class Posts extends React.Component {
 							{item.content}
 						</Item.Description>
 						<Item.Extra className="itemIcons noSelect">
-							<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(item)} color={item.liked ? "red" : "grey"} />} content="მომწონს" inverted className="opacity09" />{item.likesN}
+							<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(item)} color={item.liked ? "red" : "grey"} />} content={<Translate value="posts.like" />} inverted className="opacity09" />{item.likesN}
 							<Link to={"posts/view/" + item._id}>
-								<Icon name="comments" />{item.commentsN} კომენტარი
+								<Icon name="comments" />{item.commentsN} {item.commentsN > 1 ? <Translate value="posts.comments" /> : <Translate value="posts.comment" />}
 							</Link>
 							<a onClick={() => that.postDeleteModalHandleOpen(item)}>
-								<Icon name="delete" />წაშლა
+								<Icon name="delete" /><Translate value="app.delete" />
 							</a>
 						</Item.Extra>
 					</Item.Content>
@@ -109,6 +111,7 @@ class Posts extends React.Component {
 function mapStateToProps(state) {
 	return {
 		posts: state.posts.postList,
+		user: state.user,
 		loading: state.posts.loading
 	}
 }
