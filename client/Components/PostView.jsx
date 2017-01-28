@@ -12,14 +12,6 @@ import ComponentMessage from './Layout/ComponentMessage';
 
 // Add comment form
 class AddComment extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-
-		}
-	}
-
 	addComment = (e) => {
 		e.preventDefault();
 		console.log(e.target.comment.value);
@@ -27,10 +19,10 @@ class AddComment extends React.Component {
 	render() {
 		return (
 			<Form reply onSubmit={this.addComment}>
-				<Form.TextArea name="comment" placeholder="კომენტარი..." error={false} />
-				<Button content="კომენტარის დამატება" labelPosition="left" icon="edit" className="noBold BPGSquare" primary />
+				<Form.TextArea name="comment" placeholder="&hellip;" error={false} />
+				<Button content={<Translate value="posts.addComment" />} labelPosition="left" icon="edit" className="noBold BPGSquare" primary />
 			</Form>
-		);
+		)
 	}
 }
 
@@ -45,13 +37,13 @@ class PostView extends React.Component {
 			modalAction: false,
 			modalTexts: {
 				deletePost: {
-					title: <Translate value="posts.delete" />,
-					text: <Translate value="posts.deleteConfirm" />,
+					title: "posts.delete",
+					text: "posts.deleteConfirm",
 					successText: <Translate value="posts.deleted" />
 				},
 				deleteComment: {
-					title: <Translate value="posts.deleteComment" />,
-					text: <Translate value="posts.deleteCommentConfirm" />
+					title: "posts.deleteComment",
+					text: "posts.deleteCommentConfirm"
 				}
 			},
 			componentMessage: {
@@ -68,8 +60,10 @@ class PostView extends React.Component {
 	componentWillMount() {
 		this.props.fetchPostItem(this.state.postId);
 		this.props.fetchPostComments(this.state.postId);
+
 	}
 
+	// Update component when it was opened from notifications or etc...
 	componentWillReceiveProps(newProps) {
 		if(this.state.postId !== newProps.params.postId) {
 			this.setState({
@@ -104,19 +98,23 @@ class PostView extends React.Component {
 				modalText = this.state.modalTexts.deleteComment;
 				modalAction = this.deleteComment;
 				break;
+			default:
+				modalText = this.state.modalTexts.deletePost;
+				break;
 		}
+
 		return(
-			<Modal open={this.state.modalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer={false}>
-				<Header icon="delete" content={modalText.title} className="BPGSquareMtavruli" />
+			<Modal open={this.state.modalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
+				<Header content={<Translate value={modalText.title} />} className="BPGSquareMtavruli" />
 				<Modal.Content>
-					<p>{modalText.text} {this.state.modalItem.title ? '"' + this.state.modalItem.title + '"' : ''}</p>
+					<p><Translate value={modalText.text} title={this.state.modalItem.title} /></p>
 				</Modal.Content>
 				<Modal.Actions>
-					<Button color="red" inverted className="BPGSquare" onClick={modalAction}>
-						<Icon name="remove" /> <Translate value="app.yes" />
+					<Button className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
+						<Icon name="cancel" /> <Translate value="app.no" />
 					</Button>
-					<Button color="green" inverted className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
-						<Icon name="checkmark" /> <Translate value="app.no" />
+					<Button primary className="BPGSquare" onClick={modalAction}>
+						<Icon name="checkmark" /> <Translate value="app.yes" />
 					</Button>
 				</Modal.Actions>
 			</Modal>
@@ -194,8 +192,10 @@ class PostView extends React.Component {
 	renderComments = () => {
 		return (
 			<Comment.Group className="commentFullWidth">
-				{(!this.props.comments.loading && !_.isEmpty(this.props.comments.data)) && <Header as="h4" className="BPGExtraSquareMtavruli" dividing>კომენტარები</Header>}
-				{(!this.props.comments.loading && !_.isEmpty(this.props.comments.data)) && this.getComments()}
+				<Header as="h4" className="BPGExtraSquareMtavruli" dividing>
+					<Translate value="posts.allComments" />
+				</Header>
+				{this.getComments()}
 				<AddComment />
 			</Comment.Group>
 		);
@@ -206,7 +206,11 @@ class PostView extends React.Component {
 			<div>
 				<Loader active={this.props.post.loading} inline="centered" />
 				<Item.Group className="nomargint">
-					{!this.props.post.loading && !_.isEmpty(this.props.post.data) && this.renderPost()}
+					{
+						!this.props.post.loading &&
+						!_.isEmpty(this.props.post.data) &&
+						this.renderPost()
+					}
 					<ComponentMessage
 						visible={this.state.componentMessage.visible}
 						type={this.state.componentMessage.type}
@@ -216,7 +220,11 @@ class PostView extends React.Component {
 						linkText={this.state.componentMessage.linkText}
 					/>
 				</Item.Group>
-				{!this.props.post.loading && !_.isEmpty(this.props.post.data) && this.renderComments()}
+				{
+					!this.props.comments.loading &&
+					!_.isEmpty(this.props.comments.data) &&
+					this.renderComments()
+				}
 				{this.modal()}
 			</div>
 		);

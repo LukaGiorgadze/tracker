@@ -23,7 +23,7 @@ class NewsAdd extends React.Component {
 		    modalOpen: false
 		};
 	}
-	
+
 	handleOpenModal = (e) => {
 		this.setState({
 			modalOpen: true

@@ -5,7 +5,7 @@ import { Translate } from 'react-redux-i18n';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { signin } from '../../Actions/Signin';
-import { link } from '../../Functions';
+import { generateToken, link } from '../../Functions';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 
 export class Signin extends React.Component {
@@ -18,7 +18,7 @@ export class Signin extends React.Component {
 			remember: true,
 			disabled: true,
 			error: null
-		}
+		};
 	}
 
 	componentWillMount() {

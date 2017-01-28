@@ -5,7 +5,7 @@ import { getUserByGroupId } from '../Api/Models/Users';
 
 // Check Auth token
 export let Authenticate = function(req, res, next) {
-	if(req.url === '/signin') {
+	if(req.url === '/signin' || req.url === '/generateToken') {
 		next();
 	} else {
 		let authHeader = req.headers['authorization'], token;

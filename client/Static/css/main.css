@@ -191,7 +191,7 @@ html,body {
 	height:60px;
 	z-index:1000 !important;
 	background-color:#2185D0;
-	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
 }
 .headerDivider {
 	position:relative;
@@ -321,7 +321,7 @@ html,body {
 	text-align:center;
 	font-size:16px;
 	color:#49565E;
-	font-family:"BPGSquareMtavruli";
+	font-family:"BPGSquareMtavruli", sans-serif;;
 	border-bottom:1px solid #f5f5f5;
 	cursor:pointer;
 }
@@ -515,9 +515,9 @@ html,body {
 	background-color: rgba(0,0,0,.5);
 }
 .ui.modal .header {
-	font-family:"BPGSquareMtavruli";
+	font-family:"BPGSquareMtavruli", sans-serif;;
 }
 .ui.modal .ui.button {
-	font-family:"BPGSquare";
+	font-family:"BPGSquare", sans-serif;
 	font-weight:normal;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Item, Icon, Popup, Divider, Loader, Confirm } from 'semantic-ui-react';
+import { Item, Icon, Popup, Divider, Loader, Modal, Header, Button } from 'semantic-ui-react';
 import { Translate } from 'react-redux-i18n';
 import _ from 'lodash';
 import PostAdd from './PostAdd';
@@ -35,31 +35,29 @@ class Posts extends React.Component {
 		postDeleteModalItem: empty ? {} : this.state.postDeleteModalItem
 	});
 
-	postDeleteModal() {
+	postDeleteModal = () => {
 		return(
-			// <Confirm
-			// 	open={this.state.postDeleteModalOpen}
-			// 	header={<Translate value="posts.delete" />}
-			// 	content={<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}
-			// 	cancelButton={<Translate value="app.yes" />}
-			// 	confirmButton={<Translate value="app.no" />}
-			// 	onCancel={this.postDeleteModalHandleClose(true)}
-			// 	onConfirm={this.deletePost(this.state.postDeleteModalItem._id)}
-			// />
-			<Confirm
-				open={this.state.postDeleteModalOpen}
-				header={<Translate value="posts.delete" />}
-				content={<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}
-				cancelButton={<Translate value="app.no" />}
-				confirmButton={<Translate value="app.yes" />}
-			/>
-		);
-	}
+			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
+				<Header content={<Translate value="posts.delete" />} className="BPGSquareMtavruli" />
+				<Modal.Content>
+					<p>{<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}</p>
+				</Modal.Content>
+				<Modal.Actions>
+					<Button className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
+						<Icon name="cancel" /> <Translate value="app.no" />
+					</Button>
+					<Button primary className="BPGSquare" onClick={() => this.deletePost(this.state.postDeleteModalItem._id)}>
+						<Icon name="checkmark" /> <Translate value="app.yes" />
+					</Button>
+				</Modal.Actions>
+			</Modal>
+		)
+	};
 	
-	deletePost(id) {
+	deletePost = (id) => {
 		this.props.deletePostItem(id);
 		this.postDeleteModalHandleClose();
-	}
+	};
 
 	renderPostItems = ()  => {
 		let that = this;

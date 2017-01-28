@@ -1,14 +1,30 @@
 // Application Initialization and Module Dependencies
-import Express 				from 'express';
-import Path 				from 'path';
-import webpack 				from 'webpack';
+import Express from 'express';
+import Path from 'path';
+import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig		from '../webpack.config';
-import config 				from './Config';
+import webpackConfig from '../webpack.config';
+import config from './Config';
+
+// Middlewares
+import helmet from 'helmet';
 
 // Module declarations
 const app = Express();
+
+// Middlewares
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+	directives: {
+		defaultSrc: ["'self'"],
+		scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+		styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com'],
+		fontSrc: ["'self'", 'data:', 'cdnjs.cloudflare.com', 'fonts.gstatic.com'],
+		imgSrc: ["'self'", 'data:', 'cdnjs.cloudflare.com'],
+		connectSrc: ["'self'", config.host + ':' + config.portAPI]
+	}
+}));
 
 // Development Environment
 if(config.environment === 'development')

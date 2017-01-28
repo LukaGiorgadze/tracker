@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import config from './Config';
 import store from './Store';
 import { setCurrentUser } from './Actions/Signin';
-import { setAuthToken }from './Middleware/Axios';
+import { api, setAuthToken } from './Middleware/Axios';
 
 export function link(url) {
 	let _url = config.baseUrl + url.replace(/^\/|\/$/g, '');

@@ -1,11 +1,11 @@
 // Route Dependencies
-import express from 'express';
+import Express from 'express';
 import Users from '../Models/Users';
 import jwt from 'jsonwebtoken';
 import config from '../../Config';
 
 // Module Declarations
-const router = express.Router();
+const router = Express.Router();
 
 // Actions (Routes)
 router.post('/', function(req, res) {

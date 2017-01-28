@@ -33,9 +33,11 @@ export const languages = {
 			deleteConfirm: 'დარწმუნებული ხართ, რომ გსურთ წაშალოთ პოსტი სახელად "%{title}"',
 			deleteComment: 'კომენტარის წაშლა',
 			deleteCommentConfirm: 'დარწმუნებული ხართ, რომ გსურთ კომენტარის წაშლა?',
-			deleted: 'პოსტი წაშლილია',
+			addComment: 'კომენტარის დამატება',
+			allComments: 'კომენტარები',
 			comments: 'კომენტარი',
 			comment: 'კომენტარი',
+			deleted: 'პოსტი წაშლილია',
 			like: 'მომწონს'
 		}
 	}
