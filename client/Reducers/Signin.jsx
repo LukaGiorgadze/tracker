@@ -10,7 +10,12 @@ from '../Actions/Types';
 let initialState = {
 	loading: false,
 	isAuthenticated: false,
-	data: null,
+	data: {
+		id: 0,
+		groupId: null,
+		fullname: null,
+		avatar: null
+	},
 	error: null
 };
 

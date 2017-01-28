@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Checkbox, Image, Grid, Button, Dropdown, Popup, Icon, Accordion, Divider }  from 'semantic-ui-react'
+import { Form, Input, Checkbox, Image, Grid, Button, Dropdown, Popup, Icon, Accordion, Dimmer, Loader }  from 'semantic-ui-react'
 
 const indexes = [
   { text: '595', value: '595' },
@@ -121,6 +121,21 @@ const FormPassword = () => (
     </Form>
 );
 
+const FileChoose = () => (
+	<Button icon inverted size='small' className="fileChoose">
+		<Icon name="edit" />
+		<input type="file" name="avatar" accept="image/x-png,image/jpeg" onChange={(e) => {
+			const file = e.target.files[0];
+			const reader = new FileReader();
+			reader.onload = (function(theFile) {
+				return function(e) {
+					document.querySelector('.ui.small.circular.image').setAttribute('src', e.target.result);
+				};
+			})(file);
+			reader.readAsDataURL(file);
+		}} />
+	</Button>
+);
 
 const SettingsAll = () => (
 	<Accordion defaultActiveIndex={0} fluid>
@@ -160,10 +175,13 @@ export class Settings extends React.Component {
 			<Grid textAlign="center">
    				<Grid.Column textAlign="center">
 					<div className="profileEditAvatar">
-						<Image shape='circular' size="small" src="http://semantic-ui.com/images/avatar2/large/patrick.png" />
-						<div className="profileEditAvatarActions">
+						<Dimmer active={true}>
+							<Loader content='57%' />
+						</Dimmer>
+						<Image shape='circular' size="small" src="/up/users/1.jpg" />
+						<div className="profileEditAvatarActions disabled">
 							<div className="profileEditAvatarActionsBtns">
-								<Popup trigger={<Button icon='edit' inverted size='small' />} content="ფოტოსურათის შეცვლა" inverted className="opacity09" />
+								<Popup trigger={<FileChoose />} content="ფოტოსურათის შეცვლა" inverted className="opacity09" />
 								<Popup trigger={<Button icon='remove' inverted size='mini' color="red" />} content="ფოტოსურათის წაშლა" inverted className="opacity09" />
 							</div>
 						</div>

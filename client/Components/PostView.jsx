@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Item, Icon, Button, Comment, Header, Popup, Form, Loader, Modal } from 'semantic-ui-react'
+import { Item, Icon, Button, Comment, Header, Popup, Form, Loader, Modal } from 'semantic-ui-react';
 import { Translate } from 'react-redux-i18n';
 import _ from 'lodash';
 import { fetchPostItem, fetchPostComments, deletePostItem, deleteCommentItem, toggleLike } from '../Actions/Posts';
@@ -48,11 +48,9 @@ class PostView extends React.Component {
 			},
 			componentMessage: {
 				visible: false,
-				icon: '',
 				text: '',
 				type: '',
-				link: '/',
-				linkText: <Translate value="app.back" />
+				link: '/'
 			}
 		};
 	}
@@ -124,7 +122,6 @@ class PostView extends React.Component {
 	deletePost = () => {
 		this.props.deletePostItem(this.state.modalItem._id);
 		this.modalHandleClose();
-
 		this.setState({
 			componentMessage: {
 				visible: true,
@@ -215,9 +212,7 @@ class PostView extends React.Component {
 						visible={this.state.componentMessage.visible}
 						type={this.state.componentMessage.type}
 						text={this.state.componentMessage.text}
-						icon={this.state.componentMessage.icon}
 						link={this.state.componentMessage.link}
-						linkText={this.state.componentMessage.linkText}
 					/>
 				</Item.Group>
 				{

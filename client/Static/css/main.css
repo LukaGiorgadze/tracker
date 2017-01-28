@@ -171,6 +171,20 @@ input[type=number] {
 .link {
 	color:#1e70bf !important;
 }
+.fileChoose {
+	position:relative;
+	overflow:hidden;
+}
+.fileChoose input {
+	position:absolute;
+	top:0;
+	right:0;
+	margin:0;
+	padding:0;
+	font-size:1.8em;
+	cursor:pointer;
+	opacity:0;
+}
 /*******************************************/
 /*	LAYOUT
 /*******************************************/
@@ -439,6 +453,7 @@ html,body {
 	z-index:1 !important;
 	background:#ddd;
 	border-radius:50%;
+	overflow:hidden;
 }
 .profileEditAvatar img {
 	margin:0 auto !important;
@@ -457,9 +472,15 @@ html,body {
 	border-radius:50%;
 	opacity:0;
 	transition:all .10s ease-in-out;
+	overflow:hidden;
+}
+.profileEditAvatar .profileEditAvatarActions.disabled {
+	display:none !important;
 }
 .profileEditAvatar .profileEditAvatarActions .profileEditAvatarActionsBtns {
 	margin:calc(50% - 15px) auto auto auto;
+	border-radius:50%;
+	overflow:hidden;
 }
 .profileEditAvatar .profileEditAvatarActions .profileEditAvatarActionsBtns button {
 	display:inline-block;
