@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import config from './Config';
 import store from './Store';
 import { setCurrentUser } from './Actions/Signin';
-import { api, setAuthToken } from './Middleware/Axios';
+import { setAuthToken } from './Middleware/Axios';
 
 export function link(url) {
 	let _url = config.baseUrl + url.replace(/^\/|\/$/g, '');
@@ -16,6 +16,7 @@ export function autoResizeInput(e) {
 		o.style.height = "auto";
 		o.style.height = (o.scrollHeight)+"px";
 	},0);
+	return o.value.length;
 }
 
 export function signout() {

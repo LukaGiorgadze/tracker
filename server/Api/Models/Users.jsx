@@ -4,7 +4,7 @@ import db from '../Mongoose'
 const Schema = mongoose.Schema;
 
 // Model
-const usersSchema = new Schema({
+const schema = new Schema({
 	fName: {
 		type: String,
 		required: true
@@ -30,8 +30,14 @@ const usersSchema = new Schema({
 		default: 'noavatar.jpg'
 	},
 	groupId: {
-		type: Schema.ObjectId,
-		index: true
+		type: Schema.Types.ObjectId,
+		index: true,
+		ref: 'groups'
+	},
+	admin: {
+		type: Boolean,
+		required: true,
+		default: false
 	},
 	since: {
 		type: Date,
@@ -47,7 +53,7 @@ const usersSchema = new Schema({
 		}
 	}
 });
-const Users = module.exports = mongoose.model('users', usersSchema);
+const Users = module.exports = mongoose.model('users', schema);
 
 // Sign in
 module.exports.signIn = (user, pass, callback) => {

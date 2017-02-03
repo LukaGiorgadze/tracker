@@ -14,7 +14,9 @@ import config from '../Config';
 class Posts extends React.Component {
 
 	componentWillMount() {
-		this.props.fetchPostItems();
+		this.props.fetchPostItems({
+			groupId: this.props.user.data.groupId
+		});
 	};
 
 	constructor(props) {
@@ -40,7 +42,7 @@ class Posts extends React.Component {
 			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
 				<Header content={<Translate value="posts.delete" />} className="BPGSquareMtavruli" />
 				<Modal.Content>
-					<p>{<Translate value="posts.deleteConfirm" title={this.state.postDeleteModalItem.title} />}</p>
+					<p>{<Translate value="posts.deleteConfirm" />}</p>
 				</Modal.Content>
 				<Modal.Actions>
 					<Button className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
@@ -68,10 +70,13 @@ class Posts extends React.Component {
 				<Item key={item._id} className={"newsItem" + item._id}>
 					<Item.Image src={config.dirUploadsUsers + item.author.avatar} size="tiny" />
 					<Item.Content>
-						<Item.Header className="BPGSquare">
-							<Link to={"posts/view/" + item._id}>{item.title}</Link>
-						</Item.Header>
-						<Item.Meta>{item.author.fullname}, <span title={item.date}>{item.timeSince}</span></Item.Meta>
+						{item.title ?
+							<Item.Header className="BPGSquare">
+								<Link to={"posts/view/" + item._id}>{item.title}</Link>
+							</Item.Header>
+							: ''
+						}
+						<Item.Meta>{item.author.fullname}, <span title={item.date}>{item.timeSince.n} {item.timeSince.w}</span></Item.Meta>
 						<Item.Description>
 							{item.content}
 						</Item.Description>

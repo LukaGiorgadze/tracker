@@ -15,6 +15,7 @@ router.post('/', function(req, res) {
 			const token = jwt.sign({
 				id: doc._id,
 				groupId: doc.groupId,
+				admin: doc.admin,
 				fullname: doc.fName + ' ' + doc.lName,
 				avatar: doc.avatar
 			}, config.jwtSecret);
@@ -31,7 +32,6 @@ router.post('/', function(req, res) {
 				error: 'AUTH_ERROR'
 			});
 		}
-		
 	});
 });
 

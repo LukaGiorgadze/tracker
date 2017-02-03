@@ -11,6 +11,9 @@ import {
 	TOGGLE_LIKE_START,
 	TOGGLE_LIKE_DONE,
 	TOGGLE_LIKE_ERROR,
+	ADD_POST_ITEM_START,
+	ADD_POST_ITEM_DONE,
+	ADD_POST_ITEM_ERROR,
 	DELETE_POST_ITEM_START,
 	DELETE_POST_ITEM_DONE,
 	DELETE_POST_ITEM_ERROR,
@@ -23,27 +26,35 @@ import {
 }
 from '../Actions/Types';
 import _ from 'lodash';
+import { api }from '../Middleware/Axios';
 import { dataPosts, dataComments } from '../Data';
 
 
 // Fetch Post Items
-export function fetchPostItems() {
+export function fetchPostItems(opts) {
 	return dispatch => {
 		dispatch({
 			type: FETCH_POST_ITEMS_START
 		});
-		setTimeout(() => {
-			dispatch({
-				type: FETCH_POST_ITEMS_DONE,
-				payload: _.mapKeys(dataPosts, '_id')
+		return api.post('/posts/get', opts)
+			.then(function (res) {
+				dispatch({
+					type: FETCH_POST_ITEMS_DONE,
+					payload: _.mapKeys(res.data, '_id')
+				});
+				return true;
+			})
+			.catch(function (err) {
+				dispatch({
+					type: FETCH_POST_ITEMS_ERROR,
+					payload: err
+				});
 			});
-		}, 500);
 	};
 }
 
 // Fetch One Post Item
 export function fetchPostItem(id) {
-
 	return dispatch => {
 		dispatch({
 			type: FETCH_POST_ITEM_START
@@ -91,6 +102,29 @@ export function toggleLike(item) {
 				payload: newItem
 			});
 		}, 100);
+	};
+}
+
+// Add Post
+export function addPostItem(data) {
+	return dispatch => {
+		dispatch({
+			type: ADD_POST_ITEM_START
+		});
+		return api.post('/posts/add', data)
+			.then(function (res) {
+				dispatch({
+					type: ADD_POST_ITEM_DONE,
+					payload: res.data
+				});
+				return true;
+			})
+			.catch(function (err) {
+				dispatch({
+					type: ADD_POST_ITEM_ERROR,
+					payload: err
+				});
+			});
 	};
 }
 

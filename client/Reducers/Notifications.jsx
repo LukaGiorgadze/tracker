@@ -14,7 +14,7 @@ from '../Actions/Types';
 
 let initialState = {
 	notificationsList: {
-		data: [],
+		data: {},
 		loading: false,
 		error: null
 	},
@@ -28,7 +28,7 @@ function notifications(state = initialState, action = {}) {
 			return {
 					...state,
 					notificationsList: {
-						data: [],
+						data: {},
 						loading: true
 					}
 				};

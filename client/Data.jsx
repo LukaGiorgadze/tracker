@@ -61,8 +61,7 @@ export let dataNotificationsN = 2;
 export let dataPosts =
 	[
 		{
-			"_id": 157,
-			"title": "დაიწყო კორპუსის ეზოს კეთილმოწყობა",
+			"_id": "587a46542023181c90f4b049",
 			"author": {
 				"id": 2,
 				"fullname": "ნატალი გიორგაძე",
@@ -82,8 +81,7 @@ export let dataPosts =
 			"commentsN": 8
 		},
 		{
-			"_id": 158,
-			"title": "მეორე ახალი სიახლე",
+			"_id": "587a46542023181c90f4b045",
 			"author": {
 				"id": 2,
 				"fullname": "ნატალი გიორგაძე",

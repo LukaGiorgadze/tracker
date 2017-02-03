@@ -105,7 +105,7 @@ class PostView extends React.Component {
 			<Modal open={this.state.modalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
 				<Header content={<Translate value={modalText.title} />} className="BPGSquareMtavruli" />
 				<Modal.Content>
-					<p><Translate value={modalText.text} title={this.state.modalItem.title} /></p>
+					<p><Translate value={modalText.text} /></p>
 				</Modal.Content>
 				<Modal.Actions>
 					<Button className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
@@ -143,7 +143,10 @@ class PostView extends React.Component {
 			<Item>
 				<Item.Image src={this.props.user.data.avatar} size="tiny" />
 				<Item.Content>
-					<Item.Header as="h2" className="BPGSquare">{post.title}</Item.Header>
+					{post.title ?
+						<Item.Header as="h2" className="BPGSquare">{post.title}</Item.Header>
+						: ''
+					}
 					<Item.Meta>{post.author.fullname}, <span title={post.date}>{post.timeSince}</span></Item.Meta>
 					<Item.Description>
 						{post.content}

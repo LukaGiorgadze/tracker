@@ -10,7 +10,7 @@ import Authenticate from '../Middleware/Authenticate';
 
 // API Routers
 import signin from './Routes/Signin';
-import news	from './Routes/News';
+import posts	from './Routes/Posts';
 
 // Module declarations
 const app = Express();
@@ -23,7 +23,7 @@ app.use(Authenticate);
 
 // API Routes
 app.use('/signin', signin);
-app.use('/news', news);
+app.use('/posts', posts);
 app.get('/*', function(req, res) {
 	res.status(400).send({
 		error: 'NO_ROUTE_MATCHES'

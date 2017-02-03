@@ -4,6 +4,7 @@ export const languages = {
 			error: 'შეცდომა',
 			yes: 'კი',
 			no: 'არა',
+			add: 'დამატება',
 			delete: 'წაშლა',
 			back: 'უკან'
 		},
@@ -30,7 +31,7 @@ export const languages = {
 		},
 		posts: {
 			delete: 'პოსტის წაშლა',
-			deleteConfirm: 'დარწმუნებული ხართ, რომ გსურთ წაშალოთ პოსტი სახელად "%{title}"',
+			deleteConfirm: 'დარწმუნებული ხართ, რომ გსურთ პოსტის წაშლა?',
 			deleteComment: 'კომენტარის წაშლა',
 			deleteCommentConfirm: 'დარწმუნებული ხართ, რომ გსურთ კომენტარის წაშლა?',
 			addComment: 'კომენტარის დამატება',
@@ -38,7 +39,8 @@ export const languages = {
 			comments: 'კომენტარი',
 			comment: 'კომენტარი',
 			deleted: 'პოსტი წაშლილია',
-			like: 'მომწონს'
+			like: 'მომწონს',
+			writePost: 'დაწერე სიახლე...'
 		}
 	}
 };

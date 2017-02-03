@@ -438,6 +438,7 @@ html,body {
 	resize: initial !important;
 	overflow: hidden !important;
     box-sizing: border-box !important;
+	min-height:41px !important;
 }
 .ui.table.reportViewTable td>.ui.ribbon.label {
 	min-width:80px;

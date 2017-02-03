@@ -11,6 +11,9 @@ import {
 	TOGGLE_LIKE_START,
 	TOGGLE_LIKE_DONE,
 	TOGGLE_LIKE_ERROR,
+	ADD_POST_ITEM_START,
+	ADD_POST_ITEM_DONE,
+	ADD_POST_ITEM_ERROR,
 	DELETE_POST_ITEM_START,
 	DELETE_POST_ITEM_DONE,
 	DELETE_POST_ITEM_ERROR,
@@ -25,8 +28,9 @@ from '../Actions/Types';
 import _ from 'lodash';
 
 let initialState = {
+	loading: false, // Global Loading for this reducer
 	postList: {
-		data: [],
+		data: {},
 		loading: false,
 		error: null
 	},
@@ -36,7 +40,7 @@ let initialState = {
 		error: null
 	},
 	postComments: {
-		data: [],
+		data: {},
 		loading: false,
 		error: null
 	}
@@ -50,7 +54,7 @@ function posts(state = initialState, action = {}) {
 			return {
 					...state,
 					postList: {
-						data: [],
+						data: {},
 						loading: true
 					}
 				};
@@ -88,7 +92,7 @@ function posts(state = initialState, action = {}) {
 			return {
 				...state,
 				postComments: {
-					data: [],
+					data: {},
 					loading: true
 				}
 			};
@@ -116,6 +120,22 @@ function posts(state = initialState, action = {}) {
 				postActive: {
 					...state.postActive,
 					data: state.postActive.data !== null && state.postActive.data._id == action.payload._id ? action.payload : state.postActive.data
+				}
+			}
+		}
+		// action.payload = post item object
+		case ADD_POST_ITEM_START: {
+			return {
+				...state,
+				loading: true
+			};
+		}
+		case ADD_POST_ITEM_DONE: {
+			return {
+				...state,
+				loading: false,
+				postList: {
+					data: {[action.payload._id]: action.payload, ...state.postList.data}
 				}
 			}
 		}

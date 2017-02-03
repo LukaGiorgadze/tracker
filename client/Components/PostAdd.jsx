@@ -1,52 +1,71 @@
 import React from 'react';
-import { Form, Segment, TextArea, Button, Icon, Header, Modal } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Form, Segment, TextArea, Button } from 'semantic-ui-react';
+import { Translate, I18n } from 'react-redux-i18n';
+import { addPostItem } from '../Actions/Posts';
 import { autoResizeInput } from '../Functions';
 
-const ShowHideModal = (props) => (
-	<Modal open={props.opener} basic size="small">
-        <Header icon="browser" className="noBold BPGExtraSquareMtavruli" content="სიახლის დამატება" />
-        <Modal.Content>
-          <h4 className="noBold BPGSquare">სიახლის დასამატებლად, მოცემულ ველში შეიყვანეთ ინფორმაცია...</h4>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button color="grey" inverted onClick={props.closer}>
-            <Icon name="checkmark" /> OK
-          </Button>
-        </Modal.Actions>
-      </Modal>
-);
+class PostAdd extends React.Component {
 
-class NewsAdd extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		    modalOpen: false
+		    buttonDisabled: true
 		};
 	}
+	// TODO: CTRL + Enter-ზე პოსტის დაწერა
+	// componentDidMount() {
+	// 	document.addEventListener('keydown', (e) => {
+	// 		if(e.keyCode===13 && e.ctrlKey) {
+	// 			this.onSubmit(e);
+	// 		}
+	// 	});
+	// }
 
-	handleOpenModal = (e) => {
+	onKeyUp = (e) => {
+		let length = autoResizeInput(e);
 		this.setState({
-			modalOpen: true
+			buttonDisabled: length < 2
 		});
-		e.preventDefault();
 	};
 
-	handleCloseModal = (e) => {
-		this.setState({
-			modalOpen: false
-		})
+	onSubmit = (e) => {
+		e.preventDefault();
+		this.state = {
+			buttonDisabled: true
+		};
+		let content = e.target.content.value;
+		let post = {
+			"author": {
+				"id": this.props.user.id,
+				"fullname": this.props.user.fullname,
+				"avatar": this.props.user.avatar
+			},
+			"groupId": this.props.user.groupId,
+			"content": content
+		};
+		this.props.addPostItem(post);
 	};
 
 	render() {
 		return (
 			<div>
-				<ShowHideModal opener={this.state.modalOpen} closer={this.handleCloseModal} />
-				<Form >
+				<Form onSubmit={this.onSubmit} id="postForm">
 					<Segment clearing>
-						<TextArea name="news" rows="1" placeholder="დაწერე სიახლე..." onKeyUp={autoResizeInput} className="expandingTextarea" />
+						<TextArea name="content" rows="1" placeholder={I18n.t("posts.writePost")} onKeyUp={this.onKeyUp} className="expandingTextarea" />
 						<div className="newsAddButtons">
 							<div>
-								<Button content="დამატება" labelPosition="left" icon="announcement" className="noBold BPGSquare" floated="left" color="green" onClick={this.handleOpenModal} disabled={true} />
+								<Button
+									content={<Translate value="app.add" />}
+									labelPosition="left"
+									icon="announcement"
+									className="noBold BPGSquare"
+									floated="left"
+									color="green"
+									disabled={this.state.buttonDisabled}
+									loading={this.props.loading}
+								/>
 							</div>
 						</div>
 					</Segment>
@@ -56,4 +75,20 @@ class NewsAdd extends React.Component {
 	}
 }
 
-export default NewsAdd;
+// State for this component
+function mapStateToProps(state) {
+	return {
+		loading: state.posts.loading,
+		user: state.user.data
+	}
+}
+
+// Default dispatches
+function mapDispatchToProps(dispatch) {
+	return {
+		addPostItem: bindActionCreators(addPostItem, dispatch)
+	}
+}
+
+// React redux connect
+export default connect(mapStateToProps, mapDispatchToProps)(PostAdd);

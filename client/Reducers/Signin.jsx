@@ -13,6 +13,7 @@ let initialState = {
 	data: {
 		id: 0,
 		groupId: null,
+		admin: false,
 		fullname: null,
 		avatar: null
 	},
