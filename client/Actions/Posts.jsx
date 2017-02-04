@@ -49,6 +49,7 @@ export function fetchPostItems(opts) {
 					type: FETCH_POST_ITEMS_ERROR,
 					payload: err
 				});
+				throw new Error(err);
 			});
 	};
 }
@@ -101,7 +102,7 @@ export function toggleLike(item) {
 				type: TOGGLE_LIKE_DONE,
 				payload: newItem
 			});
-		}, 100);
+		}, 1000);
 	};
 }
 
@@ -124,6 +125,7 @@ export function addPostItem(data) {
 					type: ADD_POST_ITEM_ERROR,
 					payload: err
 				});
+				throw new Error(err);
 			});
 	};
 }

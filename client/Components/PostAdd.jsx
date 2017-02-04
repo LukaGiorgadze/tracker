@@ -32,10 +32,7 @@ class PostAdd extends React.Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		this.state = {
-			buttonDisabled: true
-		};
-		let content = e.target.content.value;
+		let content = e.target.content;
 		let post = {
 			"author": {
 				"id": this.props.user.id,
@@ -43,9 +40,21 @@ class PostAdd extends React.Component {
 				"avatar": this.props.user.avatar
 			},
 			"groupId": this.props.user.groupId,
-			"content": content
+			"content": content.value
 		};
-		this.props.addPostItem(post);
+		this.props.addPostItem(post)
+		.then(() => {
+			// content.value = '';
+			// content.style.height = 'auto';
+			// this.setState({
+			// 	buttonDisabled: true
+			// });
+		})
+		.catch(() => {
+			this.setState({
+				buttonDisabled: true
+			});
+		});
 	};
 
 	render() {

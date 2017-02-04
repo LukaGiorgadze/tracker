@@ -1,4 +1,5 @@
 'use strict';
+import React from 'react';
 import { browserHistory } from 'react-router';
 import config from './Config';
 import store from './Store';
@@ -8,6 +9,12 @@ import { setAuthToken } from './Middleware/Axios';
 export function link(url) {
 	let _url = config.baseUrl + url.replace(/^\/|\/$/g, '');
 	return browserHistory.push(_url);
+}
+
+export function nl2br(string) {
+	return string.split("\n").map((item, key) =>
+		(key === 0) ? item : [<br />, item]
+	)
 }
 
 export function autoResizeInput(e) {

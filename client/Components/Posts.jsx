@@ -3,10 +3,11 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Item, Icon, Popup, Divider, Loader, Modal, Header, Button } from 'semantic-ui-react';
-import { Translate } from 'react-redux-i18n';
+import { Translate, I18n } from 'react-redux-i18n';
 import _ from 'lodash';
 import PostAdd from './PostAdd';
 import { fetchPostItems, toggleLike, deletePostItem } from '../Actions/Posts';
+import { nl2br } from '../Functions';
 import config from '../Config';
 
 
@@ -62,10 +63,24 @@ class Posts extends React.Component {
 	};
 
 	renderPostItems = ()  => {
-		let that = this;
+		let that = this, dateTimeFull, timeSince;
 		let posts = this.props.posts.data;
 
 		return _.map(posts, function(item, key) {
+			dateTimeFull = `${item.date.d} ${I18n.t("date.m" + item.date.m)}, ${item.date.Y} / ${item.date.H}:${item.date.i}`;
+			if(item.timeSince) {
+				timeSince =
+				<span className="timeSince">
+					{item.timeSince.n > 0 && item.timeSince.n} <Translate value={"date." + item.timeSince.w} />
+				</span>;
+			} else {
+				timeSince =
+				<span className="timeSince">
+					{dateTimeFull}
+				</span>;
+			}
+
+
 			return(
 				<Item key={item._id} className={"newsItem" + item._id}>
 					<Item.Image src={config.dirUploadsUsers + item.author.avatar} size="tiny" />
@@ -76,9 +91,9 @@ class Posts extends React.Component {
 							</Item.Header>
 							: ''
 						}
-						<Item.Meta>{item.author.fullname}, <span title={item.date}>{item.timeSince.n} {item.timeSince.w}</span></Item.Meta>
+						<Item.Meta><Link to={"posts/view/" + item._id}>{item.author.fullname}, <span title={dateTimeFull}>{timeSince}</span></Link></Item.Meta>
 						<Item.Description>
-							{item.content}
+							{nl2br(item.content)}
 						</Item.Description>
 						<Item.Extra className="itemIcons noSelect">
 							<Popup trigger={<Icon name="like" onClick={() => that.props.toggleLike(item)} color={item.liked ? "red" : "grey"} />} content={<Translate value="posts.like" />} inverted className="opacity09" />{item.likesN}

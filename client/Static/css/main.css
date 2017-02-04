@@ -543,3 +543,6 @@ html,body {
 	font-family:"BPGSquare", sans-serif;
 	font-weight:normal;
 }
+.ui.items>.item .meta .timeSince {
+	font-size:0.9rem;
+}

@@ -4,8 +4,8 @@ export function formatDateTime(dateTime) {
 	let date = new Date(dateTime);
 	let json = {
 		'Y': date.getFullYear(),
-		'm': (date.getMonth()+1) < 10 ? '0' + (date.getDate()+1) : '' + (date.getDate()+1),
-		'd': date.getDate() < 10 ? '0' + date.getDate() : '' + date.getDate(),
+		'm': date.getMonth()+1,
+		'd': date.getDate(),
 		'H': date.getHours(),
 		'i': date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes()
 	};
@@ -26,20 +26,20 @@ export function timeSince(time){
 			time = +new Date();
 	}
 	const timeFormats = [
-		[60, 'seconds', 1], // 60
-		[120, 'minute'], // 60*2
-		[3600, 'minutes', 60], // 60*60, 60
-		[7200, 'hour'], // 60*60*2
-		[86400, 'hours', 3600], // 60*60*24, 60*60
+		[60, 'secondsAgo', 1], // 60
+		[120, 'minuteAgo'], // 60*2
+		[3600, 'minutesAgo', 60], // 60*60, 60
+		[7200, 'hourAgo'], // 60*60*2
+		[86400, 'hoursAgo', 3600], // 60*60*24, 60*60
 		[172800, 'yesterday'], // 60*60*24*2
-		[604800, 'days', 86400] // 60*60*24*7, 60*60*24
+		[604800, 'daysAgo', 86400] // 60*60*24*7, 60*60*24
 	];
 	let seconds = (+new Date() - time) / 1000;
 
-	if(seconds == 0) {
+	if(seconds <= 10) {
 		return {
-			n: 0,
-			w: 'now'
+			'n': 0,
+			'w': 'now'
 		};
 	}
 
@@ -53,7 +53,7 @@ export function timeSince(time){
 				};
 			} else {
 				return {
-					'n': 1,
+					'n': format[1] == 'yesterday' ? 0 : 1,
 					'w': format[1]
 				};
 			}

@@ -23,7 +23,7 @@ router.post('/get', function(req, res) {
 						"avatar": post.authorId.avatar
 					},
 					"date": formatDateTime(post.date),
-					"timeSince": timeSince(post.date, true),
+					"timeSince": timeSince(post.date),
 					"content": post.content,
 					"likesN": post.likesN,
 					"liked": false,
@@ -62,8 +62,8 @@ router.post('/add', function(req, res) {
 					"fullname": req.body.author.fullname,
 					"avatar": req.body.author.avatar
 				},
-				"date": "05 დეკემბერი, 2016",
-				"timeSince": "3 დღის წინ",
+				"date":  formatDateTime(doc.date),
+				"timeSince": timeSince(doc.date),
 				"content": req.body.content,
 				"likesN": 0,
 				"liked": false,
