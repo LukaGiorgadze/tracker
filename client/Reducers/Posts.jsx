@@ -160,6 +160,22 @@ function posts(state = initialState, action = {}) {
 				}
 			}
 		}
+		// action.payload = comment item object
+		case ADD_COMMENT_ITEM_START: {
+			return {
+				...state,
+				loading: true
+			};
+		}
+		case ADD_COMMENT_ITEM_DONE: {
+			return {
+				...state,
+				loading: false,
+				postComments: {
+					data: {[action.payload._id]: action.payload, ...state.postComments.data}
+				}
+			}
+		}
 		// action.payload = ID
 		case DELETE_COMMENT_ITEM_START: {
 			return state;

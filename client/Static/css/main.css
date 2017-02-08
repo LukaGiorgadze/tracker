@@ -109,6 +109,7 @@ input[type=number] {
 .nomarginl {margin-left:0 !important;}
 .nomarginr {margin-right:0 !important;}
 .red{color:#B71C1C;}
+.black{color: rgba(0,0,0,.87);}
 .noSelect {
 	-webkit-touch-callout:none !important;
 	-webkit-user-select:none !important;
@@ -195,6 +196,9 @@ html,body {
 	font-family:"BPGSquare", sans-serif;
 	background:#FAFAFA;
 	zoom:1;
+}
+body {
+	overflow-y:scroll;
 }
 .mainHeader {
 	position:fixed;
@@ -545,4 +549,8 @@ html,body {
 }
 .ui.items>.item .meta .timeSince {
 	font-size:0.9rem;
+}
+body.animating.in.dimmable,
+body.dimmed.dimmable {
+	overflow-y: scroll;
 }

@@ -1,12 +1,11 @@
 // Application Initialization and Module Dependencies
 import mongoose from 'mongoose';
 import db from '../Mongoose'
-import Users from './Users';
 
 const Schema = mongoose.Schema;
 
-// Model
-const schema = new Schema({
+// Model of Posts
+const schemaPosts = new Schema({
 	authorId: {
 		type: Schema.Types.ObjectId,
 		required: true,
@@ -15,8 +14,7 @@ const schema = new Schema({
 	groupId: {
 		type: Schema.Types.ObjectId,
 		required: true,
-		index: true,
-		ref: 'groups'
+		index: true
 	},
 	date: {
 		type: Date,
@@ -38,16 +36,56 @@ const schema = new Schema({
 		default: 0
 	}
 });
-const Posts = module.exports = mongoose.model('posts', schema);
+const Posts = module.exports = mongoose.model('posts', schemaPosts);
 
-// Add Post
-module.exports.getPosts = (opts) => {
+// Model of Comments
+const schemaComments = new Schema({
+	// TODO: comments model
+	authorId: {
+		type: Schema.Types.ObjectId,
+		required: true,
+		ref: 'users'
+	},
+	postId: {
+		type: Schema.Types.ObjectId,
+		required: true,
+		index: true
+	},
+	groupId: {
+		type: Schema.Types.ObjectId,
+		required: true
+	},
+	date: {
+		type: Date,
+		required: true,
+		default: Date.now
+	},
+	content: {
+		type: String,
+		required: true
+	}
+});
+const Comments = module.exports = mongoose.model('comments', schemaComments);
+
+// Get all Posts
+module.exports.getAll = (filters, callback) => {
 	return Posts.
 		find({}).
 		populate('authorId').
 		where('groupId').
-		equals(opts.groupId).
-		sort('-date');
+		equals(filters.groupId).
+		sort('-date').
+		exec(callback);
+};
+
+// Get Post by ID
+module.exports.getOne = (id, callback) => {
+	return Posts.
+		findOne({}).
+		populate('authorId').
+		where('_id').
+		equals(id).
+		exec(callback);
 };
 
 // Add Post
@@ -56,5 +94,43 @@ module.exports.add = (data, callback) => {
 	return posts.save(callback);
 };
 
-// Export
+// Delete Post by ID
+module.exports.delete = (id, callback) => {
+	return Posts.remove({_id: id}, callback);
+};
+
+// Get Comments by Post ID
+module.exports.getComments = (postId, callback) => {
+	return Comments.
+		find({}).
+		populate('authorId').
+		where('postId').
+		equals(postId).
+		sort('-date').
+		exec(callback);
+};
+
+// Get Comments by ID
+module.exports.getOneComment = (id, callback) => {
+	return Comments.
+		findOne({}).
+		where('_id').
+		equals(id).
+		exec(callback);
+};
+
+// Add Comment
+module.exports.addComment = (data, callback) => {
+	let comments = new Comments(data);
+	return comments.save(callback);
+};
+
+// Delete Comment by ID
+module.exports.deleteComment = (id, callback) => {
+	return Comments.remove({_id: id}, callback);
+};
+
+
+
+// Export default model
 export default Posts;

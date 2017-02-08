@@ -1,5 +1,6 @@
 "use strict";
 
+// Format date and time
 export function formatDateTime(dateTime) {
 	let date = new Date(dateTime);
 	let json = {
@@ -12,29 +13,29 @@ export function formatDateTime(dateTime) {
 	json.time = json.H + ':' + json.i;
 	return json;
 }
-export function timeSince(time){
-	switch (typeof time) {
+
+// Time ago (e.g. 5 hours ago)
+export function timeSince(date){
+	switch (typeof date) {
 		case 'number':
 			break;
 		case 'string':
-			time = +new Date(time); break;
+			date = +new Date(date); break;
 		case 'object':
-			if(time.constructor === Date)
-				time = time.getTime();
+			if(date.constructor === Date)
+				date = date.getTime();
 			break;
 		default:
-			time = +new Date();
+			date = +new Date();
 	}
 	const timeFormats = [
 		[60, 'secondsAgo', 1], // 60
 		[120, 'minuteAgo'], // 60*2
 		[3600, 'minutesAgo', 60], // 60*60, 60
 		[7200, 'hourAgo'], // 60*60*2
-		[86400, 'hoursAgo', 3600], // 60*60*24, 60*60
-		[172800, 'yesterday'], // 60*60*24*2
-		[604800, 'daysAgo', 86400] // 60*60*24*7, 60*60*24
+		[86400, 'hoursAgo', 3600] // 60*60*24, 60*60
 	];
-	let seconds = (+new Date() - time) / 1000;
+	let seconds = (+new Date() - date) / 1000;
 
 	if(seconds <= 10) {
 		return {

@@ -7,13 +7,10 @@ import { addPostItem } from '../Actions/Posts';
 import { autoResizeInput } from '../Functions';
 
 class PostAdd extends React.Component {
+	state = {
+		buttonDisabled: true
+	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-		    buttonDisabled: true
-		};
-	}
 	// TODO: CTRL + Enter-ზე პოსტის დაწერა
 	// componentDidMount() {
 	// 	document.addEventListener('keydown', (e) => {
@@ -44,11 +41,11 @@ class PostAdd extends React.Component {
 		};
 		this.props.addPostItem(post)
 		.then(() => {
-			// content.value = '';
-			// content.style.height = 'auto';
-			// this.setState({
-			// 	buttonDisabled: true
-			// });
+			content.value = '';
+			content.style.height = 'auto';
+			this.setState({
+				buttonDisabled: true
+			});
 		})
 		.catch(() => {
 			this.setState({

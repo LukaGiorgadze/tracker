@@ -15,9 +15,7 @@ import config from '../Config';
 class Posts extends React.Component {
 
 	componentWillMount() {
-		this.props.fetchPostItems({
-			groupId: this.props.user.data.groupId
-		});
+		this.props.fetchPostItems();
 	};
 
 	constructor(props) {
@@ -28,25 +26,25 @@ class Posts extends React.Component {
 		};
 	}
 
-	postDeleteModalHandleOpen = (item) => this.setState({
+	modalHandleOpen = (item) => this.setState({
 		postDeleteModalOpen: item._id !== this.state.postDeleteModalItem._id,
 		postDeleteModalItem: item
 	});
 
-	postDeleteModalHandleClose = (empty) => this.setState({
+	modalHandleClose = (empty) => this.setState({
 		postDeleteModalOpen: false,
 		postDeleteModalItem: empty ? {} : this.state.postDeleteModalItem
 	});
 
 	postDeleteModal = () => {
 		return(
-			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.postDeleteModalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
+			<Modal open={this.state.postDeleteModalOpen} onClose={() => this.modalHandleClose(true)}  closeOnEscape closeOnRootNodeClick size="small" dimmer>
 				<Header content={<Translate value="posts.delete" />} className="BPGSquareMtavruli" />
 				<Modal.Content>
 					<p>{<Translate value="posts.deleteConfirm" />}</p>
 				</Modal.Content>
 				<Modal.Actions>
-					<Button className="BPGSquare" onClick={() => this.postDeleteModalHandleClose(true)}>
+					<Button className="BPGSquare" onClick={() => this.modalHandleClose(true)}>
 						<Icon name="cancel" /> <Translate value="app.no" />
 					</Button>
 					<Button primary className="BPGSquare" onClick={() => this.deletePost(this.state.postDeleteModalItem._id)}>
@@ -59,7 +57,7 @@ class Posts extends React.Component {
 	
 	deletePost = (id) => {
 		this.props.deletePostItem(id);
-		this.postDeleteModalHandleClose();
+		this.modalHandleClose();
 	};
 
 	renderPostItems = ()  => {
@@ -76,13 +74,12 @@ class Posts extends React.Component {
 			} else {
 				timeSince =
 				<span className="timeSince">
-					{dateTimeFull}
+					{item.date.d} <Translate value={"date.m" + item.date.m} />, {item.date.H}:{item.date.i}
 				</span>;
 			}
 
-
 			return(
-				<Item key={item._id} className={"newsItem" + item._id}>
+				<Item key={item._id}>
 					<Item.Image src={config.dirUploadsUsers + item.author.avatar} size="tiny" />
 					<Item.Content>
 						{item.title ?
@@ -91,7 +88,7 @@ class Posts extends React.Component {
 							</Item.Header>
 							: ''
 						}
-						<Item.Meta><Link to={"posts/view/" + item._id}>{item.author.fullname}, <span title={dateTimeFull}>{timeSince}</span></Link></Item.Meta>
+						<Item.Meta><Link to={"posts/view/" + item._id}><strong>{item.author.fullname}</strong> <span title={dateTimeFull}>{timeSince}</span></Link></Item.Meta>
 						<Item.Description>
 							{nl2br(item.content)}
 						</Item.Description>
@@ -100,9 +97,12 @@ class Posts extends React.Component {
 							<Link to={"posts/view/" + item._id}>
 								<Icon name="comments" />{item.commentsN} {item.commentsN > 1 ? <Translate value="posts.comments" /> : <Translate value="posts.comment" />}
 							</Link>
-							<a onClick={() => that.postDeleteModalHandleOpen(item)}>
-								<Icon name="delete" /><Translate value="app.delete" />
-							</a>
+							{that.props.user.admin ?
+								<a onClick={() => that.modalHandleOpen(item)}>
+									<Icon name="delete" /><Translate value="app.delete" />
+								</a>
+								: ''
+							}
 						</Item.Extra>
 					</Item.Content>
 				</Item>
@@ -113,8 +113,13 @@ class Posts extends React.Component {
 	render() {
 		return (
 			<div>
-				<PostAdd />
-				<Divider horizontal hidden />
+				{this.props.user.data.admin ?
+					<div>
+						<PostAdd />
+						<Divider horizontal hidden />
+					</div>
+					: ''
+				}
 				<Item.Group divided relaxed>
 					{(!this.props.posts.loading && !_.isEmpty(this.props.posts.data)) && this.renderPostItems()}
 					<Loader active={this.props.posts.loading} inline="centered" />

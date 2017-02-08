@@ -1,6 +1,7 @@
 export const languages = {
 	ge: {
 		app: {
+			actionNoAccess: 'თქვენ არ გაქვთ ამ მოქმედების უფლება.',
 			error: 'შეცდომა',
 			yes: 'კი',
 			no: 'არა',

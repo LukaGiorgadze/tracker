@@ -97,14 +97,14 @@ export class Signin extends React.Component {
 					<Form onChange={this.onChange} onSubmit={this.onSubmit} id="signinForm">
 						<Form.Field error={this.state.error !== null}>
 							<label htmlFor="user" className="white"><Translate value="sign.email" /></label>
-							<Input type="text" name="user" id="user" value={this.state.user} iconPosition="left"  autoComplete={this.autoComplete()}>
+							<Input type="text" name="user" id="user" value={this.state.user} iconPosition="left" autoComplete={this.autoComplete()} placeholder="example@example.com">
 								<Icon name="at" />
 								<input />
 							</Input>
 						</Form.Field>
 						<Form.Field error={this.state.error !== null}>
 							<label htmlFor="pass" className="white"><Translate value="sign.password" /></label>
-							<Input type="password" name="pass" id="pass" value={this.state.pass} iconPosition="left" autoComplete={this.autoComplete()}>
+							<Input type="password" name="pass" id="pass" value={this.state.pass} iconPosition="left" autoComplete={this.autoComplete()} placeholder="•••••••">
 								<Icon name="lock" />
 								<input />
 							</Input>
