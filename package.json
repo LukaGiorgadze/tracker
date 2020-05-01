@@ -7,7 +7,9 @@
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
     "start": "nodemon --ignore server/api/ --ignore server/Middleware --watch server --exec babel-node -- server/Index.jsx",
-    "api": "nodemon --ignore server/Index.jsx --watch server --exec babel-node -- server/Api/Index.jsx"
+    "api": "nodemon --ignore server/Index.jsx --watch server --exec babel-node -- server/Api/Index.jsx",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +31,8 @@
     "react-router-redux": "*",
     "redux": "*",
     "redux-thunk": "*",
-    "semantic-ui-react": "*"
+    "semantic-ui-react": "*",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-cli": "*",
@@ -54,5 +57,6 @@
     "webpack-cleanup-plugin": "*",
     "webpack-dev-middleware": "*",
     "webpack-hot-middleware": "*"
-  }
+  },
+  "snyk": true
 }
